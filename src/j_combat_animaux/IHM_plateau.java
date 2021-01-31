@@ -53,13 +53,32 @@ public class IHM_plateau extends javax.swing.JFrame {
         private BufferedImage imagePanR;
         private File fichierTigreR= new File("src/images/tigre_rouge0.jpg");
         private BufferedImage imageTigreR;
-        
+        BufferedImage[]anirouges=new BufferedImage[8];
+        File[] fichierrouges=new File[8];
         /**
      * Creates new form IHM_plateau
      */
     public IHM_plateau() {
         initComponents();
         setBounds(0,0,985,810);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
+        //tableau avec les images rouges:
+        anirouges[0]=imageChatR;
+        anirouges[1]=imageChienR;
+        anirouges[2]=imageElephR;
+        anirouges[3]=imageLionR;
+        anirouges[4]=imageLoupR;
+        anirouges[5]=imagePanR;
+        anirouges[6]=imageRatR;
+        anirouges[7]=imageTigreR;
+        //tableau avec les fichiers rouges:
+        fichierrouges[0]=fichierChatR;
+        fichierrouges[1]=fichierChienR;
+        fichierrouges[2]=fichierelephR;
+        fichierrouges[3]=fichierLionR;
+        fichierrouges[4]=fichierLoupR;
+        fichierrouges[5]=fichierPanR;
+        fichierrouges[6]=fichierRatR;
+        fichierrouges[7]=fichierTigreR;
 jPanel1.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
 try{
     imagePlateau=ImageIO.read(fichierplateau);//utilisation de plateau_de_jeu
@@ -106,6 +125,14 @@ try{
 }catch(IOException ex){
     System.out.println("fichiertigreB inutilisable");
 }
+        for (int i = 0; i < anirouges.length; i++) {
+            try{
+              anirouges[i]=ImageIO.read(fichierrouges[i]);//petite boucles pour afficher les images rouges  
+            }catch(IOException ex){
+                System.out.println("Tu t'es planté dans ton try des rouges");
+            }
+            
+        }
     }
     
     /**
