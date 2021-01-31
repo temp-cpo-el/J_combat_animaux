@@ -18,13 +18,12 @@ import javax.imageio.ImageIO;
 public class IHM_plateau extends javax.swing.JFrame {
         private File fichierplateau=new File("src/images/plateau_de_jeu.png");//on va chercher le fichier dans le dossier d'images
         private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
-        //Bon on va y aller comme un bourin mais franchement je suis pas contre une meilleur methode:
+        //Bon on va y aller comme un bourin mais franchement je suis pas contre une meilleure methode:
         
-        /*private File fichierTigreB= new File("src/images/tigre_bleu0.jpg");
+        private File fichierTigreB= new File("src/images/tigre_bleu0.jpg");
         private BufferedImage imageTigreB;
         private File fichierRatB= new File("src/images/rat_bleu0.jpg");
-        private BufferedImage imageRatB;*/
-        
+        private BufferedImage imageRatB;
         private File fichierChatB= new File("src/images/chat_bleu0.jpg");
         private BufferedImage imageChatB;
         private File fichierChienB= new File("src/images/chien_bleu0.jpg");
