@@ -67,7 +67,7 @@ try{
         jPanel1 = new javax.swing.JPanel() {
             public void paintComponent(Graphics g){
                 g.drawImage(imagePlateau,0,0, null);
-                g.drawImage(imageElephB,x_el_bleu,y_el_bleu,null);
+                g.drawImage(imageElephB,x_el_bleu,y_el_bleu,null);//copier/coller pour le reste
                 //pour afficher les pions faudra leur assigner des cooordonnées
             }
         }
@@ -110,7 +110,7 @@ private int xtemp,ytemp;
        xtemp=evt.getX();
        System.out.println("x:"+xtemp);
        ytemp=evt.getY();
-       System.out.println("y:"+ytemp);
+       System.out.println("y:"+ytemp+"\n");
     }//GEN-LAST:event_jPanel1MouseClicked
  private int x_el_rou,y_el_rou,x_chat_rou,y_chat_rou,x_chien_rou,y_chien_rou,x_lion_rou,y_lion_rou,x_loup_rou,y_loup_rou,x_pan_rou,y_pan_rou;
   private int x_el_bleu=225,y_el_bleu=20,x_chat_bleu,y_chat_bleu,x_chien_bleu,y_chien_bleu,x_lion_bleu,y_lion_bleu,x_loup_bleu,y_loup_bleu,x_pan_bleu,y_pan_bleu;
