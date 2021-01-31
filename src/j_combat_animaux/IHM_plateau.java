@@ -54,6 +54,41 @@ try{
 }catch(IOException ex){
     System.out.println("fichierelepehB inutilisable");
 }
+try{
+    imageChatB=ImageIO.read(fichierChatB);//utilisation de plateau_de_jeu
+}catch(IOException ex){
+    System.out.println("fichierechat inutilisable");
+}
+try{
+    imageChienB=ImageIO.read(fichierChienB);//utilisation de plateau_de_jeu
+}catch(IOException ex){
+    System.out.println("fichierchienB inutilisable");
+}
+try{
+    imageLionB=ImageIO.read(fichierLionB);//utilisation de plateau_de_jeu
+}catch(IOException ex){
+    System.out.println("fichierlionB inutilisable");
+}
+try{
+    imageLoupB=ImageIO.read(fichierLoupB);//utilisation de plateau_de_jeu
+}catch(IOException ex){
+    System.out.println("fichierloupB inutilisable");
+}
+try{
+    imagePanB=ImageIO.read(fichierPanB);//utilisation de plateau_de_jeu
+}catch(IOException ex){
+    System.out.println("fichierelpanB inutilisable");
+}
+try{
+    imageRatB=ImageIO.read(fichierRatB);//utilisation de plateau_de_jeu
+}catch(IOException ex){
+    System.out.println("fichieratB inutilisable");
+}
+try{
+    imageTigreB=ImageIO.read(fichierTigreB);//utilisation de plateau_de_jeu
+}catch(IOException ex){
+    System.out.println("fichiertigreB inutilisable");
+}
     }
     
     /**
