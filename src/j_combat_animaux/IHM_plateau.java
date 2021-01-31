@@ -41,7 +41,7 @@ public class IHM_plateau extends javax.swing.JFrame {
      */
     public IHM_plateau() {
         initComponents();
-        setBounds(0,0,546,726);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
+        setBounds(0,0,693,580);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
 jPanel1.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
 try{
     imagePlateau=ImageIO.read(fichierplateau);//utilisation de plateau_de_jeu
