@@ -20,8 +20,8 @@ public class IHM_plateau extends javax.swing.JFrame {
         private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
         //Bon on va y aller comme un bourin mais franchement je suis pas contre une meilleure methode:
         
-        private File fichierTigreB= new File("src/images/tigre_bleu0.jpg");
-        private BufferedImage imageTigreB;
+        private File fichierelephB= new File("src/images/éléphan_bleu0.jpg");
+        private BufferedImage imageElephB;
         private File fichierRatB= new File("src/images/rat_bleu0.jpg");
         private BufferedImage imageRatB;
         private File fichierChatB= new File("src/images/chat_bleu0.jpg");
@@ -30,12 +30,13 @@ public class IHM_plateau extends javax.swing.JFrame {
         private BufferedImage imageChienB;
         private File fichierLionB= new File("src/images/lion_bleu0.jpg");
         private BufferedImage imageLionB;
-        private File fichierloupB= new File("src/images/loup_bleu0.jpg");
-        private BufferedImage imageloupB;
+        private File fichierLoupB= new File("src/images/loup_bleu0.jpg");
+        private BufferedImage imageLoupB;
         private File fichierPanB= new File("src/images/panthère_bleu0.jpg");
         private BufferedImage imagePanB;
-        private File fichierelephB= new File("src/images/éléphan_bleu0.jpg");
-        private BufferedImage imageElephB;
+        private File fichierTigreB= new File("src/images/tigre_bleu0.jpg");
+        private BufferedImage imageTigreB;
+        
         /**
      * Creates new form IHM_plateau
      */
@@ -68,6 +69,13 @@ try{
             public void paintComponent(Graphics g){
                 g.drawImage(imagePlateau,0,0, null);
                 g.drawImage(imageElephB,x_el_bleu,y_el_bleu,null);//copier/coller pour le reste
+                g.drawImage(imageRatB,x_rat_bleu,y_rat_bleu,null);
+                g.drawImage(imageChatB,x_chat_bleu,y_chat_bleu,null);
+                g.drawImage(imageChienB,x_chien_bleu,y_chien_bleu,null);
+                g.drawImage(imageLionB,x_lion_bleu,y_lion_bleu,null);
+                g.drawImage(imageLoupB,x_loup_bleu,y_loup_bleu,null);
+                g.drawImage(imagePanB,x_pan_bleu,y_pan_bleu,null);
+                g.drawImage(imageTigreB,x_tig_bleu,y_tig_bleu,null);
                 //pour afficher les pions faudra leur assigner des cooordonnées
             }
         }
@@ -112,8 +120,8 @@ private int xtemp,ytemp;
        ytemp=evt.getY();
        System.out.println("y:"+ytemp+"\n");
     }//GEN-LAST:event_jPanel1MouseClicked
- private int x_el_rou,y_el_rou,x_chat_rou,y_chat_rou,x_chien_rou,y_chien_rou,x_lion_rou,y_lion_rou,x_loup_rou,y_loup_rou,x_pan_rou,y_pan_rou;
-  private int x_el_bleu=225,y_el_bleu=20,x_chat_bleu,y_chat_bleu,x_chien_bleu,y_chien_bleu,x_lion_bleu,y_lion_bleu,x_loup_bleu,y_loup_bleu,x_pan_bleu,y_pan_bleu;
+ private int x_el_rou=225,y_el_rou=20,x_chat_rou=120,y_chat_rou=118,x_chien_rou=120,y_chien_rou=539,x_lion_rou=14,y_lion_rou=852,x_loup_rou=225,y_loup_rou=223,x_pan_rou=225,y_pan_rou=223;
+  private int x_el_bleu=642,y_el_bleu=644,x_rat_bleu=642,y_rat_bleu=14,x_chat_bleu=747,y_chat_bleu=539,x_chien_bleu=747,y_chien_bleu=118,x_lion_bleu=852,y_lion_bleu=14,x_loup_bleu=642,y_loup_bleu=118,x_pan_bleu=642,y_pan_bleu=223,x_tig_bleu=852,y_tig_bleu=644;
     /**
      * @param args the command line arguments
      */

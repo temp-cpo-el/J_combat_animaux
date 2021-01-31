@@ -38,7 +38,7 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel1MouseClicked"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel() {&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(imagePlateau,0,0, null);&#xa;        g.drawImage(imageElephB,x_el_bleu,y_el_bleu,null);//copier/coller pour le reste&#xa;        //pour afficher les pions faudra leur assigner des cooordonn&#xe9;es&#xa;    }&#xa;}&#xa;"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel() {&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(imagePlateau,0,0, null);&#xa;        g.drawImage(imageElephB,x_el_bleu,y_el_bleu,null);//copier/coller pour le reste&#xa;        g.drawImage(imageRatB,x_rat_bleu,y_rat_bleu,null);&#xa;        g.drawImage(imageChatB,x_chat_bleu,y_chat_bleu,null);&#xa;        g.drawImage(imageChienB,x_chien_bleu,y_chien_bleu,null);&#xa;        g.drawImage(imageLionB,x_lion_bleu,y_lion_bleu,null);&#xa;        g.drawImage(imageLoupB,x_loup_bleu,y_loup_bleu,null);&#xa;        g.drawImage(imagePanB,x_pan_bleu,y_pan_bleu,null);&#xa;        g.drawImage(imageTigreB,x_tig_bleu,y_tig_bleu,null);&#xa;        //pour afficher les pions faudra leur assigner des cooordonn&#xe9;es&#xa;    }&#xa;}&#xa;"/>
       </AuxValues>
 
       <Layout>
