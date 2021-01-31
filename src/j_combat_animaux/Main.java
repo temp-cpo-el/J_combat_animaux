@@ -16,8 +16,12 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-         IHM_plateau ihm= new IHM_plateau();
+        /* 
+        IHM_plateau ihm= new IHM_plateau();
         ihm.setVisible(true);
+        */
+        IHM_test ihmt= new IHM_test();
+        ihmt.setVisible(true);
     }
     
 }

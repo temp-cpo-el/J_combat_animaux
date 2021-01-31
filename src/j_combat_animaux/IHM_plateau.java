@@ -18,13 +18,31 @@ import javax.imageio.ImageIO;
 public class IHM_plateau extends javax.swing.JFrame {
         private File fichierplateau=new File("src/images/plateau_de_jeu.png");//on va chercher le fichier dans le dossier d'images
         private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
-    /**
+        //Bon on va y aller comme un bourin mais franchement je suis pas contre une meilleur methode:
+        
+        /*private File fichierTigreB= new File("src/images/tigre_bleu0.jpg");
+        private BufferedImage imageTigreB;
+        private File fichierRatB= new File("src/images/rat_bleu0.jpg");
+        private BufferedImage imageRatB;*/
+        
+        private File fichierChatB= new File("src/images/chat_bleu0.jpg");
+        private BufferedImage imageChatB;
+        private File fichierChienB= new File("src/images/chien_bleu0.jpg");
+        private BufferedImage imageChienB;
+        private File fichierLionB= new File("src/images/lion_bleu0.jpg");
+        private BufferedImage imageLionB;
+        private File fichierloupB= new File("src/images/loup_bleu0.jpg");
+        private BufferedImage imageloupB;
+        private File fichierPanB= new File("src/images/panthère_bleu0.jpg");
+        private BufferedImage imagePanB;
+        private File fichierelephB= new File("src/images/éléphan_bleu0.jpg");
+        private BufferedImage imageElephB;
+        /**
      * Creates new form IHM_plateau
      */
     public IHM_plateau() {
         initComponents();
-        setBounds(0,0,540,710);
-        //poser un setBounds(positionné au milieu de l'écran, 524,672);
+        setBounds(0,0,540,710);        //poser un setBounds(positionné au milieu de l'écran, 524,672);
 jPanel1.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
 try{
     imagePlateau=ImageIO.read(fichierplateau);//utilisation de plateau_de_jeu
@@ -76,7 +94,8 @@ try{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ private int x_el_rou=600,y_el_rou=200,x_chat_rou,y_chat_rou,x_chien_rou,y_chien_rou,x_lion_rou,y_lion_rou,x_loup_rou,y_loup_rou,x_pan_rou,y_pan_rou;
+  private int x_el_bleu,y_el_bleu,x_chat_bleu,y_chat_bleu,x_chien_bleu,y_chien_bleu,x_lion_bleu,y_lion_bleu,x_loup_bleu,y_loup_bleu,x_pan_bleu,y_pan_bleu;
     /**
      * @param args the command line arguments
      */
