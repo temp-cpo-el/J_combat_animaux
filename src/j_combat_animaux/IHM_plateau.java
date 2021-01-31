@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
  * @author ELOISE
  */
 public class IHM_plateau extends javax.swing.JFrame {
-        private File fichierplateau=new File("src/images/plateau_de_jeu.png");//on va chercher le fichier dans le dossier d'images
+        private File fichierplateau=new File("src/images/plateau0.png");//on va chercher le fichier dans le dossier d'images
         private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
         //Bon on va y aller comme un bourin mais franchement je suis pas contre une meilleure methode:
         
@@ -41,7 +41,7 @@ public class IHM_plateau extends javax.swing.JFrame {
      */
     public IHM_plateau() {
         initComponents();
-        setBounds(0,0,693,580);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
+        setBounds(0,0,985,810);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
 jPanel1.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
 try{
     imagePlateau=ImageIO.read(fichierplateau);//utilisation de plateau_de_jeu
@@ -100,7 +100,7 @@ try{
         pack();
     }// </editor-fold>//GEN-END:initComponents
  private int x_el_rou,y_el_rou,x_chat_rou,y_chat_rou,x_chien_rou,y_chien_rou,x_lion_rou,y_lion_rou,x_loup_rou,y_loup_rou,x_pan_rou,y_pan_rou;
-  private int x_el_bleu=200,y_el_bleu=600,x_chat_bleu,y_chat_bleu,x_chien_bleu,y_chien_bleu,x_lion_bleu,y_lion_bleu,x_loup_bleu,y_loup_bleu,x_pan_bleu,y_pan_bleu;
+  private int x_el_bleu=161,y_el_bleu=600,x_chat_bleu,y_chat_bleu,x_chien_bleu,y_chien_bleu,x_lion_bleu,y_lion_bleu,x_loup_bleu,y_loup_bleu,x_pan_bleu,y_pan_bleu;
     /**
      * @param args the command line arguments
      */
