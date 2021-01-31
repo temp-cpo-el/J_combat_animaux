@@ -36,6 +36,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         private BufferedImage imagePanB;
         private File fichierTigreB= new File("src/images/tigre_bleu0.jpg");
         private BufferedImage imageTigreB;
+        
         //fichier et image pour tous les rouges:
         private File fichierelephR= new File("src/images/éléphan_rouge0.jpg");
         private BufferedImage imageElephR;
@@ -119,6 +120,7 @@ try{
 
         jPanel1 = new javax.swing.JPanel() {
             public void paintComponent(Graphics g){
+                //images bleues
                 g.drawImage(imagePlateau,0,0, null);
                 g.drawImage(imageElephB,x_el_bleu,y_el_bleu,null);//copier/coller pour le reste
                 g.drawImage(imageRatB,x_rat_bleu,y_rat_bleu,null);
@@ -128,6 +130,16 @@ try{
                 g.drawImage(imageLoupB,x_loup_bleu,y_loup_bleu,null);
                 g.drawImage(imagePanB,x_pan_bleu,y_pan_bleu,null);
                 g.drawImage(imageTigreB,x_tig_bleu,y_tig_bleu,null);
+                //image rouges
+                g.drawImage(imageElephR,x_el_rou,y_el_rou,null);
+                g.drawImage(imageRatR,x_rat_rou,y_rat_rou,null);
+                g.drawImage(imageChatR,x_chat_rou,y_chat_rou,null);
+                g.drawImage(imageChienR,x_chien_rou,y_chien_rou,null);
+                g.drawImage(imageLionR,x_lion_rou,y_lion_rou,null);
+                g.drawImage(imageLoupR,x_loup_rou,y_loup_rou,null);
+                g.drawImage(imagePanR,x_pan_rou,y_pan_rou,null);
+                g.drawImage(imageTigreR,x_tig_rou,y_tig_rou,null);
+
                 //pour afficher les pions faudra leur assigner des cooordonnées
             }
         }
@@ -172,7 +184,7 @@ private int xtemp,ytemp;
        ytemp=evt.getY();
        System.out.println("y:"+ytemp+"\n");
     }//GEN-LAST:event_jPanel1MouseClicked
- private int x_el_rou=225,y_el_rou=20,x_chat_rou=120,y_chat_rou=118,x_chien_rou=120,y_chien_rou=539,x_lion_rou=14,y_lion_rou=852,x_loup_rou=225,y_loup_rou=223,x_pan_rou=225,y_pan_rou=223;
+  private int x_el_rou=225,y_el_rou=20,x_rat_rou=225,y_rat_rou=644,x_chat_rou=120,y_chat_rou=118,x_chien_rou=120,y_chien_rou=539,x_lion_rou=14,y_lion_rou=852,x_loup_rou=225,y_loup_rou=223,x_pan_rou=225,y_pan_rou=223,x_tig_rou=14,y_tig_rou=14;
   private int x_el_bleu=642,y_el_bleu=644,x_rat_bleu=642,y_rat_bleu=14,x_chat_bleu=747,y_chat_bleu=539,x_chien_bleu=747,y_chien_bleu=118,x_lion_bleu=852,y_lion_bleu=14,x_loup_bleu=642,y_loup_bleu=433,x_pan_bleu=642,y_pan_bleu=223,x_tig_bleu=852,y_tig_bleu=644;
     /**
      * @param args the command line arguments
