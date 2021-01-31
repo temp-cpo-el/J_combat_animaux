@@ -100,7 +100,7 @@ try{
         pack();
     }// </editor-fold>//GEN-END:initComponents
  private int x_el_rou,y_el_rou,x_chat_rou,y_chat_rou,x_chien_rou,y_chien_rou,x_lion_rou,y_lion_rou,x_loup_rou,y_loup_rou,x_pan_rou,y_pan_rou;
-  private int x_el_bleu=161,y_el_bleu=600,x_chat_bleu,y_chat_bleu,x_chien_bleu,y_chien_bleu,x_lion_bleu,y_lion_bleu,x_loup_bleu,y_loup_bleu,x_pan_bleu,y_pan_bleu;
+  private int x_el_bleu=225,y_el_bleu=12,x_chat_bleu,y_chat_bleu,x_chien_bleu,y_chien_bleu,x_lion_bleu,y_lion_bleu,x_loup_bleu,y_loup_bleu,x_pan_bleu,y_pan_bleu;
     /**
      * @param args the command line arguments
      */
