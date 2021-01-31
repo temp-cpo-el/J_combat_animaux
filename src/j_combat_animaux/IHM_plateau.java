@@ -19,7 +19,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         private File fichierplateau=new File("src/images/plateau0.png");//on va chercher le fichier dans le dossier d'images
         private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
         //Bon on va y aller comme un bourin mais franchement je suis pas contre une meilleure methode:
-        
+        //fichier et image pour tous les bleus:
         private File fichierelephB= new File("src/images/éléphan_bleu0.jpg");
         private BufferedImage imageElephB;
         private File fichierRatB= new File("src/images/rat_bleu0.jpg");
@@ -36,6 +36,23 @@ public class IHM_plateau extends javax.swing.JFrame {
         private BufferedImage imagePanB;
         private File fichierTigreB= new File("src/images/tigre_bleu0.jpg");
         private BufferedImage imageTigreB;
+        //fichier et image pour tous les rouges:
+        private File fichierelephR= new File("src/images/éléphan_rouge0.jpg");
+        private BufferedImage imageElephR;
+        private File fichierRatR= new File("src/images/rat_rouge0.jpg");
+        private BufferedImage imageRatR;
+        private File fichierChatR= new File("src/images/chat_rouge0.jpg");
+        private BufferedImage imageChatR;
+        private File fichierChienR= new File("src/images/chien_rouge0.jpg");
+        private BufferedImage imageChienR;
+        private File fichierLionR= new File("src/images/lion_rouge0.jpg");
+        private BufferedImage imageLionR;
+        private File fichierLoupR= new File("src/images/loup_rouge0.jpg");
+        private BufferedImage imageLoupR;
+        private File fichierPanR= new File("src/images/panthère_rouge0.jpg");
+        private BufferedImage imagePanR;
+        private File fichierTigreR= new File("src/images/tigre_rouge0.jpg");
+        private BufferedImage imageTigreR;
         
         /**
      * Creates new form IHM_plateau
