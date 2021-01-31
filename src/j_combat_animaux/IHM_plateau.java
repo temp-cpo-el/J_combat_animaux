@@ -156,7 +156,7 @@ private int xtemp,ytemp;
        System.out.println("y:"+ytemp+"\n");
     }//GEN-LAST:event_jPanel1MouseClicked
  private int x_el_rou=225,y_el_rou=20,x_chat_rou=120,y_chat_rou=118,x_chien_rou=120,y_chien_rou=539,x_lion_rou=14,y_lion_rou=852,x_loup_rou=225,y_loup_rou=223,x_pan_rou=225,y_pan_rou=223;
-  private int x_el_bleu=642,y_el_bleu=644,x_rat_bleu=642,y_rat_bleu=14,x_chat_bleu=747,y_chat_bleu=539,x_chien_bleu=747,y_chien_bleu=118,x_lion_bleu=852,y_lion_bleu=14,x_loup_bleu=642,y_loup_bleu=118,x_pan_bleu=642,y_pan_bleu=223,x_tig_bleu=852,y_tig_bleu=644;
+  private int x_el_bleu=642,y_el_bleu=644,x_rat_bleu=642,y_rat_bleu=14,x_chat_bleu=747,y_chat_bleu=539,x_chien_bleu=747,y_chien_bleu=118,x_lion_bleu=852,y_lion_bleu=14,x_loup_bleu=642,y_loup_bleu=433,x_pan_bleu=642,y_pan_bleu=223,x_tig_bleu=852,y_tig_bleu=644;
     /**
      * @param args the command line arguments
      */
