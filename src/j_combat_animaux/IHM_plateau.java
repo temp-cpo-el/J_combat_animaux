@@ -54,15 +54,15 @@ public class IHM_plateau extends javax.swing.JFrame {
         private BufferedImage imagePanR;
         private File fichierTigreR= new File("src/images/tigre_rouge0.jpg");
         private BufferedImage imageTigreR;
-        BufferedImage[]anirouges=new BufferedImage[8];
-        File[] fichierrouges=new File[8];
+        /*BufferedImage[]anirouges=new BufferedImage[8];
+        File[] fichierrouges=new File[8];*/
         /**
      * Creates new form IHM_plateau
      */
     public IHM_plateau() {
         initComponents();
         setBounds(0,0,985,810);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
-        //tableau avec les images rouges:
+        /*//tableau avec les images rouges:
         anirouges[0]=imageChatR;
         anirouges[1]=imageChienR;
         anirouges[2]=imageElephR;
@@ -79,7 +79,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         fichierrouges[4]=fichierLoupR;
         fichierrouges[5]=fichierPanR;
         fichierrouges[6]=fichierRatR;
-        fichierrouges[7]=fichierTigreR;
+        fichierrouges[7]=fichierTigreR;*/
 jPanel1.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
 try{
     imagePlateau=ImageIO.read(fichierplateau);//utilisation de plateau_de_jeu
@@ -126,13 +126,54 @@ try{
 }catch(IOException ex){
     System.out.println("fichiertigreB inutilisable");
 }
-        for (int i = 0; i < anirouges.length; i++) {
+/*        for (int i = 0; i < anirouges.length; i++) {
             try{
               anirouges[i]=ImageIO.read(fichierrouges[i]);//petite boucles pour afficher les images rouges  
+                System.out.println("image "+i+" chargée");
             }catch(IOException ex){
                 System.out.println("Tu t'es planté dans ton try des rouges");
             }
             
+        }*/
+        try{
+            imageChatR=ImageIO.read(fichierChatR);
+        }catch(IOException ex){
+            System.out.println("BLeh chat");
+        }
+          try{
+            imageTigreR=ImageIO.read(fichierTigreR);
+        }catch(IOException ex){
+            System.out.println("BLeh tigre");
+        }
+            try{
+            imageRatR=ImageIO.read(fichierRatR);
+        }catch(IOException ex){
+            System.out.println("BLeh rat");
+        }
+              try{
+            imagePanR=ImageIO.read(fichierPanR);
+        }catch(IOException ex){
+            System.out.println("BLeh panthère");
+        }
+                try{
+            imageLoupR=ImageIO.read(fichierLoupR);
+        }catch(IOException ex){
+            System.out.println("BLeh loup");
+        }
+                  try{
+            imageLionR=ImageIO.read(fichierLionR);
+        }catch(IOException ex){
+            System.out.println("BLeh lion");
+        }
+                    try{
+            imageElephR=ImageIO.read(fichierelephR);
+        }catch(IOException ex){
+            System.out.println("BLeh elephant");
+        }
+                      try{
+            imageChienR=ImageIO.read(fichierChienR);
+        }catch(IOException ex){
+            System.out.println("BLeh chien");
         }
     }
     
