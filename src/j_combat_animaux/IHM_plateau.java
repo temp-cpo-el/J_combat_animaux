@@ -16,52 +16,54 @@ import javax.imageio.ImageIO;
  * @author ELOISE
  */
 public class IHM_plateau extends javax.swing.JFrame {
-        private File fichierplateau=new File("src/images/plateau0.png");//on va chercher le fichier dans le dossier d'images
-        private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
-        //Bon on va y aller comme un bourin mais franchement je suis pas contre une meilleure methode:
-        //fichier et image pour tous les bleus:
-        private File fichierelephB= new File("src/images/éléphan_bleu0.jpg");
-        private BufferedImage imageElephB;
-        private File fichierRatB= new File("src/images/rat_bleu0.jpg");
-        private BufferedImage imageRatB;
-        private File fichierChatB= new File("src/images/chat_bleu0.jpg");
-        private BufferedImage imageChatB;
-        private File fichierChienB= new File("src/images/chien_bleu0.jpg");
-        private BufferedImage imageChienB;
-        private File fichierLionB= new File("src/images/lion_bleu0.jpg");
-        private BufferedImage imageLionB;
-        private File fichierLoupB= new File("src/images/loup_bleu0.jpg");
-        private BufferedImage imageLoupB;
-        private File fichierPanB= new File("src/images/panthère_bleu0.jpg");
-        private BufferedImage imagePanB;
-        private File fichierTigreB= new File("src/images/tigre_bleu0.jpg");
-        private BufferedImage imageTigreB;
-        
-        //fichier et image pour tous les rouges:
-        private File fichierelephR= new File("src/images/éléphan_rouge0.jpg");
-        private BufferedImage imageElephR;
-        private File fichierRatR= new File("src/images/rat_rouge0.jpg");
-        private BufferedImage imageRatR;
-        private File fichierChatR= new File("src/images/chat_rouge0.jpg");
-        private BufferedImage imageChatR;
-        private File fichierChienR= new File("src/images/chien_rouge0.jpg");
-        private BufferedImage imageChienR;
-        private File fichierLionR= new File("src/images/lion_rouge0.jpg");
-        private BufferedImage imageLionR;
-        private File fichierLoupR= new File("src/images/loup_rouge0.jpg");
-        private BufferedImage imageLoupR;
-        private File fichierPanR= new File("src/images/panthère_rouge0.jpg");
-        private BufferedImage imagePanR;
-        private File fichierTigreR= new File("src/images/tigre_rouge0.jpg");
-        private BufferedImage imageTigreR;
-        /*BufferedImage[]anirouges=new BufferedImage[8];
+
+    private File fichierplateau = new File("src/images/plateau0.png");//on va chercher le fichier dans le dossier d'images
+    private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
+    //Bon on va y aller comme un bourin mais franchement je suis pas contre une meilleure methode:
+    //fichier et image pour tous les bleus:
+    private File fichierelephB = new File("src/images/éléphan_bleu0.jpg");
+    private BufferedImage imageElephB;
+    private File fichierRatB = new File("src/images/rat_bleu0.jpg");
+    private BufferedImage imageRatB;
+    private File fichierChatB = new File("src/images/chat_bleu0.jpg");
+    private BufferedImage imageChatB;
+    private File fichierChienB = new File("src/images/chien_bleu0.jpg");
+    private BufferedImage imageChienB;
+    private File fichierLionB = new File("src/images/lion_bleu0.jpg");
+    private BufferedImage imageLionB;
+    private File fichierLoupB = new File("src/images/loup_bleu0.jpg");
+    private BufferedImage imageLoupB;
+    private File fichierPanB = new File("src/images/panthère_bleu0.jpg");
+    private BufferedImage imagePanB;
+    private File fichierTigreB = new File("src/images/tigre_bleu0.jpg");
+    private BufferedImage imageTigreB;
+
+    //fichier et image pour tous les rouges:
+    private File fichierelephR = new File("src/images/éléphan_rouge0.jpg");
+    private BufferedImage imageElephR;
+    private File fichierRatR = new File("src/images/rat_rouge0.jpg");
+    private BufferedImage imageRatR;
+    private File fichierChatR = new File("src/images/chat_rouge0.jpg");
+    private BufferedImage imageChatR;
+    private File fichierChienR = new File("src/images/chien_rouge0.jpg");
+    private BufferedImage imageChienR;
+    private File fichierLionR = new File("src/images/lion_rouge0.jpg");
+    private BufferedImage imageLionR;
+    private File fichierLoupR = new File("src/images/loup_rouge0.jpg");
+    private BufferedImage imageLoupR;
+    private File fichierPanR = new File("src/images/panthère_rouge0.jpg");
+    private BufferedImage imagePanR;
+    private File fichierTigreR = new File("src/images/tigre_rouge0.jpg");
+    private BufferedImage imageTigreR;
+
+    /*BufferedImage[]anirouges=new BufferedImage[8];
         File[] fichierrouges=new File[8];*/
-        /**
+    /**
      * Creates new form IHM_plateau
      */
     public IHM_plateau() {
         initComponents();
-        setBounds(0,0,985,810);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
+        setBounds(0, 0, 985, 810);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
         /*//tableau avec les images rouges:
         anirouges[0]=imageChatR;
         anirouges[1]=imageChienR;
@@ -80,53 +82,53 @@ public class IHM_plateau extends javax.swing.JFrame {
         fichierrouges[5]=fichierPanR;
         fichierrouges[6]=fichierRatR;
         fichierrouges[7]=fichierTigreR;*/
-jPanel1.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
-try{
-    imagePlateau=ImageIO.read(fichierplateau);//utilisation de plateau_de_jeu
-}catch(IOException ex){
-    System.out.println("fichierplateau inutilisable");
-}
-try{
-    imageElephB=ImageIO.read(fichierelephB);//utilisation de plateau_de_jeu
-}catch(IOException ex){
-    System.out.println("fichierelepehB inutilisable");
-}
-try{
-    imageChatB=ImageIO.read(fichierChatB);//utilisation de plateau_de_jeu
-}catch(IOException ex){
-    System.out.println("fichierechat inutilisable");
-}
-try{
-    imageChienB=ImageIO.read(fichierChienB);//utilisation de plateau_de_jeu
-}catch(IOException ex){
-    System.out.println("fichierchienB inutilisable");
-}
-try{
-    imageLionB=ImageIO.read(fichierLionB);//utilisation de plateau_de_jeu
-}catch(IOException ex){
-    System.out.println("fichierlionB inutilisable");
-}
-try{
-    imageLoupB=ImageIO.read(fichierLoupB);//utilisation de plateau_de_jeu
-}catch(IOException ex){
-    System.out.println("fichierloupB inutilisable");
-}
-try{
-    imagePanB=ImageIO.read(fichierPanB);//utilisation de plateau_de_jeu
-}catch(IOException ex){
-    System.out.println("fichierelpanB inutilisable");
-}
-try{
-    imageRatB=ImageIO.read(fichierRatB);//utilisation de plateau_de_jeu
-}catch(IOException ex){
-    System.out.println("fichieratB inutilisable");
-}
-try{
-    imageTigreB=ImageIO.read(fichierTigreB);//utilisation de plateau_de_jeu
-}catch(IOException ex){
-    System.out.println("fichiertigreB inutilisable");
-}
-/*        for (int i = 0; i < anirouges.length; i++) {
+        jPanel1.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
+        try {
+            imagePlateau = ImageIO.read(fichierplateau);//utilisation de plateau_de_jeu
+        } catch (IOException ex) {
+            System.out.println("fichierplateau inutilisable");
+        }
+        try {
+            imageElephB = ImageIO.read(fichierelephB);//utilisation de plateau_de_jeu
+        } catch (IOException ex) {
+            System.out.println("fichierelepehB inutilisable");
+        }
+        try {
+            imageChatB = ImageIO.read(fichierChatB);//utilisation de plateau_de_jeu
+        } catch (IOException ex) {
+            System.out.println("fichierechatR inutilisable");
+        }
+        try {
+            imageChienB = ImageIO.read(fichierChienB);//utilisation de plateau_de_jeu
+        } catch (IOException ex) {
+            System.out.println("fichierchienB inutilisable");
+        }
+        try {
+            imageLionB = ImageIO.read(fichierLionB);//utilisation de plateau_de_jeu
+        } catch (IOException ex) {
+            System.out.println("fichierlionB inutilisable");
+        }
+        try {
+            imageLoupB = ImageIO.read(fichierLoupB);//utilisation de plateau_de_jeu
+        } catch (IOException ex) {
+            System.out.println("fichierloupB inutilisable");
+        }
+        try {
+            imagePanB = ImageIO.read(fichierPanB);//utilisation de plateau_de_jeu
+        } catch (IOException ex) {
+            System.out.println("fichierelpanB inutilisable");
+        }
+        try {
+            imageRatB = ImageIO.read(fichierRatB);//utilisation de plateau_de_jeu
+        } catch (IOException ex) {
+            System.out.println("fichieratB inutilisable");
+        }
+        try {
+            imageTigreB = ImageIO.read(fichierTigreB);//utilisation de plateau_de_jeu
+        } catch (IOException ex) {
+            System.out.println("fichiertigreB inutilisable");
+        }
+        /*        for (int i = 0; i < anirouges.length; i++) {
             try{
               anirouges[i]=ImageIO.read(fichierrouges[i]);//petite boucles pour afficher les images rouges  
                 System.out.println("image "+i+" chargée");
@@ -135,48 +137,48 @@ try{
             }
             
         }*/
-        try{
-            imageChatR=ImageIO.read(fichierChatR);
-        }catch(IOException ex){
+        try {
+            imageChatR = ImageIO.read(fichierChatR);
+        } catch (IOException ex) {
             System.out.println("BLeh chat");
         }
-          try{
-            imageTigreR=ImageIO.read(fichierTigreR);
-        }catch(IOException ex){
+        try {
+            imageTigreR = ImageIO.read(fichierTigreR);
+        } catch (IOException ex) {
             System.out.println("BLeh tigre");
         }
-            try{
-            imageRatR=ImageIO.read(fichierRatR);
-        }catch(IOException ex){
+        try {
+            imageRatR = ImageIO.read(fichierRatR);
+        } catch (IOException ex) {
             System.out.println("BLeh rat");
         }
-              try{
-            imagePanR=ImageIO.read(fichierPanR);
-        }catch(IOException ex){
+        try {
+            imagePanR = ImageIO.read(fichierPanR);
+        } catch (IOException ex) {
             System.out.println("BLeh panthère");
         }
-                try{
-            imageLoupR=ImageIO.read(fichierLoupR);
-        }catch(IOException ex){
+        try {
+            imageLoupR = ImageIO.read(fichierLoupR);
+        } catch (IOException ex) {
             System.out.println("BLeh loup");
         }
-                  try{
-            imageLionR=ImageIO.read(fichierLionR);
-        }catch(IOException ex){
+        try {
+            imageLionR = ImageIO.read(fichierLionR);
+        } catch (IOException ex) {
             System.out.println("BLeh lion");
         }
-                    try{
-            imageElephR=ImageIO.read(fichierelephR);
-        }catch(IOException ex){
+        try {
+            imageElephR = ImageIO.read(fichierelephR);
+        } catch (IOException ex) {
             System.out.println("BLeh elephant");
         }
-                      try{
-            imageChienR=ImageIO.read(fichierChienR);
-        }catch(IOException ex){
+        try {
+            imageChienR = ImageIO.read(fichierChienR);
+        } catch (IOException ex) {
             System.out.println("BLeh chien");
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -245,15 +247,16 @@ try{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private int xtemp,ytemp;
+private int xtemp, ytemp;
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-       xtemp=evt.getX();
-       System.out.println("x:"+xtemp);
-       ytemp=evt.getY();
-       System.out.println("y:"+ytemp+"\n");
+        xtemp = evt.getX();
+        System.out.println("x:" + xtemp);
+        ytemp = evt.getY();
+        System.out.println("y:" + ytemp + "\n");
     }//GEN-LAST:event_jPanel1MouseClicked
-  private int x_el_rou=225,y_el_rou=20,x_rat_rou=225,y_rat_rou=644,x_chat_rou=120,y_chat_rou=118,x_chien_rou=120,y_chien_rou=539,x_lion_rou=14,y_lion_rou=852,x_loup_rou=225,y_loup_rou=223,x_pan_rou=225,y_pan_rou=223,x_tig_rou=14,y_tig_rou=14;
-  private int x_el_bleu=642,y_el_bleu=644,x_rat_bleu=642,y_rat_bleu=14,x_chat_bleu=747,y_chat_bleu=539,x_chien_bleu=747,y_chien_bleu=118,x_lion_bleu=852,y_lion_bleu=14,x_loup_bleu=642,y_loup_bleu=433,x_pan_bleu=642,y_pan_bleu=223,x_tig_bleu=852,y_tig_bleu=644;
+    private int x_el_rou = 225, y_el_rou = 20, x_rat_rou = 225, y_rat_rou = 644, x_chat_rou = 120, y_chat_rou = 118, x_chien_rou = 120, y_chien_rou = 539, x_lion_rou = 14, y_lion_rou = 644, x_loup_rou = 225, y_loup_rou = 223, x_pan_rou = 225, y_pan_rou = 223, x_tig_rou = 14, y_tig_rou = 14;
+    private int x_el_bleu = 642, y_el_bleu = 644, x_rat_bleu = 642, y_rat_bleu = 14, x_chat_bleu = 747, y_chat_bleu = 539, x_chien_bleu = 747, y_chien_bleu = 118, x_lion_bleu = 852, y_lion_bleu = 14, x_loup_bleu = 642, y_loup_bleu = 433, x_pan_bleu = 642, y_pan_bleu = 223, x_tig_bleu = 852, y_tig_bleu = 644;
+
     /**
      * @param args the command line arguments
      */
