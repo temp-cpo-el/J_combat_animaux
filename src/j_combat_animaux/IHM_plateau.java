@@ -48,8 +48,13 @@ try{
 }catch(IOException ex){
     System.out.println("fichierplateau inutilisable");
 }
+try{
+    imageElephB=ImageIO.read(fichierelephB);//utilisation de plateau_de_jeu
+}catch(IOException ex){
+    System.out.println("fichierelepehB inutilisable");
+}
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,6 +67,7 @@ try{
         jPanel1 = new javax.swing.JPanel() {
             public void paintComponent(Graphics g){
                 g.drawImage(imagePlateau,0,0, null);
+                g.drawImage(imageElephB,x_el_bleu,y_el_bleu,null);
                 //pour afficher les pions faudra leur assigner des cooordonnées
             }
         }
@@ -93,8 +99,8 @@ try{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- private int x_el_rou=600,y_el_rou=200,x_chat_rou,y_chat_rou,x_chien_rou,y_chien_rou,x_lion_rou,y_lion_rou,x_loup_rou,y_loup_rou,x_pan_rou,y_pan_rou;
-  private int x_el_bleu,y_el_bleu,x_chat_bleu,y_chat_bleu,x_chien_bleu,y_chien_bleu,x_lion_bleu,y_lion_bleu,x_loup_bleu,y_loup_bleu,x_pan_bleu,y_pan_bleu;
+ private int x_el_rou,y_el_rou,x_chat_rou,y_chat_rou,x_chien_rou,y_chien_rou,x_lion_rou,y_lion_rou,x_loup_rou,y_loup_rou,x_pan_rou,y_pan_rou;
+  private int x_el_bleu=200,y_el_bleu=600,x_chat_bleu,y_chat_bleu,x_chien_bleu,y_chien_bleu,x_lion_bleu,y_lion_bleu,x_loup_bleu,y_loup_bleu,x_pan_bleu,y_pan_bleu;
     /**
      * @param args the command line arguments
      */
