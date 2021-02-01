@@ -49,18 +49,32 @@ public class IHM_acceuil extends javax.swing.JFrame {
         }
 
         ;
+        jButtonjouer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButtonjouer.setText("JOUER");
+        jButtonjouer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonjouerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelacceuilLayout = new javax.swing.GroupLayout(jPanelacceuil);
         jPanelacceuil.setLayout(jPanelacceuilLayout);
         jPanelacceuilLayout.setHorizontalGroup(
             jPanelacceuilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jPanelacceuilLayout.createSequentialGroup()
+                .addGap(315, 315, 315)
+                .addComponent(jButtonjouer, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(360, Short.MAX_VALUE))
         );
         jPanelacceuilLayout.setVerticalGroup(
             jPanelacceuilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelacceuilLayout.createSequentialGroup()
+                .addContainerGap(450, Short.MAX_VALUE)
+                .addComponent(jButtonjouer, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -76,6 +90,12 @@ public class IHM_acceuil extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonjouerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonjouerActionPerformed
+      IHM_plateau ihm1= new IHM_plateau();
+        ihm1.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonjouerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,6 +133,7 @@ public class IHM_acceuil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonjouer;
     private javax.swing.JPanel jPanelacceuil;
     // End of variables declaration//GEN-END:variables
 }
