@@ -34,6 +34,9 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanelacceuil">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(imageAcceuil,0,0, null);&#xa;    }&#xa;}&#xa;&#xa;"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

@@ -24,7 +24,7 @@ public class IHM_acceuil extends javax.swing.JFrame {
      */
     public IHM_acceuil() {
         initComponents();
-        setBounds(0, 0, 985, 810);
+        setBounds(0, 0, 972,640);
          jPanelacceuil.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
         try {
             imageAcceuil = ImageIO.read(fichierAcceuil);//utilisation de plateau_de_jeu
@@ -42,7 +42,13 @@ public class IHM_acceuil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelacceuil = new javax.swing.JPanel();
+        jPanelacceuil = new javax.swing.JPanel(){
+            public void paintComponent(Graphics g){
+                g.drawImage(imageAcceuil,0,0, null);
+            }
+        }
+
+        ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
