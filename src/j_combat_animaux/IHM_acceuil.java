@@ -120,6 +120,7 @@ public class IHM_acceuil extends javax.swing.JFrame {
     private void jButtonjouerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonjouerActionPerformed
       IHM_plateau ihm1= new IHM_plateau();
         ihm1.setVisible(true);
+        setVisible(false);//ferme l'ihm d'acceuil
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonjouerActionPerformed
 

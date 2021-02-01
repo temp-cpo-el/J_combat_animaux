@@ -20,10 +20,10 @@ public class Main {
         ihm0.setVisible(true);
         //peut-être rajouter un boolean, et quand on appuie sur un bouton ça enlève cette ihm et ça affiche celle du jeu?
         
-        IHM_plateau ihm1= new IHM_plateau();
+        /*IHM_plateau ihm1= new IHM_plateau();
         ihm1.setVisible(true);
         
-        /*IHM_test ihmt= new IHM_test();
+        IHM_test ihmt= new IHM_test();
         ihmt.setVisible(true);*/
     }
     
