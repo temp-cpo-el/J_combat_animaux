@@ -52,6 +52,8 @@ public class IHM_acceuil extends javax.swing.JFrame {
         ;
         jButtonjouer = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,6 +80,12 @@ public class IHM_acceuil extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Viner Hand ITC", 1, 48)); // NOI18N
         jLabel1.setText("Bienvenue \ndans \nLe jeu de la jungle!");
 
+        jLabel2.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
+        jLabel2.setText("Joueur 1");
+
+        jLabel3.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
+        jLabel3.setText("Joueur 2");
+
         javax.swing.GroupLayout jPanelacceuilLayout = new javax.swing.GroupLayout(jPanelacceuil);
         jPanelacceuil.setLayout(jPanelacceuilLayout);
         jPanelacceuilLayout.setHorizontalGroup(
@@ -92,13 +100,23 @@ public class IHM_acceuil extends javax.swing.JFrame {
                     .addGroup(jPanelacceuilLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
+            .addGroup(jPanelacceuilLayout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(jLabel2)
+                .addGap(252, 252, 252)
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelacceuilLayout.setVerticalGroup(
             jPanelacceuilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelacceuilLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 349, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addGroup(jPanelacceuilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 286, Short.MAX_VALUE)
                 .addComponent(jButtonjouer, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -162,6 +180,8 @@ public class IHM_acceuil extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonjouer;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelacceuil;
     // End of variables declaration//GEN-END:variables
