@@ -5,17 +5,32 @@
  */
 package j_combat_animaux;
 
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author annag
  */
 public class IHM_victoire extends javax.swing.JFrame {
-
+    private File fichiervictoire = new File("src/images/victoire0.jpg");
+    private BufferedImage imageVictoire;
     /**
      * Creates new form IHM_victoire
      */
     public IHM_victoire() {
         initComponents();
+        setBounds(0, 0, 985, 600);
+        jPanelvictoire.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
+        
+        try {
+            imageVictoire = ImageIO.read(fichiervictoire);//utilisation de plateau_de_jeu
+        } catch (IOException ex) {
+            System.out.println("fichiervictoire inutilisable");
+        }
     }
 
     /**
@@ -27,19 +42,47 @@ public class IHM_victoire extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelvictoire = new javax.swing.JPanel();
+        jPanelvictoire = new javax.swing.JPanel(){
+            public void paintComponent(Graphics g){
+                g.drawImage(imageVictoire,0,0, null);
+            }
+        }
+        ;
+        jLabel1 = new javax.swing.JLabel();
+        jLabelNom_du_vinqueur = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Viner Hand ITC", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Victoire du joueur");
+
+        jLabelNom_du_vinqueur.setFont(new java.awt.Font("Viner Hand ITC", 1, 48)); // NOI18N
+        jLabelNom_du_vinqueur.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelNom_du_vinqueur.setText("     X");
 
         javax.swing.GroupLayout jPanelvictoireLayout = new javax.swing.GroupLayout(jPanelvictoire);
         jPanelvictoire.setLayout(jPanelvictoireLayout);
         jPanelvictoireLayout.setHorizontalGroup(
             jPanelvictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jPanelvictoireLayout.createSequentialGroup()
+                .addContainerGap(327, Short.MAX_VALUE)
+                .addGroup(jPanelvictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelvictoireLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(257, 257, 257))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelvictoireLayout.createSequentialGroup()
+                        .addComponent(jLabelNom_du_vinqueur, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(417, 417, 417))))
         );
         jPanelvictoireLayout.setVerticalGroup(
             jPanelvictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jPanelvictoireLayout.createSequentialGroup()
+                .addGap(116, 116, 116)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelNom_du_vinqueur)
+                .addContainerGap(281, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -92,6 +135,8 @@ public class IHM_victoire extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelNom_du_vinqueur;
     private javax.swing.JPanel jPanelvictoire;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,6 +19,7 @@ public class IHM_plateau extends javax.swing.JFrame {
 
     private File fichierplateau = new File("src/images/plateau0.png");//on va chercher le fichier dans le dossier d'images
     private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
+    
     //Bon on va y aller comme un bourin mais franchement je suis pas contre une meilleure methode:
     //fichier et image pour tous les bleus:
     private File fichierelephB = new File("src/images/éléphan_bleu0.jpg");

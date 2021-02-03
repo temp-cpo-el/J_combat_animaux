@@ -24,7 +24,7 @@ public class IHM_acceuil extends javax.swing.JFrame {
      */
     public IHM_acceuil() {
         initComponents();
-        setBounds(0, 0, 972,640);
+        setBounds(0, 0, 972,600);
          jPanelacceuil.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
         try {
             imageAcceuil = ImageIO.read(fichierAcceuil);//utilisation de plateau_de_jeu

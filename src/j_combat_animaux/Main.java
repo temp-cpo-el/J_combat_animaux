@@ -18,6 +18,8 @@ public class Main {
         // TODO code application logic here
         IHM_acceuil ihm0=new IHM_acceuil();
         ihm0.setVisible(true);
+        IHM_victoire ihm1=new IHM_victoire();
+        ihm1.setVisible(true);
         //peut-être rajouter un boolean, et quand on appuie sur un bouton ça enlève cette ihm et ça affiche celle du jeu?
         
         /*IHM_plateau ihm1= new IHM_plateau();
