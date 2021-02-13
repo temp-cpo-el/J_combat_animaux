@@ -5,6 +5,7 @@
  */
 package j_combat_animaux;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -19,7 +20,7 @@ public class IHM_plateau extends javax.swing.JFrame {
 
     private File fichierplateau = new File("src/images/plateau0.png");//on va chercher le fichier dans le dossier d'images
     private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
-    
+    private int[] ligne=new int[7];
     
 
     /*On a trouvé une autre méthode!!! yeah! Définiions des trucs dont on a besoin:*/
@@ -38,24 +39,32 @@ public class IHM_plateau extends javax.swing.JFrame {
      */
     public IHM_plateau() {
         initComponents();
+    //Définition des lignes du plateau
+    ligne[0]=12;
+    ligne[1]=116;
+    ligne[2]=221;
+    ligne[3]=326;
+    ligne[4]=432;
+    ligne[5]=538;
+    ligne[6]=642;
     /*Définitions de tous les animaux selon leur classe, c'est plus court: */
         
-    Animal a1=new Animal("rat", 642, 14, 1,true);//rat de rang 1 couleur:bleu
-    Animal a2=new Animal("chat", 747, 539, 2,true);
-    Animal a3=new Animal("loup", 642, 433, 3,true);
-    Animal a4=new Animal("chien", 747, 118, 4,true);
-    Animal a5=new Animal("panthère", 642, 223, 5,true);
-    Animal a6=new Animal("lion", 852, 14, 6,true);
-    Animal a7=new Animal("tigre", 852, 644, 7,true);
-    Animal a8=new Animal("elephant", 642, 644, 8,true);
-    Animal a9=new Animal("rat", 225, 644, 1,false);//rat de rang 1 couleur:rouge
-    Animal a10=new Animal("chat", 120, 118, 2,false);
-    Animal a11=new Animal("loup", 225,223, 3,false);
-    Animal a12=new Animal("chien", 120, 539, 4,false);
-    Animal a13=new Animal("panthère", 225, 433, 5,false);
-    Animal a14=new Animal("lion", 14, 644, 6,false);
-    Animal a15=new Animal("tigre", 14, 14, 7,false);
-    Animal a16=new Animal("elephant", 225, 20, 8,false);
+    Animal a1=new Animal("rat", 642, 14,0,0, 1,true,false);//rat de rang 1 couleur:bleu
+    Animal a2=new Animal("chat", 747, 539,0,0, 2,true,false);
+    Animal a3=new Animal("loup", 642, 433,0,0, 3,true,false);
+    Animal a4=new Animal("chien", 747, 118,0,0, 4,true,false);
+    Animal a5=new Animal("panthère", 642, 223,0,0, 5,true,false);
+    Animal a6=new Animal("lion", 852, 14,0,0, 6,true,false);
+    Animal a7=new Animal("tigre", 852, 644,0,0, 7,true,false);
+    Animal a8=new Animal("elephant", 642, 644,0,0, 8,true,false);
+    Animal a9=new Animal("rat", 225, 644,0,0, 1,false,false);//rat de rang 1 couleur:rouge
+    Animal a10=new Animal("chat", 120, 118,0,0, 2,false,false);
+    Animal a11=new Animal("loup", 225,223,0,0, 3,false,false);
+    Animal a12=new Animal("chien", 120, 539,0,0, 4,false,false);
+    Animal a13=new Animal("panthère", 225, 433,0,0, 5,false,false);
+    Animal a14=new Animal("lion", 14, 644,0,0, 6,false,false);
+    Animal a15=new Animal("tigre", 14, 14,0,0, 7,false,false);
+    Animal a16=new Animal("elephant", 225, 20,0,0, 8,false,false);
     
         ajouterAnimal(a1);
         ajouterAnimal(a2);
@@ -108,6 +117,11 @@ public class IHM_plateau extends javax.swing.JFrame {
                 */
                 for(int i=0; i<ani.length; i++){
                     g.drawImage(image[i],x_aff[i],y_aff[i],null);
+                    if (ani[i].isIsSelected()){
+                        g.setColor(Color.RED);
+                        g.drawOval(x_aff[i], y_aff[i]+10, 100, 70);
+                        ani[i].setIsSelected(false);
+                    }
                 }
 
             }
@@ -116,6 +130,11 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPanel1FocusGained(evt);
+            }
+        });
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
@@ -152,8 +171,12 @@ private int xtemp, ytemp;
         System.out.println("x:" + xtemp);
         ytemp = evt.getY();
         System.out.println("y:" + ytemp + "\n");
-        
+        selecAnimaux();
     }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
+        //COMMENT JE FAIS POUR ENLEVER CA????
+    }//GEN-LAST:event_jPanel1FocusGained
 
     /**
      * @param args the command line arguments
@@ -210,6 +233,8 @@ private int xtemp, ytemp;
         private void afficherAnimaux(Animal[] ani) {
        try{
         for (int i = 0; i < ani.length; i++) {
+            ani[i].setX(ani[i].getX_init());
+            ani[i].setY(ani[i].getY_init());
             x_aff[i]=ani[i].getX_init();
             y_aff[i]=ani[i].getY_init();
             image[i]=ImageIO.read(tab_fich[i]);
@@ -218,6 +243,32 @@ private int xtemp, ytemp;
     }catch(IOException ex){
     System.out.println("affichage des animaux impossible");
 }
+    }
+private int ligne_proche;
+    private void selecAnimaux() {
+        /**
+     * fonction en plusieurs étapes:
+     * 1)chercher la ligne supérieure la pus proche de xtemp séléectionné
+     * 2)chercher les points d'origines d'éventuelles images dans une bande partant de cette origine
+     * 3) afficher des carrés autour des images correspondantes sur la ligne
+     * on verra pour le découpage par carré plus tard, pour l'instant on cherche juste la ligne
+     **/
+        for (int i = 0; i < ligne.length; i++) {
+            if (ytemp>ligne[i]){
+              ligne_proche=ligne[i];  
+            }
+            else{
+                break;
+            }
+        }//on a récup la ligne la plus proche
+        for (int i = 0; i < ani.length; i++) {
+            
+            if (ligne_proche<ani[i].getY() && ani[i].getY()<ligne_proche+20){
+                ani[i].setIsSelected(true);
+            }
+           
+        }
+    jPanel1.repaint();  
     }
     
 }

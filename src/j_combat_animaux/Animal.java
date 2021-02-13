@@ -15,14 +15,15 @@ public class Animal {
     private final String nom;//nom type chat,chien,elephant,tigre...
     private final int x_init;//coordonnnées de début de partie
     private final int y_init;//coordonnnées de début de partie
+    private int x,y;
     private final int rang;//rang de l'animal
     private boolean bleu;//0=pion rouge 1=pion bleu
     private String couleur;
- 
+    private boolean isSelected;
     
     
 
-    public Animal(String nom, int x_init, int y_init,int rang, boolean bleu) {
+    public Animal(String nom, int x_init, int y_init,int x,int y,int rang, boolean bleu,boolean isSelected) {
         
         this.nom = nom;
         this.x_init = x_init;
@@ -55,5 +56,27 @@ public class Animal {
     public String getCouleur() {
         return couleur;
     }
- 
+     public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public boolean isIsSelected() {
+        return isSelected;
+    }
+
+    public void setIsSelected(boolean isSelected) {
+        this.isSelected = isSelected;
+    }
 }

@@ -35,10 +35,11 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jPanel1FocusGained"/>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel1MouseClicked"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel() {&#xa;    public void paintComponent(Graphics g){&#xa;        //affichage plateau&#xa;        g.drawImage(imagePlateau,0,0, null);&#xa;        &#xa;        /*nouveau code du customize code:&#xa;*/&#xa;        for(int i=0; i&lt;ani.length; i++){&#xa;            g.drawImage(image[i],x_aff[i],y_aff[i],null);&#xa;        }&#xa;        &#xa;    }&#xa;}&#xa;"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel() {&#xa;    public void paintComponent(Graphics g){&#xa;        //affichage plateau&#xa;        g.drawImage(imagePlateau,0,0, null);&#xa;&#xa;        /*nouveau code du customize code:&#xa;        */&#xa;        for(int i=0; i&lt;ani.length; i++){&#xa;            g.drawImage(image[i],x_aff[i],y_aff[i],null);&#xa;            if (ani[i].isIsSelected()){&#xa;                g.setColor(Color.RED);&#xa;                g.drawOval(x_aff[i], y_aff[i]+10, 100, 70);&#xa;                ani[i].setIsSelected(false);&#xa;                }&#xa;            }&#xa;&#xa;        }&#xa;    }&#xa;    "/>
       </AuxValues>
 
       <Layout>
