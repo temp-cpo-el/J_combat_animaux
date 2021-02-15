@@ -18,8 +18,10 @@ import javax.imageio.ImageIO;
  */
 public class IHM_plateau extends javax.swing.JFrame {
 
-    private File fichierplateau = new File("src/images/plateau0.png");//on va chercher le fichier dans le dossier d'images
+    private File fichierplateau = new File("src/images/plateau1.png");//on va chercher le fichier dans le dossier d'images
     private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
+    private File fichierfondplateau = new File("src/images/Fond_plateau_de_jeu0.png");//on va chercher le fichier dans le dossier d'images
+    private BufferedImage imageFondPlateau;
     private int[] ligne=new int[7];
     
 
@@ -84,14 +86,20 @@ public class IHM_plateau extends javax.swing.JFrame {
         ajouterAnimal(a16);
         
             
-        setBounds(0, 0, 985, 810);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
+        setBounds(0, 0, 1330, 910);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
         jPanel1.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
         try {
             imagePlateau = ImageIO.read(fichierplateau);//utilisation de plateau_de_jeu
         } catch (IOException ex) {
             System.out.println("fichierplateau inutilisable");
         }
+       
         /* Ce qui nous sauvera, parce que tout le reste est dans une fonction autre part!*/
+          try {
+            imageFondPlateau = ImageIO.read(fichierfondplateau);//utilisation de plateau_de_jeu
+        } catch (IOException ex) {
+            System.out.println("fichierfondplateau inutilisable");
+        }
         
         creation_aff();
         afficherAnimaux(ani);
@@ -110,8 +118,10 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel() {
             public void paintComponent(Graphics g){
+                //affichage fond plateau
+                g.drawImage(imageFondPlateau,0,0, null);
                 //affichage plateau
-                g.drawImage(imagePlateau,0,0, null);
+                g.drawImage(imagePlateau,278,149, null);
 
                 /*nouveau code du customize code:
                 */
@@ -127,6 +137,9 @@ public class IHM_plateau extends javax.swing.JFrame {
             }
         }
         ;
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,15 +154,50 @@ public class IHM_plateau extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Recommencer la Partie");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Sauvegarder la Partie");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("QUITTER");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(768, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -160,7 +208,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -177,6 +225,14 @@ private int xtemp, ytemp;
     private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
         //COMMENT JE FAIS POUR ENLEVER CA????
     }//GEN-LAST:event_jPanel1FocusGained
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,6 +270,9 @@ private int xtemp, ytemp;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 /* Ajout des toutes les fonctions dont on aura besoin pour faire marcher le code :*/
