@@ -51,22 +51,22 @@ public class IHM_plateau extends javax.swing.JFrame {
     ligne[6]=642;
     /*Définitions de tous les animaux selon leur classe, c'est plus court: */
         
-    Animal a1=new Animal("rat", 642, 14,0,0, 1,true,false);//rat de rang 1 couleur:bleu
-    Animal a2=new Animal("chat", 747, 539,0,0, 2,true,false);
-    Animal a3=new Animal("loup", 642, 433,0,0, 3,true,false);
-    Animal a4=new Animal("chien", 747, 118,0,0, 4,true,false);
-    Animal a5=new Animal("panthère", 642, 223,0,0, 5,true,false);
-    Animal a6=new Animal("lion", 852, 14,0,0, 6,true,false);
-    Animal a7=new Animal("tigre", 852, 644,0,0, 7,true,false);
-    Animal a8=new Animal("elephant", 642, 644,0,0, 8,true,false);
-    Animal a9=new Animal("rat", 225, 644,0,0, 1,false,false);//rat de rang 1 couleur:rouge
-    Animal a10=new Animal("chat", 120, 118,0,0, 2,false,false);
-    Animal a11=new Animal("loup", 225,223,0,0, 3,false,false);
-    Animal a12=new Animal("chien", 120, 539,0,0, 4,false,false);
-    Animal a13=new Animal("panthère", 225, 433,0,0, 5,false,false);
-    Animal a14=new Animal("lion", 14, 644,0,0, 6,false,false);
-    Animal a15=new Animal("tigre", 290, 162,0,0, 7,false,false);
-    Animal a16=new Animal("elephant", 225, 20,0,0, 8,false,false);
+    Animal a1=new Animal("rat", 808, 121,0,0, 1,true,false);//rat de rang 1 couleur:bleu
+    Animal a2=new Animal("chat", 902, 595,0,0, 2,true,false);
+    Animal a3=new Animal("loup", 808, 500,0,0, 3,true,false);
+    Animal a4=new Animal("chien", 903, 215,0,0, 4,true,false);
+    Animal a5=new Animal("panthère", 808, 309,0,0, 5,true,false);
+    Animal a6=new Animal("lion", 997, 121,0,0, 6,true,false);
+    Animal a7=new Animal("tigre", 997, 690,0,0, 7,true,false);
+    Animal a8=new Animal("elephant", 807, 690,0,0, 8,true,false);
+    Animal a9=new Animal("rat", 427, 691,0,0, 1,false,false);//rat de rang 1 couleur:rouge
+    Animal a10=new Animal("chat", 333, 215,0,0, 2,false,false);
+    Animal a11=new Animal("loup", 428,310,0,0, 3,false,false);
+    Animal a12=new Animal("chien", 333, 596,0,0, 4,false,false);
+    Animal a13=new Animal("panthère", 428, 501,0,0, 5,false,false);
+    Animal a14=new Animal("lion", 239, 691,0,0, 6,false,false);
+    Animal a15=new Animal("tigre", 239, 121,0,0, 7,false,false);
+    Animal a16=new Animal("elephant", 427, 121,0,0, 8,false,false);
     
         ajouterAnimal(a1);
         ajouterAnimal(a2);
@@ -141,6 +141,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -180,7 +181,10 @@ public class IHM_plateau extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("QUITTER");
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/animaux_5_80.png"))); // NOI18N
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/animaux_1_40.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -193,14 +197,17 @@ public class IHM_plateau extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 617, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 594, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -281,6 +288,7 @@ private int xtemp, ytemp;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 /* Ajout des toutes les fonctions dont on aura besoin pour faire marcher le code :*/
