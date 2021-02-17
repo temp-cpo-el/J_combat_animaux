@@ -253,7 +253,8 @@ private int xtemp, ytemp;
         System.out.println("x:" + xtemp);
         ytemp = evt.getY();
         System.out.println("y:" + ytemp + "\n");
-        selecAnimaux();
+        //selecAnimaux();
+        //appeler tour du joueur?
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
@@ -340,6 +341,17 @@ private int xtemp, ytemp;
     System.out.println("affichage des animaux impossible");
 }
     }
+        private boolean tour;
+        private int compteur_tour=0;
+        private void tour_du_joueur(){
+            if (compteur_tour%2==0){
+                tour=false;
+            }
+            else  
+                tour=true;
+        selecAnimaux();
+        }
+        
 private int ligne_proche;
 private int col_proche;
     private void selecAnimaux() {
@@ -362,8 +374,9 @@ private int col_proche;
         }//on a récup la ligne la plus proche
         for (int i = 0; i < ani.length; i++) {
             
-            if (ligne_proche<ani[i].getY() && ani[i].getY()<ligne_proche+20 && col_proche<ani[i].getX() && ani[i].getX()<col_proche+20){
+            if (ligne_proche<ani[i].getY() && ani[i].getY()<ligne_proche+20 && col_proche<ani[i].getX() && ani[i].getX()<col_proche+20&&ani[i].isBleu(tour)){
                 ani[i].setIsSelected(true);
+            
             }
            
         }
