@@ -5,8 +5,10 @@
  */
 package j_combat_animaux;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,63 +24,61 @@ public class IHM_plateau extends javax.swing.JFrame {
     private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
     private File fichierfondplateau = new File("src/images/Fond_plateau_de_jeu0.png");//on va chercher le fichier dans le dossier d'images
     private BufferedImage imageFondPlateau;
-    private int[] ligne=new int[7];
-    private int[] col=new int[9];
-    
+    private int[] ligne = new int[7];
+    private int[] col = new int[9];
+
 
     /*On a trouvé une autre méthode!!! yeah! Définiions des trucs dont on a besoin:*/
-    
-    private Animal[] ani=new Animal[16];//j'ai changé la valeur du tableau juste pour les essais
-    private int nbani=0;//servira pour choper l'animal correspondant
-    
-     private File[] tab_fich=new File[16];
-    private BufferedImage[] image=new BufferedImage[16];
-    private int[] x_aff =new int[16];
-    private int[] y_aff=new int[16];
-    
-    
+    private Animal[] ani = new Animal[16];//j'ai changé la valeur du tableau juste pour les essais
+    private int nbani = 0;//servira pour choper l'animal correspondant
+
+    private File[] tab_fich = new File[16];
+    private BufferedImage[] image = new BufferedImage[16];
+    private int[] x_aff = new int[16];
+    private int[] y_aff = new int[16];
+
     /**
      * Creates new form IHM_plateau
      */
     public IHM_plateau() {
         initComponents();
-    //Définition des lignes du plateau Y
-    ligne[0]=118;
-    ligne[1]=210;
-    ligne[2]=305;
-    ligne[3]=404;
-    ligne[4]=495;
-    ligne[5]=590;
-    ligne[6]=685;
-    //Définition des colonnes du plateau X
-    col[0]=235;
-    col[1]=330;
-    col[2]=425;
-    col[3]=523;
-    col[4]=619;
-    col[5]=714;
-    col[6]=805;
-    col[7]=900;
-    col[8]=995;
-    /*Définitions de tous les animaux selon leur classe, c'est plus court: */
-        
-    Animal a1=new Animal("rat", 808, 121,0,0, 1,true,false);//rat de rang 1 couleur:bleu
-    Animal a2=new Animal("chat", 902, 595,0,0, 2,true,false);
-    Animal a3=new Animal("loup", 808, 500,0,0, 3,true,false);
-    Animal a4=new Animal("chien", 903, 215,0,0, 4,true,false);
-    Animal a5=new Animal("panthère", 808, 309,0,0, 5,true,false);
-    Animal a6=new Animal("lion", 997, 121,0,0, 6,true,false);
-    Animal a7=new Animal("tigre", 997, 690,0,0, 7,true,false);
-    Animal a8=new Animal("elephant", 807, 690,0,0, 8,true,false);
-    Animal a9=new Animal("rat", 427, 691,0,0, 1,false,false);//rat de rang 1 couleur:rouge
-    Animal a10=new Animal("chat", 333, 215,0,0, 2,false,false);
-    Animal a11=new Animal("loup", 428,310,0,0, 3,false,false);
-    Animal a12=new Animal("chien", 333, 596,0,0, 4,false,false);
-    Animal a13=new Animal("panthère", 428, 501,0,0, 5,false,false);
-    Animal a14=new Animal("lion", 239, 691,0,0, 6,false,false);
-    Animal a15=new Animal("tigre", 239, 121,0,0, 7,false,false);
-    Animal a16=new Animal("elephant", 427, 121,0,0, 8,false,false);
-    
+        //Définition des lignes du plateau Y
+        ligne[0] = 118;
+        ligne[1] = 210;
+        ligne[2] = 305;
+        ligne[3] = 404;
+        ligne[4] = 495;
+        ligne[5] = 590;
+        ligne[6] = 685;
+        //Définition des colonnes du plateau X
+        col[0] = 235;
+        col[1] = 330;
+        col[2] = 425;
+        col[3] = 523;
+        col[4] = 619;
+        col[5] = 714;
+        col[6] = 805;
+        col[7] = 900;
+        col[8] = 995;
+        /*Définitions de tous les animaux selon leur classe, c'est plus court: */
+
+        Animal a1 = new Animal("rat", 808, 121, 0, 0, 1, true, false);//rat de rang 1 couleur:bleu
+        Animal a2 = new Animal("chat", 902, 595, 0, 0, 2, true, false);
+        Animal a3 = new Animal("loup", 808, 500, 0, 0, 3, true, false);
+        Animal a4 = new Animal("chien", 903, 215, 0, 0, 4, true, false);
+        Animal a5 = new Animal("panthère", 808, 309, 0, 0, 5, true, false);
+        Animal a6 = new Animal("lion", 997, 121, 0, 0, 6, true, false);
+        Animal a7 = new Animal("tigre", 997, 690, 0, 0, 7, true, false);
+        Animal a8 = new Animal("elephant", 807, 690, 0, 0, 8, true, false);
+        Animal a9 = new Animal("rat", 427, 691, 0, 0, 1, false, false);//rat de rang 1 couleur:rouge
+        Animal a10 = new Animal("chat", 333, 215, 0, 0, 2, false, false);
+        Animal a11 = new Animal("loup", 428, 310, 0, 0, 3, false, false);
+        Animal a12 = new Animal("chien", 333, 596, 0, 0, 4, false, false);
+        Animal a13 = new Animal("panthère", 428, 501, 0, 0, 5, false, false);
+        Animal a14 = new Animal("lion", 239, 691, 0, 0, 6, false, false);
+        Animal a15 = new Animal("tigre", 239, 121, 0, 0, 7, false, false);
+        Animal a16 = new Animal("elephant", 427, 121, 0, 0, 8, false, false);
+
         ajouterAnimal(a1);
         ajouterAnimal(a2);
         ajouterAnimal(a3);
@@ -95,8 +95,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         ajouterAnimal(a14);
         ajouterAnimal(a15);
         ajouterAnimal(a16);
-        
-            
+
         setBounds(0, 0, 1330, 915);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
         jPanel1.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
         try {
@@ -104,18 +103,17 @@ public class IHM_plateau extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.out.println("fichierplateau inutilisable");
         }
-       
+
         /* Ce qui nous sauvera, parce que tout le reste est dans une fonction autre part!*/
-          try {
+        try {
             imageFondPlateau = ImageIO.read(fichierfondplateau);//utilisation de plateau_de_jeu
         } catch (IOException ex) {
             System.out.println("fichierfondplateau inutilisable");
         }
-        
+
         creation_aff();
         afficherAnimaux(ani);
-        
-       
+
     }
 
     /**
@@ -140,7 +138,10 @@ public class IHM_plateau extends javax.swing.JFrame {
                     g.drawImage(image[i],x_aff[i],y_aff[i],null);
                     if (ani[i].isIsSelected()){
                         g.setColor(Color.RED);
-                        g.drawOval(x_aff[i], y_aff[i]+10, 100, 70);
+                        Graphics2D g2 = (Graphics2D) g;
+                        g2.setStroke(new BasicStroke(10));
+                        g2.drawOval(x_aff[i], y_aff[i]+10, 100, 70);
+                        //g.drawOval(x_aff[i], y_aff[i]+10, 100, 70);
                         ani[i].setIsSelected(false);
                     }
                 }
@@ -253,7 +254,8 @@ private int xtemp, ytemp;
         System.out.println("x:" + xtemp);
         ytemp = evt.getY();
         System.out.println("y:" + ytemp + "\n");
-        selecAnimaux();
+        //selecAnimaux();
+        tour_du_joueur();
         //appeler tour du joueur?
     }//GEN-LAST:event_jPanel1MouseClicked
 
@@ -314,74 +316,85 @@ private int xtemp, ytemp;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 /* Ajout des toutes les fonctions dont on aura besoin pour faire marcher le code :*/
-   
-    private void ajouterAnimal(Animal a){
-        ani[nbani]=a;
+
+    private void ajouterAnimal(Animal a) {
+        ani[nbani] = a;
         nbani++;
-        
+
     }
-    
-        private void creation_aff() {
+
+    private void creation_aff() {
         for (int i = 0; i < ani.length; i++) {
-            tab_fich[i]=new File("src/images/"+ani[i].getNom()+"_"+ani[i].getCouleur()+".jpg");
+            tab_fich[i] = new File("src/images/" + ani[i].getNom() + "_" + ani[i].getCouleur() + ".jpg");
         }
     }
-    
-        private void afficherAnimaux(Animal[] ani) {
-       try{
-        for (int i = 0; i < ani.length; i++) {
-            ani[i].setX(ani[i].getX_init());
-            ani[i].setY(ani[i].getY_init());
-            x_aff[i]=ani[i].getX_init();
-            y_aff[i]=ani[i].getY_init();
-            image[i]=ImageIO.read(tab_fich[i]);
-            
-        }
-    }catch(IOException ex){
-    System.out.println("affichage des animaux impossible");
-}
-    }
-        private boolean tour;
-        private int compteur_tour=0;
-        private void tour_du_joueur(){
-            if (compteur_tour%2==0){
-                tour=false;
+
+    private void afficherAnimaux(Animal[] ani) {
+        try {
+            for (int i = 0; i < ani.length; i++) {
+                ani[i].setX(ani[i].getX_init());
+                ani[i].setY(ani[i].getY_init());
+                x_aff[i] = ani[i].getX_init();
+                y_aff[i] = ani[i].getY_init();
+                image[i] = ImageIO.read(tab_fich[i]);
+
             }
-            else  
-                tour=true;
-        selecAnimaux();
-        compteur_tour++;
+        } catch (IOException ex) {
+            System.out.println("affichage des animaux impossible");
         }
-        
-private int ligne_proche;
-private int col_proche;
+    }
+    private boolean tour;
+
+    private int compteur_tour = 0;
+
+    private void tour_du_joueur() {
+        if (compteur_tour % 2 == 0) {
+            tour = false;
+        } else {
+            tour = true;
+        }
+        compteur_tour++;
+        System.out.println(compteur_tour);
+        selecAnimaux();
+
+    }
+
+    private int ligne_proche;
+    private int col_proche;
+
     private void selecAnimaux() {
         /**
-     * fonction en plusieurs étapes:
-     * 1)chercher la ligne supérieure la pus proche de xtemp séléectionné
-     * 2)chercher les points d'origines d'éventuelles images dans une bande partant de cette origine
-     * 3) afficher des carrés autour des images correspondantes sur la ligne
-     * on verra pour le découpage par carré plus tard, pour l'instant on cherche juste la ligne
-     **/
+         * fonction en plusieurs étapes: 1)chercher la ligne supérieure la pus
+         * proche de xtemp séléectionné 2)chercher les points d'origines
+         * d'éventuelles images dans une bande partant de cette origine 3)
+         * afficher des carrés autour des images correspondantes sur la ligne on
+         * verra pour le découpage par carré plus tard, pour l'instant on
+         * cherche juste la ligne
+     *
+         */
         for (int i = 0; i < ligne.length; i++) {
-            
-            if (ytemp>ligne[i]){
-              ligne_proche=ligne[i]; }
-            for (int j = 0; j < col.length; j++) { 
-            if (xtemp>col[j]){
-                col_proche=col[j];
-            
-            }}
+
+            if (ytemp > ligne[i]) {
+                ligne_proche = ligne[i];
+            }
+            for (int j = 0; j < col.length; j++) {
+                if (xtemp > col[j]) {
+                    col_proche = col[j];
+
+                }
+            }
         }//on a récup la ligne la plus proche
         for (int i = 0; i < ani.length; i++) {
-            
-            if (ligne_proche<ani[i].getY() && ani[i].getY()<ligne_proche+20 && col_proche<ani[i].getX() && ani[i].getX()<col_proche+20&&ani[i].isBleu()){
+
+            if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && ani[i].isBleu()&&tour) {
                 ani[i].setIsSelected(true);
-            
+
             }
-           
+            if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && !ani[i].isBleu()&&!tour) {
+                ani[i].setIsSelected(true);
+            }
         }
-    jPanel1.repaint();  
+        jPanel1.repaint();
     }
-    
+
 }

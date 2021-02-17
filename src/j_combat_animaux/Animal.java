@@ -79,6 +79,11 @@ public class Animal {
     public boolean isBleu() {
         return bleu;
     }
+
+   
+    
+
+    
     
 
     public void setIsSelected(boolean isSelected) {
