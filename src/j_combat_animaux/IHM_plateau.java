@@ -23,6 +23,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     private File fichierfondplateau = new File("src/images/Fond_plateau_de_jeu0.png");//on va chercher le fichier dans le dossier d'images
     private BufferedImage imageFondPlateau;
     private int[] ligne=new int[7];
+    private int[] col=new int[9];
     
 
     /*On a trouvé une autre méthode!!! yeah! Définiions des trucs dont on a besoin:*/
@@ -42,13 +43,23 @@ public class IHM_plateau extends javax.swing.JFrame {
     public IHM_plateau() {
         initComponents();
     //Définition des lignes du plateau
-    ligne[0]=12;
-    ligne[1]=116;
-    ligne[2]=221;
-    ligne[3]=326;
-    ligne[4]=432;
-    ligne[5]=538;
-    ligne[6]=642;
+    ligne[0]=121;
+    ligne[1]=214;
+    ligne[2]=310;
+    ligne[3]=404;
+    ligne[4]=499;
+    ligne[5]=594;
+    ligne[6]=690;
+    //Définition des colonnes du plateau
+    col[0]=239;
+    col[1]=333;
+    col[2]=429;
+    col[3]=523;
+    col[4]=619;
+    col[5]=714;
+    col[6]=807;
+    col[7]=903;
+    col[8]=998;
     /*Définitions de tous les animaux selon leur classe, c'est plus court: */
         
     Animal a1=new Animal("rat", 642, 14,0,0, 1,true,false);//rat de rang 1 couleur:bleu
@@ -312,6 +323,7 @@ private int xtemp, ytemp;
 }
     }
 private int ligne_proche;
+private int col_proche;
     private void selecAnimaux() {
         /**
      * fonction en plusieurs étapes:
@@ -324,13 +336,13 @@ private int ligne_proche;
             if (ytemp>ligne[i]){
               ligne_proche=ligne[i];  
             }
-            else{
-                break;
+            if (xtemp>col[i]){
+                col_proche=col[i];
             }
         }//on a récup la ligne la plus proche
         for (int i = 0; i < ani.length; i++) {
             
-            if (ligne_proche<ani[i].getY() && ani[i].getY()<ligne_proche+20){
+            if (ligne_proche<ani[i].getY() && ani[i].getY()<ligne_proche+20 && col_proche<ani[i].getX() && ani[i].getX()<col_proche+20){
                 ani[i].setIsSelected(true);
             }
            
