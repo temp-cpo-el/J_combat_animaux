@@ -57,7 +57,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     col[3]=523;
     col[4]=619;
     col[5]=714;
-    col[6]=800;
+    col[6]=807;
     col[7]=900;
     col[8]=995;
     /*Définitions de tous les animaux selon leur classe, c'est plus court: */
@@ -341,16 +341,18 @@ private int col_proche;
      * on verra pour le découpage par carré plus tard, pour l'instant on cherche juste la ligne
      **/
         for (int i = 0; i < ligne.length; i++) {
+            
             if (ytemp>ligne[i]){
-              ligne_proche=ligne[i];  
-            }
-            if (xtemp>col[i]){
-                col_proche=col[i];
-            }
+              ligne_proche=ligne[i]; }
+            for (int j = 0; j < col.length; j++) { 
+            if (xtemp>col[j]){
+                col_proche=col[j];
+            
+            }}
         }//on a récup la ligne la plus proche
         for (int i = 0; i < ani.length; i++) {
             
-            if (ligne_proche<ani[i].getY() && ani[i].getY()<ligne_proche+20 && col_proche<ani[i].getX() && ani[i].getX()<col_proche+30){
+            if (ligne_proche<ani[i].getY() && ani[i].getY()<ligne_proche+20 && col_proche<ani[i].getX() && ani[i].getX()<col_proche+20){
                 ani[i].setIsSelected(true);
             }
            
