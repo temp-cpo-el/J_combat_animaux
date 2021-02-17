@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -139,7 +140,7 @@ public class IHM_plateau extends javax.swing.JFrame {
                     if (ani[i].isIsSelected()){
                         g.setColor(Color.RED);
                         Graphics2D g2 = (Graphics2D) g;
-                        g2.setStroke(new BasicStroke(10));
+                        g2.setStroke(new BasicStroke(5));
                         g2.drawOval(x_aff[i], y_aff[i]+10, 100, 70);
                         //g.drawOval(x_aff[i], y_aff[i]+10, 100, 70);
                         ani[i].setIsSelected(false);
@@ -166,6 +167,11 @@ public class IHM_plateau extends javax.swing.JFrame {
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
+            }
+        });
+        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPanel1KeyPressed(evt);
             }
         });
 
@@ -271,6 +277,28 @@ private int xtemp, ytemp;
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
+        if (evt.getKeyChar() == 'z') {
+
+            y_aff[indice] -= 95;
+        }
+        if (evt.getKeyChar() == 's') {
+
+            y_aff[indice] += 95;
+        }
+        if (evt.getKeyChar() == 'q') {
+
+            x_aff[indice] -= 95;
+        }
+        if (evt.getKeyChar() == 'd') {
+
+            x_aff[indice] += 95;
+        }
+        traitementBornes();
+        jPanel1.repaint();
+        traitementTaniere() ;
+    }//GEN-LAST:event_jPanel1KeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -361,6 +389,7 @@ private int xtemp, ytemp;
 
     private int ligne_proche;
     private int col_proche;
+    private int indice = 0;
 
     private void selecAnimaux() {
         /**
@@ -370,7 +399,7 @@ private int xtemp, ytemp;
          * afficher des carrés autour des images correspondantes sur la ligne on
          * verra pour le découpage par carré plus tard, pour l'instant on
          * cherche juste la ligne
-     *
+         *
          */
         for (int i = 0; i < ligne.length; i++) {
 
@@ -386,15 +415,57 @@ private int xtemp, ytemp;
         }//on a récup la ligne la plus proche
         for (int i = 0; i < ani.length; i++) {
 
-            if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && ani[i].isBleu()&&tour) {
+            if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && ani[i].isBleu() && tour) {
                 ani[i].setIsSelected(true);
+                indice = i;
 
             }
-            if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && !ani[i].isBleu()&&!tour) {
+            if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && !ani[i].isBleu() && !tour) {
                 ani[i].setIsSelected(true);
+                indice = i;
             }
         }
+
+        
         jPanel1.repaint();
+
     }
+
+    private void traitementBornes() {
+        //taille du panel:1800x1038
+        //taille de link:90x90
+        // Gauche
+        if (x_aff[indice] < 239) {
+            x_aff[indice] = 239;
+        }
+        //Droite
+        if (x_aff[indice] > 1049) {
+            x_aff[indice] = 997;
+        }
+        //Haut
+        if (y_aff[indice] < 120) {
+            y_aff[indice] = 120;
+        }
+        //BAS
+        if (y_aff[indice] > 737) {
+            y_aff[indice] = 691;
+        }
+    }
+
+    private void traitementTaniere() {
+        //potion900| 500 + 38x60
+        //personnagexLink|yLink + 9x90
+        if ((col[8]) < x_aff[indice] && x_aff[indice] < (col[8] + 20)
+                && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && !ani[indice].isBleu() && !tour) {
+            //JOptionPane.showMessageDialog(this, "Vous venez de recupérer la potion", "Felicitation !", JOptionPane.INFORMATION_MESSAGE);
+            IHM_victoire ihm1 = new IHM_victoire();
+            ihm1.setVisible(true);
+        }
+
+    }
+
+    
+
+    
 
 }
