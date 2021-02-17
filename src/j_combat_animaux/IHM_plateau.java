@@ -42,24 +42,24 @@ public class IHM_plateau extends javax.swing.JFrame {
      */
     public IHM_plateau() {
         initComponents();
-    //Définition des lignes du plateau
-    ligne[0]=121;
-    ligne[1]=214;
-    ligne[2]=310;
+    //Définition des lignes du plateau Y
+    ligne[0]=118;
+    ligne[1]=210;
+    ligne[2]=305;
     ligne[3]=404;
-    ligne[4]=499;
-    ligne[5]=594;
-    ligne[6]=690;
-    //Définition des colonnes du plateau
-    col[0]=239;
-    col[1]=333;
-    col[2]=429;
+    ligne[4]=495;
+    ligne[5]=590;
+    ligne[6]=685;
+    //Définition des colonnes du plateau X
+    col[0]=235;
+    col[1]=330;
+    col[2]=425;
     col[3]=523;
     col[4]=619;
     col[5]=714;
-    col[6]=807;
-    col[7]=903;
-    col[8]=998;
+    col[6]=800;
+    col[7]=900;
+    col[8]=995;
     /*Définitions de tous les animaux selon leur classe, c'est plus court: */
         
     Animal a1=new Animal("rat", 808, 121,0,0, 1,true,false);//rat de rang 1 couleur:bleu
@@ -350,7 +350,7 @@ private int col_proche;
         }//on a récup la ligne la plus proche
         for (int i = 0; i < ani.length; i++) {
             
-            if (ligne_proche<ani[i].getY() && ani[i].getY()<ligne_proche+20 && col_proche<ani[i].getX() && ani[i].getX()<col_proche+20){
+            if (ligne_proche<ani[i].getY() && ani[i].getY()<ligne_proche+20 && col_proche<ani[i].getX() && ani[i].getX()<col_proche+30){
                 ani[i].setIsSelected(true);
             }
            
