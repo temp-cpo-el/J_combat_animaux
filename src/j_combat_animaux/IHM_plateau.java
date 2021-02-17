@@ -253,7 +253,7 @@ private int xtemp, ytemp;
         System.out.println("x:" + xtemp);
         ytemp = evt.getY();
         System.out.println("y:" + ytemp + "\n");
-        //selecAnimaux();
+        selecAnimaux();
         //appeler tour du joueur?
     }//GEN-LAST:event_jPanel1MouseClicked
 
@@ -350,6 +350,7 @@ private int xtemp, ytemp;
             else  
                 tour=true;
         selecAnimaux();
+        compteur_tour++;
         }
         
 private int ligne_proche;
@@ -374,7 +375,7 @@ private int col_proche;
         }//on a récup la ligne la plus proche
         for (int i = 0; i < ani.length; i++) {
             
-            if (ligne_proche<ani[i].getY() && ani[i].getY()<ligne_proche+20 && col_proche<ani[i].getX() && ani[i].getX()<col_proche+20&&ani[i].isBleu(tour)){
+            if (ligne_proche<ani[i].getY() && ani[i].getY()<ligne_proche+20 && col_proche<ani[i].getX() && ani[i].getX()<col_proche+20&&ani[i].isBleu()){
                 ani[i].setIsSelected(true);
             
             }

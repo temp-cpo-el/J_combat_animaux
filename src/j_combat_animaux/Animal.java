@@ -76,7 +76,13 @@ public class Animal {
         return isSelected;
     }
 
+    public boolean isBleu() {
+        return bleu;
+    }
+    
+
     public void setIsSelected(boolean isSelected) {
         this.isSelected = isSelected;
+    
     }
 }
