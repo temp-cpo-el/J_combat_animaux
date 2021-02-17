@@ -57,7 +57,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     col[3]=523;
     col[4]=619;
     col[5]=714;
-    col[6]=807;
+    col[6]=805;
     col[7]=900;
     col[8]=995;
     /*Définitions de tous les animaux selon leur classe, c'est plus court: */
