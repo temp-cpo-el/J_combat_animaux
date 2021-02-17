@@ -86,7 +86,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         ajouterAnimal(a16);
         
             
-        setBounds(0, 0, 1330, 910);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
+        setBounds(0, 0, 1330, 915);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
         jPanel1.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
         try {
             imagePlateau = ImageIO.read(fichierplateau);//utilisation de plateau_de_jeu
@@ -121,7 +121,7 @@ public class IHM_plateau extends javax.swing.JFrame {
                 //affichage fond plateau
                 g.drawImage(imageFondPlateau,0,0, null);
                 //affichage plateau
-                g.drawImage(imagePlateau,278,149, null);
+                g.drawImage(imagePlateau,229,110, null);
 
                 /*nouveau code du customize code:
                 */
@@ -200,7 +200,7 @@ public class IHM_plateau extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 632, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 617, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)

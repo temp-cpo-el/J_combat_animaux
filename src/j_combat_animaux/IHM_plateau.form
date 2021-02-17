@@ -39,7 +39,7 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel1MouseClicked"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel() {&#xa;    public void paintComponent(Graphics g){&#xa;        //affichage fond plateau&#xa;        g.drawImage(imageFondPlateau,0,0, null);&#xa;        //affichage plateau&#xa;        g.drawImage(imagePlateau,278,149, null);&#xa;&#xa;        /*nouveau code du customize code:&#xa;        */&#xa;        for(int i=0; i&lt;ani.length; i++){&#xa;            g.drawImage(image[i],x_aff[i],y_aff[i],null);&#xa;            if (ani[i].isIsSelected()){&#xa;                g.setColor(Color.RED);&#xa;                g.drawOval(x_aff[i], y_aff[i]+10, 100, 70);&#xa;                ani[i].setIsSelected(false);&#xa;            }&#xa;        }&#xa;&#xa;    }&#xa;}&#xa;"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel() {&#xa;    public void paintComponent(Graphics g){&#xa;        //affichage fond plateau&#xa;        g.drawImage(imageFondPlateau,0,0, null);&#xa;        //affichage plateau&#xa;        g.drawImage(imagePlateau,229,110, null);&#xa;&#xa;        /*nouveau code du customize code:&#xa;        */&#xa;        for(int i=0; i&lt;ani.length; i++){&#xa;            g.drawImage(image[i],x_aff[i],y_aff[i],null);&#xa;            if (ani[i].isIsSelected()){&#xa;                g.setColor(Color.RED);&#xa;                g.drawOval(x_aff[i], y_aff[i]+10, 100, 70);&#xa;                ani[i].setIsSelected(false);&#xa;            }&#xa;        }&#xa;&#xa;    }&#xa;}&#xa;"/>
       </AuxValues>
 
       <Layout>
@@ -62,7 +62,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <Component id="jLabel1" min="-2" pref="136" max="-2" attributes="0"/>
-                  <EmptySpace pref="632" max="32767" attributes="0"/>
+                  <EmptySpace pref="617" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton1" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
                       <Component id="jButton2" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
