@@ -398,7 +398,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         } else {
             tour = true;//tour des bleus
         }
-        coup=1;//on initialise le ombre de coup possible pour le joueur
+        coup=1;//on initialise le nombre de coup possible pour le joueur
         compteur_tour++;
         System.out.println("compteur_tour : "+compteur_tour);
         selecAnimaux();
