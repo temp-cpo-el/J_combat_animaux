@@ -274,7 +274,6 @@ public class IHM_plateau extends javax.swing.JFrame {
         ytemp = evt.getY();
         System.out.println("y:" + ytemp + "\n");
         tour_du_joueur();
-        //appeler tour du joueur?
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
@@ -290,19 +289,19 @@ public class IHM_plateau extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
-        if (evt.getKeyChar() == 'z' && coup!=0) {
+        if (evt.getKeyChar() == 'z' && coup>0) {
 
             y_aff[indice] -= 95;
         }
-        if (evt.getKeyChar() == 's' && coup!=0) {//S
+        if (evt.getKeyChar() == 's' && coup>0) {//S
 
             y_aff[indice] += 95;
         }
-        if (evt.getKeyChar() == 'q' && coup!=0) {//Q
+        if (evt.getKeyChar() == 'q' && coup>0) {//Q
 
             x_aff[indice] -= 95;
         }
-        if (evt.getKeyChar() == 'd' && coup!=0) {//D
+        if (evt.getKeyChar() == 'd' && coup>0) {//D
 
             x_aff[indice] += 95;
         }
@@ -310,7 +309,9 @@ public class IHM_plateau extends javax.swing.JFrame {
            coup--;
        }*/ //finalement on en a pas besoin si on utilise l'int coup
         traitementBornes();
-        coup--;
+        System.out.println("variable coup= "+coup);
+        if (coup>0)
+        {coup--;}
         jPanel1.repaint();
         //traitementPiege();
         traitementTaniere() ;
@@ -472,13 +473,13 @@ public class IHM_plateau extends javax.swing.JFrame {
         //personnagexLink|yLink + 9x90
         if ((col[8]) < x_aff[indice] && x_aff[indice] < (col[8] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && !ani[indice].isBleu() && !tour) {
-            //JOptionPane.showMessageDialog(this, "Vous venez de recupérer la potion", "Felicitation !", JOptionPane.INFORMATION_MESSAGE);
+            
             IHM_victoire ihm1 = new IHM_victoire();
             ihm1.setVisible(true);
         }
         if ((col[0]) < x_aff[indice] && x_aff[indice] < (col[0] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && ani[indice].isBleu() && tour) {
-            //JOptionPane.showMessageDialog(this, "Vous venez de recupérer la potion", "Felicitation !", JOptionPane.INFORMATION_MESSAGE);
+            
             IHM_victoire ihm1 = new IHM_victoire();
             ihm1.setVisible(true);
     }
