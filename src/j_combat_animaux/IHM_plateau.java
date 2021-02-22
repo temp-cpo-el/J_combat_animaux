@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author ELOISE
+ * @author ANNA
  */
 public class IHM_plateau extends javax.swing.JFrame {
 
@@ -41,7 +42,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     /**
      * Creates new form IHM_plateau
      */
-    public IHM_plateau() {
+    public IHM_plateau(String JoueurR,String JoueurB) {
         initComponents();
         //Définition des lignes du plateau Y
         ligne[0] = 118;
@@ -114,7 +115,9 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         creation_aff();
         afficherAnimaux(ani);
-
+        
+        jLabelJoueurR.setText(JoueurR);
+        jLabelJoueurB.setText(JoueurB);
     }
 
     /**
@@ -156,6 +159,8 @@ public class IHM_plateau extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabelJoueurR = new javax.swing.JLabel();
+        jLabelJoueurB = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -199,10 +204,23 @@ public class IHM_plateau extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("QUITTER");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/animaux_5_83.png"))); // NOI18N
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/animaux_1_43.png"))); // NOI18N
+
+        jLabelJoueurR.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabelJoueurR.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelJoueurR.setText("jLabel2");
+
+        jLabelJoueurB.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabelJoueurB.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelJoueurB.setText("jLabel5");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -215,7 +233,11 @@ public class IHM_plateau extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -223,7 +245,11 @@ public class IHM_plateau extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelJoueurB, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)))
                         .addGap(85, 85, 85))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -234,7 +260,11 @@ public class IHM_plateau extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(23, 23, 23)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 627, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelJoueurB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 531, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -299,6 +329,10 @@ private int xtemp, ytemp;
         traitementTaniere() ;
     }//GEN-LAST:event_jPanel1KeyPressed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -327,11 +361,11 @@ private int xtemp, ytemp;
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*  java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IHM_plateau().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -341,6 +375,8 @@ private int xtemp, ytemp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelJoueurB;
+    private javax.swing.JLabel jLabelJoueurR;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 /* Ajout des toutes les fonctions dont on aura besoin pour faire marcher le code :*/
@@ -463,9 +499,9 @@ private int xtemp, ytemp;
         }
 
     }
-
     
 
     
 
+    
 }
