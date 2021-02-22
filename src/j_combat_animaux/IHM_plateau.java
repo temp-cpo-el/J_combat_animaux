@@ -67,7 +67,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         Animal a2 = new Animal("chat", 902, 595, 0, 0, 2, true, false);
         Animal a3 = new Animal("loup", 808, 500, 0, 0, 3, true, false);
         Animal a4 = new Animal("chien", 903, 215, 0, 0, 4, true, false);
-        Animal a5 = new Animal("panthère", 808, 309, 0, 0, 5, true, false);
+        Animal a5 = new Animal("panthère", 808, 312, 0, 0, 5, true, false);
         Animal a6 = new Animal("lion", 997, 121, 0, 0, 6, true, false);
         Animal a7 = new Animal("tigre", 997, 690, 0, 0, 7, true, false);
         Animal a8 = new Animal("elephant", 807, 690, 0, 0, 8, true, false);
@@ -461,10 +461,14 @@ private int xtemp, ytemp;
             IHM_victoire ihm1 = new IHM_victoire();
             ihm1.setVisible(true);
         }
-
+        if ((col[0]) < x_aff[indice] && x_aff[indice] < (col[0] + 20)
+                && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && ani[indice].isBleu() && tour) {
+            //JOptionPane.showMessageDialog(this, "Vous venez de recupérer la potion", "Felicitation !", JOptionPane.INFORMATION_MESSAGE);
+            IHM_victoire ihm1 = new IHM_victoire();
+            ihm1.setVisible(true);
     }
 
-    
+    }
 
     
 
