@@ -10,6 +10,7 @@ package j_combat_animaux;
 /**
  *
  * @author ELOISE
+ * @author ANNA
  */
 public class Animal {
     private final String nom;//nom type chat,chien,elephant,tigre...

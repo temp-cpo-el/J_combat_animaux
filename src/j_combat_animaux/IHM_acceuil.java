@@ -13,7 +13,8 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author annag
+ * @author ELOISE
+ * @author ANNA
  */
 public class IHM_acceuil extends javax.swing.JFrame {
 
@@ -55,10 +56,10 @@ public class IHM_acceuil extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextJoueurR = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTextJoueurB = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -105,15 +106,15 @@ public class IHM_acceuil extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(9, 9, 0));
-        jLabel2.setText("Joueur 1");
+        jLabel2.setText("Joueur Rouge");
 
         jLabel3.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(7, 0, 0));
-        jLabel3.setText("Joueur 2");
+        jLabel3.setText("Joueur Bleu");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextJoueurR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextJoueurRActionPerformed(evt);
             }
         });
 
@@ -193,14 +194,14 @@ public class IHM_acceuil extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelacceuilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelacceuilLayout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(150, 150, 150)
                                 .addComponent(jLabel6))
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelacceuilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextJoueurB, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelacceuilLayout.createSequentialGroup()
                         .addGap(353, 353, 353)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -211,7 +212,7 @@ public class IHM_acceuil extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel8)
                         .addGap(40, 40, 40)))
-                .addContainerGap(237, Short.MAX_VALUE))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
         jPanelacceuilLayout.setVerticalGroup(
             jPanelacceuilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,11 +227,12 @@ public class IHM_acceuil extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelacceuilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelacceuilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelacceuilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)
+                        .addComponent(jTextJoueurB, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(38, 38, 38)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
@@ -259,12 +261,15 @@ public class IHM_acceuil extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void jTextJoueurRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextJoueurRActionPerformed
+        
+    }//GEN-LAST:event_jTextJoueurRActionPerformed
 
     private void jButtonjouerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonjouerActionPerformed
-        IHM_plateau ihm1= new IHM_plateau();
+        String JoueurR=jTextJoueurR.getText();
+        String JoueurB=jTextJoueurB.getText();
+        System.out.println("Joueur Rouge"+JoueurR+"\nJoueur Bleu:"+JoueurB);
+        IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB);
         ihm1.setVisible(true);
         setVisible(false);//ferme l'ihm d'acceuil
         // TODO add your handling code here:
@@ -321,7 +326,7 @@ public class IHM_acceuil extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelacceuil;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextJoueurB;
+    private javax.swing.JTextField jTextJoueurR;
     // End of variables declaration//GEN-END:variables
 }

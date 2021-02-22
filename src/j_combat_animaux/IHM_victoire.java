@@ -13,7 +13,8 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author annag
+ * @author ELOISE
+ * @author ANNA
  */
 public class IHM_victoire extends javax.swing.JFrame {
     private File fichiervictoire = new File("src/images/victoire0.jpg");
