@@ -69,9 +69,9 @@ public class IHM_plateau extends javax.swing.JFrame {
         col[0] = 235;
         col[1] = 330;
         col[2] = 425;
-        col[3] = 523;
-        col[4] = 619;
-        col[5] = 714;
+        col[3] = 520;
+        col[4] = 615;
+        col[5] = 711;
         col[6] = 805;
         col[7] = 900;
         col[8] = 995;
@@ -340,37 +340,47 @@ public class IHM_plateau extends javax.swing.JFrame {
             }
             
         }*/
-
+        
        // if (option_deplacement == 2) {
+       if(coup>0 && ani[indice].isBleu()==tour){
         if (evt.getKeyChar() == 'z' && coup > 0) {//Z
 
             y_aff[indice] -= 95;
+            ani[indice].setY(y_aff[indice]);
         }
         if (evt.getKeyChar() == 's' && coup > 0) {//S
 
             y_aff[indice] += 95;
+            ani[indice].setY(y_aff[indice]);
         }
         if (evt.getKeyChar() == 'q' && coup > 0) {//Q
 
             x_aff[indice] -= 95;
+            ani[indice].setX(x_aff[indice]);
         }
         if (evt.getKeyChar() == 'd' && coup > 0) {//D
 
             x_aff[indice] += 95;
+            ani[indice].setX(x_aff[indice]);
         }
         // }
         /*if (evt.getKeyChar()==KeyEvent.VK_ENTER && coup!=0){
            coup--;
        }*/ //finalement on en a pas besoin si on utilise l'int coup
+       if(coup==0){//fin du coup possible
+           coup=0;
+       }
+       else {
+       coup--;
+       }
         traitementBornes();
-        System.out.println("variable coup= " + coup);
-        if (coup > 0) {
-            coup--;
-        }
         jPanel1.repaint();
         //traitementPiege();
         traitementTaniere();
-
+        compteur_tour++;
+        }
+       
+        System.out.println("variable coup= " + coup);
     }//GEN-LAST:event_jPanel1KeyPressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -442,8 +452,8 @@ public class IHM_plateau extends javax.swing.JFrame {
             for (int i = 0; i < ani.length; i++) {
                 ani[i].setX(ani[i].getX_init());
                 ani[i].setY(ani[i].getY_init());
-                x_aff[i] = ani[i].getX_init();
-                y_aff[i] = ani[i].getY_init();
+                x_aff[i] = ani[i].getX();
+                y_aff[i] = ani[i].getY();
                 image[i] = ImageIO.read(tab_fich[i]);
 
             }
@@ -459,7 +469,6 @@ public class IHM_plateau extends javax.swing.JFrame {
             tour = true;//tour des bleus
         }
         coup = 1;//on initialise le nombre de coup possible pour le joueur
-        compteur_tour++;
         System.out.println("compteur_tour : " + compteur_tour);
         selecAnimaux();
 
