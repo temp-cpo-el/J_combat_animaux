@@ -42,7 +42,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     private BufferedImage[] image = new BufferedImage[16];
     private int[] x_aff = new int[16];
     private int[] y_aff = new int[16];
-    
+
     //autres éléments utiles au code:
     private int coup;
     private int xtemp, ytemp;
@@ -55,7 +55,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     /**
      * Creates new form IHM_plateau
      */
-    public IHM_plateau(String JoueurR,String JoueurB) {
+    public IHM_plateau(String JoueurR, String JoueurB, int option_deplacement) {
         initComponents();
         //Définition des lignes du plateau Y
         ligne[0] = 118;
@@ -128,9 +128,10 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         creation_aff();
         afficherAnimaux(ani);
-        
+
         jLabelJoueurR.setText(JoueurR);
         jLabelJoueurB.setText(JoueurB);
+
     }
 
     /**
@@ -320,33 +321,56 @@ public class IHM_plateau extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
-        if (evt.getKeyChar() == 'z' && coup>0) {
+
+        /*if (option_deplacement == 1) {
+            if (evt.getKeyChar() == KeyEvent.VK_KP_DOWN  && coup > 0) {//fleche vers le bas
+                y_aff[indice] -= 95;
+            }
+            if (evt.getKeyChar() == KeyEvent.VK_KP_UP && coup > 0) {//^|
+
+                y_aff[indice] += 95;
+            }
+            if (evt.getKeyChar() == KeyEvent.VK_LEFT && coup > 0) {//<-
+
+                x_aff[indice] -= 95;
+            }
+            if (evt.getKeyChar() == KeyEvent.VK_RIGHT && coup > 0) {//->
+
+                x_aff[indice] += 95;
+            }
+            
+        }*/
+
+       // if (option_deplacement == 2) {
+        if (evt.getKeyChar() == 'z' && coup > 0) {//Z
 
             y_aff[indice] -= 95;
         }
-        if (evt.getKeyChar() == 's' && coup>0) {//S
+        if (evt.getKeyChar() == 's' && coup > 0) {//S
 
             y_aff[indice] += 95;
         }
-        if (evt.getKeyChar() == 'q' && coup>0) {//Q
+        if (evt.getKeyChar() == 'q' && coup > 0) {//Q
 
             x_aff[indice] -= 95;
         }
-        if (evt.getKeyChar() == 'd' && coup>0) {//D
+        if (evt.getKeyChar() == 'd' && coup > 0) {//D
 
             x_aff[indice] += 95;
         }
-       /*if (evt.getKeyChar()==KeyEvent.VK_ENTER && coup!=0){
+        // }
+        /*if (evt.getKeyChar()==KeyEvent.VK_ENTER && coup!=0){
            coup--;
        }*/ //finalement on en a pas besoin si on utilise l'int coup
         traitementBornes();
-        System.out.println("variable coup= "+coup);
-        if (coup>0)
-        {coup--;}
+        System.out.println("variable coup= " + coup);
+        if (coup > 0) {
+            coup--;
+        }
         jPanel1.repaint();
         //traitementPiege();
-        traitementTaniere() ;
-        
+        traitementTaniere();
+
     }//GEN-LAST:event_jPanel1KeyPressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -381,7 +405,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        /*  java.awt.EventQueue.invokeLater(new Runnable() {
+ /*  java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IHM_plateau().setVisible(true);
             }
@@ -428,21 +452,18 @@ public class IHM_plateau extends javax.swing.JFrame {
         }
     }
 
-
     private void tour_du_joueur() {
         if (compteur_tour % 2 == 0) {
             tour = false;//tour des rouges
         } else {
             tour = true;//tour des bleus
         }
-        coup=1;//on initialise le nombre de coup possible pour le joueur
+        coup = 1;//on initialise le nombre de coup possible pour le joueur
         compteur_tour++;
-        System.out.println("compteur_tour : "+compteur_tour);
+        System.out.println("compteur_tour : " + compteur_tour);
         selecAnimaux();
-        
+
     }
-
-
 
     private void selecAnimaux() {
         /**
@@ -479,7 +500,6 @@ public class IHM_plateau extends javax.swing.JFrame {
             }
         }
 
-        
         jPanel1.repaint();
 
     }
@@ -510,20 +530,17 @@ public class IHM_plateau extends javax.swing.JFrame {
         //personnagexLink|yLink + 9x90
         if ((col[8]) < x_aff[indice] && x_aff[indice] < (col[8] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && !ani[indice].isBleu() && !tour) {
-            
+
             IHM_victoire ihm1 = new IHM_victoire();
             ihm1.setVisible(true);
         }
         if ((col[0]) < x_aff[indice] && x_aff[indice] < (col[0] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && ani[indice].isBleu() && tour) {
-            
+
             IHM_victoire ihm1 = new IHM_victoire();
             ihm1.setVisible(true);
-    }
+        }
 
     }
 
-    
-
-    
 }

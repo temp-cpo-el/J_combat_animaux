@@ -61,8 +61,8 @@ public class IHM_acceuil extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextJoueurB = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButtonFleche = new javax.swing.JRadioButton();
+        jRadioButtonQZSD = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -127,16 +127,21 @@ public class IHM_acceuil extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(102, 255, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jRadioButton3.setBackground(new java.awt.Color(102, 255, 153));
-        jRadioButton3.setFont(new java.awt.Font("Rockwell", 1, 16)); // NOI18N
-        jRadioButton3.setText("fleches ");
-
-        jRadioButton2.setBackground(new java.awt.Color(102, 255, 153));
-        jRadioButton2.setFont(new java.awt.Font("Rockwell", 1, 16)); // NOI18N
-        jRadioButton2.setText("QZSD");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButtonFleche.setBackground(new java.awt.Color(102, 255, 153));
+        jRadioButtonFleche.setFont(new java.awt.Font("Rockwell", 1, 16)); // NOI18N
+        jRadioButtonFleche.setText("fleches ");
+        jRadioButtonFleche.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                jRadioButtonFlecheActionPerformed(evt);
+            }
+        });
+
+        jRadioButtonQZSD.setBackground(new java.awt.Color(102, 255, 153));
+        jRadioButtonQZSD.setFont(new java.awt.Font("Rockwell", 1, 16)); // NOI18N
+        jRadioButtonQZSD.setText("QZSD");
+        jRadioButtonQZSD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonQZSDActionPerformed(evt);
             }
         });
 
@@ -150,8 +155,8 @@ public class IHM_acceuil extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jRadioButtonFleche)
+                    .addComponent(jRadioButtonQZSD))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -164,9 +169,9 @@ public class IHM_acceuil extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton3)
+                .addComponent(jRadioButtonFleche)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
+                .addComponent(jRadioButtonQZSD)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -257,9 +262,9 @@ public class IHM_acceuil extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void jRadioButtonQZSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonQZSDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_jRadioButtonQZSDActionPerformed
 
     private void jTextJoueurRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextJoueurRActionPerformed
         
@@ -269,11 +274,26 @@ public class IHM_acceuil extends javax.swing.JFrame {
         String JoueurR=jTextJoueurR.getText();
         String JoueurB=jTextJoueurB.getText();
         System.out.println("Joueur Rouge"+JoueurR+"\nJoueur Bleu:"+JoueurB);
-        IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB);
+        
+        
+        int option_deplacement=0;
+        if (jRadioButtonFleche.isSelected()){
+            option_deplacement=1;           
+        }
+        if (jRadioButtonQZSD.isSelected()){
+            option_deplacement=2;
+        }
+        System.out.println(option_deplacement);
+        
+        IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB,option_deplacement);
         ihm1.setVisible(true);
         setVisible(false);//ferme l'ihm d'acceuil
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonjouerActionPerformed
+
+    private void jRadioButtonFlecheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonFlecheActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonFlecheActionPerformed
 
     /**
      * @param args the command line arguments
@@ -324,8 +344,8 @@ public class IHM_acceuil extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelacceuil;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButtonFleche;
+    private javax.swing.JRadioButton jRadioButtonQZSD;
     private javax.swing.JTextField jTextJoueurB;
     private javax.swing.JTextField jTextJoueurR;
     // End of variables declaration//GEN-END:variables
