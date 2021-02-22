@@ -9,9 +9,13 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import javafx.scene.input.KeyCode;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
@@ -37,6 +41,15 @@ public class IHM_plateau extends javax.swing.JFrame {
     private BufferedImage[] image = new BufferedImage[16];
     private int[] x_aff = new int[16];
     private int[] y_aff = new int[16];
+    
+    //autres éléments utiles au code:
+    private int coup;
+    private int xtemp, ytemp;
+    private boolean tour;
+    private int compteur_tour = 0;
+    private int ligne_proche;
+    private int col_proche;
+    private int indice = 0;
 
     /**
      * Creates new form IHM_plateau
@@ -254,13 +267,12 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private int xtemp, ytemp;
+
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         xtemp = evt.getX();
         System.out.println("x:" + xtemp);
         ytemp = evt.getY();
         System.out.println("y:" + ytemp + "\n");
-        //selecAnimaux();
         tour_du_joueur();
         //appeler tour du joueur?
     }//GEN-LAST:event_jPanel1MouseClicked
@@ -278,25 +290,31 @@ private int xtemp, ytemp;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
-        if (evt.getKeyChar() == 'z') {
+        if (evt.getKeyChar() == 'z' && coup!=0) {
 
             y_aff[indice] -= 95;
         }
-        if (evt.getKeyChar() == 's') {
+        if (evt.getKeyChar() == 's' && coup!=0) {//S
 
             y_aff[indice] += 95;
         }
-        if (evt.getKeyChar() == 'q') {
+        if (evt.getKeyChar() == 'q' && coup!=0) {//Q
 
             x_aff[indice] -= 95;
         }
-        if (evt.getKeyChar() == 'd') {
+        if (evt.getKeyChar() == 'd' && coup!=0) {//D
 
             x_aff[indice] += 95;
         }
+       /*if (evt.getKeyChar()==KeyEvent.VK_ENTER && coup!=0){
+           coup--;
+       }*/ //finalement on en a pas besoin si on utilise l'int coup
         traitementBornes();
+        coup--;
         jPanel1.repaint();
+        //traitementPiege();
         traitementTaniere() ;
+        
     }//GEN-LAST:event_jPanel1KeyPressed
 
     /**
@@ -371,25 +389,22 @@ private int xtemp, ytemp;
             System.out.println("affichage des animaux impossible");
         }
     }
-    private boolean tour;
 
-    private int compteur_tour = 0;
 
     private void tour_du_joueur() {
         if (compteur_tour % 2 == 0) {
-            tour = false;
+            tour = false;//tour des rouges
         } else {
-            tour = true;
+            tour = true;//tour des bleus
         }
+        coup=1;//on initialise le ombre de coup possible pour le joueur
         compteur_tour++;
-        System.out.println(compteur_tour);
+        System.out.println("compteur_tour : "+compteur_tour);
         selecAnimaux();
-
+        
     }
 
-    private int ligne_proche;
-    private int col_proche;
-    private int indice = 0;
+
 
     private void selecAnimaux() {
         /**
@@ -416,8 +431,8 @@ private int xtemp, ytemp;
         for (int i = 0; i < ani.length; i++) {
 
             if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && ani[i].isBleu() && tour) {
-                ani[i].setIsSelected(true);
-                indice = i;
+                ani[i].setIsSelected(true);//si notre clic correspond aux conditions, le booléen isSelected devient true
+                indice = i;//in récupère l'indice correspondant à l'image dans le tableau d'animaux
 
             }
             if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && !ani[i].isBleu() && !tour) {
