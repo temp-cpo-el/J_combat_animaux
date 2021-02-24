@@ -562,8 +562,8 @@ public class IHM_plateau extends javax.swing.JFrame {
     private void traitementRivière() {
         if (ani[indice].getNom() != "rat") {
 
-            if (col[3] < x_aff[indice] && x_aff[indice] < (col[4] + 20)
-                    && (ligne[1] < y_aff[indice] && y_aff[indice] < (ligne[3] + 20)
+            if (col[3] < x_aff[indice] && x_aff[indice] < (col[5] + 20)
+                    && (ligne[1] < y_aff[indice] && y_aff[indice] < (ligne[2] + 20)
                     || ligne[4] < y_aff[indice] && y_aff[indice] < (ligne[5] + 20))) {
 
                 if (ani[indice].getNom() == "lion" || ani[indice].getNom() == "tigre") {
