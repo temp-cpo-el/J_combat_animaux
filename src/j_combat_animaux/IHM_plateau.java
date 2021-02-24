@@ -321,6 +321,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    String pressed;
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
 
         /*if (option_deplacement == 1) {
@@ -344,23 +345,26 @@ public class IHM_plateau extends javax.swing.JFrame {
         //if (option_deplacement == 2) {
         if (coup > 0 && ani[indice].isBleu() == tour) {
             if (evt.getKeyChar() == 'z' && coup > 0) {//Z
-
                 y_aff[indice] -= 95;
+                pressed = "z";
                 ani[indice].setY(y_aff[indice]);
             }
             if (evt.getKeyChar() == 's' && coup > 0) {//S
 
                 y_aff[indice] += 95;
+                pressed = "s";
                 ani[indice].setY(y_aff[indice]);
             }
             if (evt.getKeyChar() == 'q' && coup > 0) {//Q
 
                 x_aff[indice] -= 95;
+                pressed = "q";
                 ani[indice].setX(x_aff[indice]);
             }
             if (evt.getKeyChar() == 'd' && coup > 0) {//D
 
                 x_aff[indice] += 95;
+                pressed = "d";
                 ani[indice].setX(x_aff[indice]);
             }
             //}
@@ -378,7 +382,7 @@ public class IHM_plateau extends javax.swing.JFrame {
             //traitementPiege();
             traitementRivière();
             traitementTaniere();
-            
+
             compteur_tour++;
         }
 
@@ -559,23 +563,40 @@ public class IHM_plateau extends javax.swing.JFrame {
         if (ani[indice].getNom() != "rat") {
 
             if (col[3] < x_aff[indice] && x_aff[indice] < (col[5] + 20)
-                    && ligne[1] < y_aff[indice] && y_aff[indice] < (ligne[3] + 20)
-                    | ligne[4] < y_aff[indice] && y_aff[indice] < (ligne[6] + 20)) {
+                    && (ligne[1] < y_aff[indice] && y_aff[indice] < (ligne[3] + 20)
+                    || ligne[4] < y_aff[indice] && y_aff[indice] < (ligne[5] + 20))) {
 
                 if (ani[indice].getNom() == "lion" || ani[indice].getNom() == "tigre") {
-                    x_aff[indice] += (95 * 3);
-                    System.out.println("x_aff=" + x_aff[indice]);
-                } 
-                else {
-                    if (ani[indice].isBleu()) {
-                        x_aff[indice] += 95;
-                    } 
-                    else {
-                        x_aff[indice]-=95;
+                    switch (pressed) {
+                        case "z":
+                            y_aff[indice] += (2 * 95);
+                        case "s":
+                            y_aff[indice] -= (2 * 95);
+                        case "q":
+                            x_aff[indice] -= (3 * 95);
+                        case "d":
+                            x_aff[indice] += (3 * 95);
+                        default:
+                            System.out.println("erreur");
                     }
-                    JOptionPane.showMessageDialog(this, "Vous ne pouvez pas traverser la rivière, vous allez vous noyer", "faite le tour",
+                } else {
+                    JOptionPane.showMessageDialog(this, "Vous ne pouvez pas traverser la rivière, vous allez vous noyer, faites le tour", "Attention",
                             JOptionPane.INFORMATION_MESSAGE);
+                    switch (pressed) {
+                        case "z":
+                            y_aff[indice] += 95;
+                        case "s":
+                            y_aff[indice] -= 95;
+                        case "q":
+                            x_aff[indice] += 95;
+                        case "d":
+                            x_aff[indice] -= 95;
+                        default:
+                            System.out.println("erreur");
+                    }
+
                 }
+
             }
         }
     }
