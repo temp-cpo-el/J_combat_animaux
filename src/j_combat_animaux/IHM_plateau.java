@@ -56,6 +56,7 @@ public class IHM_plateau extends javax.swing.JFrame {
      * Creates new form IHM_plateau
      */
     public IHM_plateau(String JoueurR, String JoueurB, int option_deplacement) {
+
         initComponents();
         //Définition des lignes du plateau Y
         ligne[0] = 118;
@@ -340,46 +341,47 @@ public class IHM_plateau extends javax.swing.JFrame {
             }
             
         }*/
-        
-       // if (option_deplacement == 2) {
-       if(coup>0 && ani[indice].isBleu()==tour){
-        if (evt.getKeyChar() == 'z' && coup > 0) {//Z
+        //if (option_deplacement == 2) {
+        if (coup > 0 && ani[indice].isBleu() == tour) {
+            if (evt.getKeyChar() == 'z' && coup > 0) {//Z
 
-            y_aff[indice] -= 95;
-            ani[indice].setY(y_aff[indice]);
-        }
-        if (evt.getKeyChar() == 's' && coup > 0) {//S
+                y_aff[indice] -= 95;
+                ani[indice].setY(y_aff[indice]);
+            }
+            if (evt.getKeyChar() == 's' && coup > 0) {//S
 
-            y_aff[indice] += 95;
-            ani[indice].setY(y_aff[indice]);
-        }
-        if (evt.getKeyChar() == 'q' && coup > 0) {//Q
+                y_aff[indice] += 95;
+                ani[indice].setY(y_aff[indice]);
+            }
+            if (evt.getKeyChar() == 'q' && coup > 0) {//Q
 
-            x_aff[indice] -= 95;
-            ani[indice].setX(x_aff[indice]);
-        }
-        if (evt.getKeyChar() == 'd' && coup > 0) {//D
+                x_aff[indice] -= 95;
+                ani[indice].setX(x_aff[indice]);
+            }
+            if (evt.getKeyChar() == 'd' && coup > 0) {//D
 
-            x_aff[indice] += 95;
-            ani[indice].setX(x_aff[indice]);
-        }
-        // }
-        /*if (evt.getKeyChar()==KeyEvent.VK_ENTER && coup!=0){
+                x_aff[indice] += 95;
+                ani[indice].setX(x_aff[indice]);
+            }
+            //}
+            /*if (evt.getKeyChar()==KeyEvent.VK_ENTER && coup!=0){
            coup--;
        }*/ //finalement on en a pas besoin si on utilise l'int coup
-       if(coup==0){//fin du coup possible
-           coup=0;
-       }
-       else {
-       coup--;
-       }
-        traitementBornes();
-        jPanel1.repaint();
-        //traitementPiege();
-        traitementTaniere();
-        compteur_tour++;
+            if (coup == 0) {//fin du coup possible
+                coup = 0;
+            } else {
+                coup--;
+            }
+            traitementBornes();
+            traitementRivière();
+            jPanel1.repaint();
+            //traitementPiege();
+            traitementRivière();
+            traitementTaniere();
+            
+            compteur_tour++;
         }
-       
+
         System.out.println("variable coup= " + coup);
     }//GEN-LAST:event_jPanel1KeyPressed
 
@@ -533,23 +535,49 @@ public class IHM_plateau extends javax.swing.JFrame {
             y_aff[indice] = 691;
         }
     }
+    String gagnant;
 
     private void traitementTaniere() {
         //potion900| 500 + 38x60
         //personnagexLink|yLink + 9x90
         if ((col[8]) < x_aff[indice] && x_aff[indice] < (col[8] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && !ani[indice].isBleu() && !tour) {
-
+            //gagnant=JoueurR;
             IHM_victoire ihm1 = new IHM_victoire();
             ihm1.setVisible(true);
         }
         if ((col[0]) < x_aff[indice] && x_aff[indice] < (col[0] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && ani[indice].isBleu() && tour) {
-
+            //gagnant=JoueurB;
             IHM_victoire ihm1 = new IHM_victoire();
             ihm1.setVisible(true);
         }
 
+    }
+
+    private void traitementRivière() {
+        if (ani[indice].getNom() != "rat") {
+
+            if (col[3] < x_aff[indice] && x_aff[indice] < (col[5] + 20)
+                    && ligne[1] < y_aff[indice] && y_aff[indice] < (ligne[3] + 20)
+                    | ligne[4] < y_aff[indice] && y_aff[indice] < (ligne[6] + 20)) {
+
+                if (ani[indice].getNom() == "lion" || ani[indice].getNom() == "tigre") {
+                    x_aff[indice] += (95 * 3);
+                    System.out.println("x_aff=" + x_aff[indice]);
+                } 
+                else {
+                    if (ani[indice].isBleu()) {
+                        x_aff[indice] += 95;
+                    } 
+                    else {
+                        x_aff[indice]-=95;
+                    }
+                    JOptionPane.showMessageDialog(this, "Vous ne pouvez pas traverser la rivière, vous allez vous noyer", "faite le tour",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }
     }
 
 }
