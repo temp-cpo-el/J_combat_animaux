@@ -382,7 +382,7 @@ public class IHM_plateau extends javax.swing.JFrame {
             //traitementPiege();
             traitementRivière();
             traitementTaniere();
-
+            System.out.println(pressed);
             compteur_tour++;
         }
 
