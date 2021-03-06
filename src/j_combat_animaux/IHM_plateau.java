@@ -84,8 +84,8 @@ public class IHM_plateau extends javax.swing.JFrame {
         Animal a4 = new Animal("chien", 903, 215, 0, 0, 4, true, false);
         Animal a5 = new Animal("panthère", 808, 312, 0, 0, 5, true, false);
         Animal a6 = new Animal("lion", 997, 121, 0, 0, 6, true, false);
-        Animal a7 = new Animal("tigre", 997, 690, 0, 0, 7, true, false);
-        Animal a8 = new Animal("elephant", 807, 690, 0, 0, 8, true, false);
+        Animal a7 = new Animal("tigre", 997, 691, 0, 0, 7, true, false);
+        Animal a8 = new Animal("elephant", 807, 691, 0, 0, 8, true, false);
         Animal a9 = new Animal("rat", 427, 691, 0, 0, 1, false, false);//rat de rang 1 couleur:rouge
         Animal a10 = new Animal("chat", 333, 215, 0, 0, 2, false, false);
         Animal a11 = new Animal("loup", 428, 310, 0, 0, 3, false, false);
@@ -303,7 +303,7 @@ public class IHM_plateau extends javax.swing.JFrame {
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         xtemp = evt.getX();
-        System.out.println("x:" + xtemp);
+        System.out.println("\nx:" + xtemp);
         ytemp = evt.getY();
         System.out.println("y:" + ytemp + "\n");
         tour_du_joueur();
@@ -346,24 +346,32 @@ public class IHM_plateau extends javax.swing.JFrame {
         if (coup > 0 && ani[indice].isBleu() == tour) {
             if (evt.getKeyChar() == 'z' && coup > 0) {//Z
                 y_aff[indice] -= 95;
+                xtemp=ani[indice].getX();//pour pouvoir les comparer après
+                ytemp=ani[indice].getY();//pour pouvoir les comparer après
                 pressed = "z";
                 ani[indice].setY(y_aff[indice]);
             }
             if (evt.getKeyChar() == 's' && coup > 0) {//S
 
                 y_aff[indice] += 95;
+                xtemp=ani[indice].getX();//pour pouvoir les comparer après
+                ytemp=ani[indice].getY();//pour pouvoir les comparer après
                 pressed = "s";
                 ani[indice].setY(y_aff[indice]);
             }
             if (evt.getKeyChar() == 'q' && coup > 0) {//Q
 
                 x_aff[indice] -= 95;
+                xtemp=ani[indice].getX();//pour pouvoir les comparer après
+                ytemp=ani[indice].getY();//pour pouvoir les comparer après
                 pressed = "q";
                 ani[indice].setX(x_aff[indice]);
             }
             if (evt.getKeyChar() == 'd' && coup > 0) {//D
 
                 x_aff[indice] += 95;
+                xtemp=ani[indice].getX();//pour pouvoir les comparer après
+                ytemp=ani[indice].getY();//pour pouvoir les comparer après
                 pressed = "d";
                 ani[indice].setX(x_aff[indice]);
             }
@@ -390,7 +398,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1KeyPressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        System.exit(0);
+        System.exit(0);//à changer pour insérer plusiurs options (redémarrer, quitter, pause, enregistrer, tatati tatata)
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -439,7 +447,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelJoueurR;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-/* Ajout des toutes les fonctions dont on aura besoin pour faire marcher le code :*/
+/* Ajout des toutes les fonctions dont on aura besoin pour faire fonctionner le code :*/
 
     private void ajouterAnimal(Animal a) {
         ani[nbani] = a;
@@ -471,8 +479,10 @@ public class IHM_plateau extends javax.swing.JFrame {
     private void tour_du_joueur() {
         if (compteur_tour % 2 == 0) {
             tour = false;//tour des rouges
+            System.out.println("Tour des rouges");
         } else {
             tour = true;//tour des bleus
+            System.out.println("Tour des bleus");
         }
         coup = 1;//on initialise le nombre de coup possible pour le joueur
         System.out.println("compteur_tour : " + compteur_tour);
@@ -489,7 +499,7 @@ public class IHM_plateau extends javax.swing.JFrame {
          * verra pour le découpage par carré plus tard, pour l'instant on
          * cherche juste la ligne
          *
-         */
+         **/
         for (int i = 0; i < ligne.length; i++) {
 
             if (ytemp > ligne[i]) {
@@ -501,7 +511,7 @@ public class IHM_plateau extends javax.swing.JFrame {
 
                 }
             }
-        }//on a récup la ligne la plus proche
+        }//on a récup la ligne et la colonne la plus proche
         for (int i = 0; i < ani.length; i++) {
 
             if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && ani[i].isBleu() && tour) {
@@ -512,10 +522,10 @@ public class IHM_plateau extends javax.swing.JFrame {
             if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && !ani[i].isBleu() && !tour) {
                 ani[i].setIsSelected(true);
                 indice = i;
-            }
+            }//on a deux conditions, une pour cahque couleur
         }
 
-        jPanel1.repaint();
+        jPanel1.repaint();//on repaint à la fin de selecanimaux pour afficher le cercle
 
     }
 
@@ -531,12 +541,19 @@ public class IHM_plateau extends javax.swing.JFrame {
             x_aff[indice] = 997;
         }
         //Haut
-        if (y_aff[indice] < 120) {
-            y_aff[indice] = 120;
+        if (y_aff[indice] < 121) {
+            y_aff[indice] = 121;
         }
         //BAS
         if (y_aff[indice] > 737) {
             y_aff[indice] = 691;
+        }
+        //condition : if l'animal a pas bougé de place --> rejouer
+        if( xtemp==x_aff[indice] && ytemp==y_aff[indice]){
+        coup++;//on lui redonne un coup parce qu'il a fait un mouvement impossible
+        compteur_tour--;//à nouveau au tour du joueur de la même couleur
+        //ani[indice].setIsSelected(false);
+        System.out.println("Encore joueur bleu="+ tour+ " de jouer");//la pièce est séléectionnée mais le rond est effacé c'est un peu dommage
         }
     }
     String gagnant;
