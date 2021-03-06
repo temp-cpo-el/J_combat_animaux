@@ -535,18 +535,22 @@ public class IHM_plateau extends javax.swing.JFrame {
         // Gauche
         if (x_aff[indice] < 239) {
             x_aff[indice] = 239;
+            ani[indice].setX(x_aff[indice]);
         }
         //Droite
         if (x_aff[indice] > 1049) {
             x_aff[indice] = 997;
+            ani[indice].setX(x_aff[indice]);
         }
         //Haut
         if (y_aff[indice] < 121) {
             y_aff[indice] = 121;
+            ani[indice].setY(y_aff[indice]);
         }
         //BAS
         if (y_aff[indice] > 737) {
             y_aff[indice] = 691;
+            ani[indice].setY(y_aff[indice]);
         }
         //condition : if l'animal a pas bougé de place --> rejouer
         if( xtemp==x_aff[indice] && ytemp==y_aff[indice]){
