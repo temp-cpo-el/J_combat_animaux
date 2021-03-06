@@ -344,34 +344,28 @@ public class IHM_plateau extends javax.swing.JFrame {
         }*/
         //if (option_deplacement == 2) {
         if (coup > 0 && ani[indice].isBleu() == tour) {
+            xtemp=ani[indice].getX();//pour pouvoir les comparer après
+            ytemp=ani[indice].getY();//pour pouvoir les comparer après
             if (evt.getKeyChar() == 'z' && coup > 0) {//Z
                 y_aff[indice] -= 95;
-                xtemp=ani[indice].getX();//pour pouvoir les comparer après
-                ytemp=ani[indice].getY();//pour pouvoir les comparer après
                 pressed = "z";
                 ani[indice].setY(y_aff[indice]);
             }
             if (evt.getKeyChar() == 's' && coup > 0) {//S
 
                 y_aff[indice] += 95;
-                xtemp=ani[indice].getX();//pour pouvoir les comparer après
-                ytemp=ani[indice].getY();//pour pouvoir les comparer après
                 pressed = "s";
                 ani[indice].setY(y_aff[indice]);
             }
             if (evt.getKeyChar() == 'q' && coup > 0) {//Q
 
                 x_aff[indice] -= 95;
-                xtemp=ani[indice].getX();//pour pouvoir les comparer après
-                ytemp=ani[indice].getY();//pour pouvoir les comparer après
                 pressed = "q";
                 ani[indice].setX(x_aff[indice]);
             }
             if (evt.getKeyChar() == 'd' && coup > 0) {//D
 
                 x_aff[indice] += 95;
-                xtemp=ani[indice].getX();//pour pouvoir les comparer après
-                ytemp=ani[indice].getY();//pour pouvoir les comparer après
                 pressed = "d";
                 ani[indice].setX(x_aff[indice]);
             }
@@ -601,6 +595,10 @@ public class IHM_plateau extends javax.swing.JFrame {
                             System.out.println("erreur");
                     }
                 } else {
+                    /*Si le perso ne peut pas aller dans l'eau, il faut que ça reste le tour du joueur de la même couleur.
+                    Est-il nécésaire de leur faire faire un retour en arrière? si on met y_aff[indice]=ytemp,ani[indice].setY(ytemp) ou x_aff[indice]=xtemp,ani[indice].setX(xtemp) je pense
+                    que ça peut le faire, parce que ytemp est l'ancienne coordonnée de la pièce
+                    l'instruction est assez longue et répétitive, mais bon.*/
                     JOptionPane.showMessageDialog(this, "Vous ne pouvez pas traverser la rivière, vous allez vous noyer, faites le tour", "Attention",
                             JOptionPane.INFORMATION_MESSAGE);
                     switch (pressed) {
