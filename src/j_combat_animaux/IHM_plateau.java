@@ -32,7 +32,8 @@ public class IHM_plateau extends javax.swing.JFrame {
     private BufferedImage imageFondPlateau;
     private int[] ligne = new int[7];
     private int[] col = new int[9];
-
+    private Zone RH=new Zone(510, 750, 210, 390, false);//définition des zones de rivières
+    private Zone RB=new Zone(510, 750, 495, 660, true);
 
     /*On a trouvé une autre méthode!!! yeah! Définiions des trucs dont on a besoin:*/
     private Animal[] ani = new Animal[16];//j'ai changé la valeur du tableau juste pour les essais
@@ -378,13 +379,13 @@ public class IHM_plateau extends javax.swing.JFrame {
             } else {
                 coup--;
             }
+            System.out.println(pressed);//ça change rien de le changer de place je suis d'accord
             traitementBornes();
             traitementRivière();
             jPanel1.repaint();
             //traitementPiege();
-            traitementRivière();
-            traitementTaniere();
-            System.out.println(pressed);
+           // traitementRivière();
+            traitementTaniere(); 
             compteur_tour++;
         }
 
@@ -575,30 +576,41 @@ public class IHM_plateau extends javax.swing.JFrame {
     }
 
     private void traitementRivière() {
-        if (ani[indice].getNom() != "rat") {
-
+        if (ani[indice].getNom() != "rat" && ani[indice].getNom() != "tigre" && ani[indice].getNom() != "lion") {
+           if(RH.Inside(ani[indice].getX(),ani[indice].getY())|| RB.Inside(ani[indice].getX(),ani[indice].getY())){
+               JOptionPane.showMessageDialog(this, "Vous ne pouvez pas traverser la rivière, vous allez vous noyer, faites le tour", "Attention",
+                            JOptionPane.INFORMATION_MESSAGE);
+             switch (pressed) {
+                        case "z":
+                            y_aff[indice] += 95;
+                            ani[indice].setY(y_aff[indice]);
+                        case "s":
+                            y_aff[indice] -= 95;
+                            ani[indice].setY(y_aff[indice]);
+                        case "q":
+                            x_aff[indice] += 95;
+                            ani[indice].setX(x_aff[indice]);
+                        case "d":
+                            x_aff[indice] -= 95;
+                            ani[indice].setX(x_aff[indice]);
+                        default:
+                            System.out.println("erreur");
+                    }  
+             //rajouter le rejouer
+             coup++;
+             compteur_tour--;
+           }
+            /*
             if (col[3] < x_aff[indice] && x_aff[indice] < (col[5] + 20)
                     && (ligne[1] < y_aff[indice] && y_aff[indice] < (ligne[2] + 20)
                     || ligne[4] < y_aff[indice] && y_aff[indice] < (ligne[5] + 20))) {
-
-                if (ani[indice].getNom() == "lion" || ani[indice].getNom() == "tigre") {
-                    switch (pressed) {
-                        case "z":
-                            y_aff[indice] += (2 * 95);
-                        case "s":
-                            y_aff[indice] -= (2 * 95);
-                        case "q":
-                            x_aff[indice] -= (3 * 95);
-                        case "d":
-                            x_aff[indice] += (3 * 95);
-                        default:
-                            System.out.println("erreur");
-                    }
+*/
+                /*
                 } else {
                     /*Si le perso ne peut pas aller dans l'eau, il faut que ça reste le tour du joueur de la même couleur.
                     Est-il nécésaire de leur faire faire un retour en arrière? si on met y_aff[indice]=ytemp,ani[indice].setY(ytemp) ou x_aff[indice]=xtemp,ani[indice].setX(xtemp) je pense
                     que ça peut le faire, parce que ytemp est l'ancienne coordonnée de la pièce
-                    l'instruction est assez longue et répétitive, mais bon.*/
+                    l'instruction est assez longue et répétitive, mais bon.*//*
                     JOptionPane.showMessageDialog(this, "Vous ne pouvez pas traverser la rivière, vous allez vous noyer, faites le tour", "Attention",
                             JOptionPane.INFORMATION_MESSAGE);
                     switch (pressed) {
@@ -616,8 +628,31 @@ public class IHM_plateau extends javax.swing.JFrame {
 
                 }
 
-            }
+            }*/
         }
+        if ((ani[indice].getNom()).equals("lion") || (ani[indice].getNom()).equals("tigre")) {
+                    if(RH.Inside(ani[indice].getX(),ani[indice].getY())|| RB.Inside(ani[indice].getX(),ani[indice].getY())){
+                        System.out.println("Saut félin");
+                    switch (pressed) {
+                        case "z":
+                            y_aff[indice] -= (2*95);//le z ne fonctionne pas
+                            ani[indice].setY(y_aff[indice]);
+                        case "s":
+                            y_aff[indice] += 190;
+                            ani[indice].setY(y_aff[indice]);
+                        case "q":
+                            x_aff[indice] -= (3*95);
+                            ani[indice].setX(x_aff[indice]);//le q non plus, c'est assez frustrant
+                        case "d":
+                            x_aff[indice] += 285;
+                            ani[indice].setX(x_aff[indice]);
+                        default:
+                            System.out.println("erreur");
+                    }
+                    
+                    }
+                
+                }
     }
 
 }
