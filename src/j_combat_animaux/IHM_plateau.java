@@ -635,6 +635,7 @@ public class IHM_plateau extends javax.swing.JFrame {
                 if (ani[i].isBleu() != ani[indice].isBleu()) {
                     System.out.println("oui!");
                     if ( ani[indice].getRang()!=1 && ani[indice].getRang() < ani[i].getRang() || ani[indice].getRang()==8 && ani[i].getRang()==1) {//cas ou l'attaquant et < l'attaqué, attention cas rat et elephant
+                        // agouter +8 au rang du rat quant il attaque l'éléphant
                         int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
 
                         if (result == 0) {
