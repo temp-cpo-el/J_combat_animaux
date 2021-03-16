@@ -31,10 +31,10 @@ public class IHM_plateau extends javax.swing.JFrame {
     private Zone RH = new Zone(521, 754, 210, 350, false);//définition des zones de rivières
     private Zone RB = new Zone(521, 754, 500, 640, true);
 
-    private int x_zonepd=0;
-    private int x_zonepf=0;
-    private int y_zonepd=0;
-    private int y_zonepf=0;
+    private int x_zonepd = 0;
+    private int x_zonepf = 0;
+    private int y_zonepd = 0;
+    private int y_zonepf = 0;
     // private Zone_piece piece = new Zone_piece(x_zonepd, x_zonepf, y_zonepd, y_zonepf);
 
     /*On a trouvé une autre méthode!!! yeah! Définiions des trucs dont on a besoin:*/
@@ -631,52 +631,45 @@ public class IHM_plateau extends javax.swing.JFrame {
         y_zonepf = ani[indice].getY() + 55;
 
         for (int i = 0; i < ani.length; i++) {
-            if (ani[i].getX()>=x_zonepd && ani[i].getX()<=x_zonepf && ani[i].getY()>= y_zonepd && ani[i].getY()<= y_zonepf &&ani[i].isBleu()!=ani[indice].isBleu()) {
-                System.out.println("oui!");
-                if (ani[indice].getRang() < ani[i].getRang()) {
-                     int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
-                    
-                    if (result == 0) {
-                        System.out.println("suicide de la piece");
+            if (ani[i].getX() >= x_zonepd && ani[i].getX() <= x_zonepf && ani[i].getY() >= y_zonepd && ani[i].getY() <= y_zonepf && i != indice) {
+                if (ani[i].isBleu() != ani[indice].isBleu()) {
+                    System.out.println("oui!");
+                    if ( ani[indice].getRang()!=1 && ani[indice].getRang() < ani[i].getRang() || ani[indice].getRang()==8 && ani[i].getRang()==1) {//cas ou l'attaquant et < l'attaqué, attention cas rat et elephant
+                        int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
+
+                        if (result == 0) {
+                            System.out.println("suicide de la piece");
+                            //ani[indice](disparait)
+
+                        } else {
+                            x_aff[indice] = xtemp;
+                            y_aff[indice] = ytemp;
+
+                            coup++;
+                            compteur_tour--;
+
+                        }
                         
-                    } else {
-                        x_aff[indice] = xtemp;
-                        y_aff[indice] = ytemp;
-                        //rajouter le rejouer
-                        coup++;
-                        compteur_tour--;
+                    } if ( ani[indice].getRang() > ani[i].getRang() || ani[indice].getRang()==1 && ani[i].getRang()==8) {// il faut trouver un moyen pour que le rat attanquant ne puisse manger que l'elephant
+                        //ani[i] disparait
+                        System.out.println("la piece "+ani[i].getNom()+" "+ani[i].getCouleur()+" est mangée" );
 
                     }
-                    
+                } else {
+                    x_aff[indice] = xtemp;
+                    y_aff[indice] = ytemp;
+                    //rajouter le rejouer
+                    coup++;
+                    compteur_tour--;
                 }
+
             }
         }
 
 
-            /*if (piece.Insided(ani[i].getX(), ani[i].getY()) && ani[i].isBleu() == ani[indice].isBleu()) {
-                System.out.println("oui!");
-                if (ani[indice].getRang() < ani[i].getRang()) {
-                    int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
-                    
-                    if (result == 1) {
-                        System.out.println("suicide de la piece");
-                        
-                    } else {
-                        x_aff[indice] = xtemp;
-                        y_aff[indice] = ytemp;
-                        //rajouter le rejouer
-                        coup++;
-                        compteur_tour--;
-
-                    }
-                }*/
-        //}
+        
     }
 }
 
 
-/*x_aff[indice] = xtemp;
-y_aff[indice] = ytemp;
-                    //rajouter le rejouer
-                    coup++;
-                    compteur_tour--; */
+
