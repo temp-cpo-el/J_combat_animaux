@@ -634,43 +634,71 @@ public class IHM_plateau extends javax.swing.JFrame {
             if (ani[i].getX() >= x_zonepd && ani[i].getX() <= x_zonepf && ani[i].getY() >= y_zonepd && ani[i].getY() <= y_zonepf && i != indice) {
                 if (ani[i].isBleu() != ani[indice].isBleu()) {
                     System.out.println("oui!");
-                    if ( ani[indice].getRang()!=1 && ani[indice].getRang() < ani[i].getRang() || ani[indice].getRang()==8 && ani[i].getRang()==1) {//cas ou l'attaquant et < l'attaqué, attention cas rat et elephant
-                        // agouter +8 au rang du rat quant il attaque l'éléphant
-                        int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
 
-                        if (result == 0) {
-                            System.out.println("suicide de la piece");
-                            //ani[indice](disparait)
+                    switch (ani[indice].getRang()) {
+                        case 1:
+                            if (ani[i].getRang() == 8) {
+                                //ani[i]disparait
+                                System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
+                            } else {
+                                int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
+                                if (result == 0) {
+                                    System.out.println("suicide de la piece "+ ani[indice].getNom()+" "+ani[indice].getCouleur());
+                                    //ani[indice](disparait)
 
-                        } else {
-                            x_aff[indice] = xtemp;
-                            y_aff[indice] = ytemp;
+                                } else {
+                                    x_aff[indice] = xtemp;
+                                    y_aff[indice] = ytemp;
 
-                            coup++;
-                            compteur_tour--;
+                                    coup++;
+                                    compteur_tour--;
 
-                        }
-                        
-                    } if ( ani[indice].getRang() > ani[i].getRang() || ani[indice].getRang()==1 && ani[i].getRang()==8) {// il faut trouver un moyen pour que le rat attanquant ne puisse manger que l'elephant
-                        //ani[i] disparait
-                        System.out.println("la piece "+ani[i].getNom()+" "+ani[i].getCouleur()+" est mangée" );
+                                }
+                            }
+                            break;
+                        case 8:
+                            if (ani[i].getRang() == 1) {
+                                int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
+                                if (result == 0) {
+                                    System.out.println("suicide de la piece "+ ani[indice].getNom()+" "+ani[indice].getCouleur());
+                                    //ani[indice](disparait)
+                                } else {
+                                    x_aff[indice] = xtemp;
+                                    y_aff[indice] = ytemp;
 
+                                    coup++;
+                                    compteur_tour--;
+                                }
+                            } else {
+                                //ani[i]disparait
+                                System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
+                            }
+                            break;
+                        default:
+                            if (ani[indice].getRang() < ani[i].getRang()) {
+                                int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
+                                if (result == 0) {
+                                    System.out.println("suicide de la piece "+ ani[indice].getNom()+" "+ani[indice].getCouleur());
+                                    //ani[indice](disparait)
+
+                                } else {
+                                    x_aff[indice] = xtemp;
+                                    y_aff[indice] = ytemp;
+
+                                    coup++;
+                                    compteur_tour--;
+
+                                }
+                            } else {
+                                //ani[i]disparait
+                                System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
+                            }
+                            break;
                     }
-                } else {
-                    x_aff[indice] = xtemp;
-                    y_aff[indice] = ytemp;
-                    //rajouter le rejouer
-                    coup++;
-                    compteur_tour--;
+                    
                 }
-
             }
         }
 
-
-        
     }
 }
-
-
-
