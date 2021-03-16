@@ -31,6 +31,12 @@ public class IHM_plateau extends javax.swing.JFrame {
     private Zone RH = new Zone(521, 754, 210, 350, false);//définition des zones de rivières
     private Zone RB = new Zone(521, 754, 500, 640, true);
 
+    private int x_zonepd;
+    private int x_zonepf;
+    private int y_zonepd;
+    private int y_zonepf;
+    private Zone_piece piece = new Zone_piece(x_zonepd, x_zonepf, y_zonepd, y_zonepf);
+
     /*On a trouvé une autre méthode!!! yeah! Définiions des trucs dont on a besoin:*/
     private Animal[] ani = new Animal[16];//j'ai changé la valeur du tableau juste pour les essais
     private int nbani = 0;//servira pour choper l'animal correspondant
@@ -578,8 +584,8 @@ public class IHM_plateau extends javax.swing.JFrame {
                 if (ani[indice].getNom() != "tigre" && ani[indice].getNom() != "lion") {
                     JOptionPane.showMessageDialog(this, "Vous ne pouvez pas traverser la rivière, vous allez vous noyer, faites le tour", "Attention",
                             JOptionPane.INFORMATION_MESSAGE);
-                    x_aff[indice]=xtemp;
-                    y_aff[indice]=ytemp;
+                    x_aff[indice] = xtemp;
+                    y_aff[indice] = ytemp;
                     //rajouter le rejouer
                     coup++;
                     compteur_tour--;
@@ -612,6 +618,14 @@ public class IHM_plateau extends javax.swing.JFrame {
             }
 
         }
+    }
+
+    private void duel() {
+        x_zonepd = x_aff[indice];
+        x_zonepf = x_aff[indice] + 40;
+        y_zonepd = y_aff[indice];
+        y_zonepf = y_aff[indice] + 40;
+
     }
 
 }
