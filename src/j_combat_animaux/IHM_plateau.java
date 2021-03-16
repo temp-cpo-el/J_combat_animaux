@@ -32,8 +32,8 @@ public class IHM_plateau extends javax.swing.JFrame {
     private BufferedImage imageFondPlateau;
     private int[] ligne = new int[7];
     private int[] col = new int[9];
-    private Zone RH=new Zone(510, 750, 210, 390, false);//définition des zones de rivières
-    private Zone RB=new Zone(510, 750, 495, 660, true);
+    private Zone RH = new Zone(521, 754, 210, 350, false);//définition des zones de rivières
+    private Zone RB = new Zone(521, 754, 500, 640, true);
 
     /*On a trouvé une autre méthode!!! yeah! Définiions des trucs dont on a besoin:*/
     private Animal[] ani = new Animal[16];//j'ai changé la valeur du tableau juste pour les essais
@@ -151,7 +151,6 @@ public class IHM_plateau extends javax.swing.JFrame {
                 g.drawImage(imageFondPlateau,0,0, null);
                 //affichage plateau
                 g.drawImage(imagePlateau,229,110, null);
-
                 /*nouveau code du customize code:
                 */
                 for(int i=0; i<ani.length; i++){
@@ -345,8 +344,8 @@ public class IHM_plateau extends javax.swing.JFrame {
         }*/
         //if (option_deplacement == 2) {
         if (coup > 0 && ani[indice].isBleu() == tour) {
-            xtemp=ani[indice].getX();//pour pouvoir les comparer après
-            ytemp=ani[indice].getY();//pour pouvoir les comparer après
+            xtemp = ani[indice].getX();//pour pouvoir les comparer après
+            ytemp = ani[indice].getY();//pour pouvoir les comparer après
             if (evt.getKeyChar() == 'z' && coup > 0) {//Z
                 y_aff[indice] -= 95;
                 pressed = "z";
@@ -384,8 +383,8 @@ public class IHM_plateau extends javax.swing.JFrame {
             traitementRivière();
             jPanel1.repaint();
             //traitementPiege();
-           // traitementRivière();
-            traitementTaniere(); 
+            // traitementRivière();
+            traitementTaniere();
             compteur_tour++;
         }
 
@@ -494,7 +493,8 @@ public class IHM_plateau extends javax.swing.JFrame {
          * verra pour le découpage par carré plus tard, pour l'instant on
          * cherche juste la ligne
          *
-         **/
+         *
+         */
         for (int i = 0; i < ligne.length; i++) {
 
             if (ytemp > ligne[i]) {
@@ -548,11 +548,11 @@ public class IHM_plateau extends javax.swing.JFrame {
             ani[indice].setY(y_aff[indice]);
         }
         //condition : if l'animal a pas bougé de place --> rejouer
-        if( xtemp==x_aff[indice] && ytemp==y_aff[indice]){
-        coup++;//on lui redonne un coup parce qu'il a fait un mouvement impossible
-        compteur_tour--;//à nouveau au tour du joueur de la même couleur
-        //ani[indice].setIsSelected(false);
-        System.out.println("Encore joueur bleu="+ tour+ " de jouer");//la pièce est séléectionnée mais le rond est effacé c'est un peu dommage
+        if (xtemp == x_aff[indice] && ytemp == y_aff[indice]) {
+            coup++;//on lui redonne un coup parce qu'il a fait un mouvement impossible
+            compteur_tour--;//à nouveau au tour du joueur de la même couleur
+            //ani[indice].setIsSelected(false);
+            System.out.println("Encore joueur bleu=" + tour + " de jouer");//la pièce est séléectionnée mais le rond est effacé c'est un peu dommage
         }
     }
     String gagnant;
@@ -576,6 +576,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     }
 
     private void traitementRivière() {
+        /*
         if (ani[indice].getNom() != "rat" && ani[indice].getNom() != "tigre" && ani[indice].getNom() != "lion") {
            if(RH.Inside(ani[indice].getX(),ani[indice].getY())|| RB.Inside(ani[indice].getX(),ani[indice].getY())){
                JOptionPane.showMessageDialog(this, "Vous ne pouvez pas traverser la rivière, vous allez vous noyer, faites le tour", "Attention",
@@ -599,13 +600,24 @@ public class IHM_plateau extends javax.swing.JFrame {
              //rajouter le rejouer
              coup++;
              compteur_tour--;
-           }
-            /*
+           }*/
+        if (ani[indice].getNom() != "rat") {//dixit pour tous les autres animaux
+            if (RH.Inside(ani[indice].getX(), ani[indice].getY()) || RB.Inside(ani[indice].getX(), ani[indice].getY())) {//si leurs coordonnées atterissent dans la rivière
+                if (ani[indice].getNom() != "tigre" && ani[indice].getNom() != "lion") {
+                    JOptionPane.showMessageDialog(this, "Vous ne pouvez pas traverser la rivière, vous allez vous noyer, faites le tour", "Attention",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    x_aff[indice]=xtemp;
+                    y_aff[indice]=ytemp;
+                    //rajouter le rejouer
+                    coup++;
+                    compteur_tour--;
+
+                    /*
             if (col[3] < x_aff[indice] && x_aff[indice] < (col[5] + 20)
                     && (ligne[1] < y_aff[indice] && y_aff[indice] < (ligne[2] + 20)
                     || ligne[4] < y_aff[indice] && y_aff[indice] < (ligne[5] + 20))) {
-*/
-                /*
+                     */
+ /*
                 } else {
                     /*Si le perso ne peut pas aller dans l'eau, il faut que ça reste le tour du joueur de la même couleur.
                     Est-il nécésaire de leur faire faire un retour en arrière? si on met y_aff[indice]=ytemp,ani[indice].setY(ytemp) ou x_aff[indice]=xtemp,ani[indice].setX(xtemp) je pense
@@ -629,30 +641,35 @@ public class IHM_plateau extends javax.swing.JFrame {
                 }
 
             }*/
-        }
-        if ((ani[indice].getNom()).equals("lion") || (ani[indice].getNom()).equals("tigre")) {
-                    if(RH.Inside(ani[indice].getX(),ani[indice].getY())|| RB.Inside(ani[indice].getX(),ani[indice].getY())){
-                        System.out.println("Saut félin");
+                }
+                if ((ani[indice].getNom()).equals("lion") || (ani[indice].getNom()).equals("tigre")) {
+                    System.out.println("Saut félin");
                     switch (pressed) {
                         case "z":
-                            y_aff[indice] -= (2*95);//le z ne fonctionne pas
+                            System.out.println("remontée");
+                            y_aff[indice] -= (2 * 95);//le z ne fonctionne pas
                             ani[indice].setY(y_aff[indice]);
+                            break;
                         case "s":
                             y_aff[indice] += 190;
                             ani[indice].setY(y_aff[indice]);
+                            break;
                         case "q":
-                            x_aff[indice] -= (3*95);
+                            x_aff[indice] -= (3 * 95);
                             ani[indice].setX(x_aff[indice]);//le q non plus, c'est assez frustrant
+                            break;
                         case "d":
                             x_aff[indice] += 285;
                             ani[indice].setX(x_aff[indice]);
+                            break;
                         default:
                             System.out.println("erreur");
                     }
-                    
-                    }
-                
+
                 }
+            }
+
+        }
     }
 
 }
