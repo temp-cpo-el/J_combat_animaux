@@ -9,13 +9,9 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javafx.scene.input.KeyCode;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
@@ -576,31 +572,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     }
 
     private void traitementRivière() {
-        /*
-        if (ani[indice].getNom() != "rat" && ani[indice].getNom() != "tigre" && ani[indice].getNom() != "lion") {
-           if(RH.Inside(ani[indice].getX(),ani[indice].getY())|| RB.Inside(ani[indice].getX(),ani[indice].getY())){
-               JOptionPane.showMessageDialog(this, "Vous ne pouvez pas traverser la rivière, vous allez vous noyer, faites le tour", "Attention",
-                            JOptionPane.INFORMATION_MESSAGE);
-             switch (pressed) {
-                        case "z":
-                            y_aff[indice] += 95;
-                            ani[indice].setY(y_aff[indice]);
-                        case "s":
-                            y_aff[indice] -= 95;
-                            ani[indice].setY(y_aff[indice]);
-                        case "q":
-                            x_aff[indice] += 95;
-                            ani[indice].setX(x_aff[indice]);
-                        case "d":
-                            x_aff[indice] -= 95;
-                            ani[indice].setX(x_aff[indice]);
-                        default:
-                            System.out.println("erreur");
-                    }  
-             //rajouter le rejouer
-             coup++;
-             compteur_tour--;
-           }*/
+
         if (ani[indice].getNom() != "rat") {//dixit pour tous les autres animaux
             if (RH.Inside(ani[indice].getX(), ani[indice].getY()) || RB.Inside(ani[indice].getX(), ani[indice].getY())) {//si leurs coordonnées atterissent dans la rivière
                 if (ani[indice].getNom() != "tigre" && ani[indice].getNom() != "lion") {
@@ -611,36 +583,6 @@ public class IHM_plateau extends javax.swing.JFrame {
                     //rajouter le rejouer
                     coup++;
                     compteur_tour--;
-
-                    /*
-            if (col[3] < x_aff[indice] && x_aff[indice] < (col[5] + 20)
-                    && (ligne[1] < y_aff[indice] && y_aff[indice] < (ligne[2] + 20)
-                    || ligne[4] < y_aff[indice] && y_aff[indice] < (ligne[5] + 20))) {
-                     */
- /*
-                } else {
-                    /*Si le perso ne peut pas aller dans l'eau, il faut que ça reste le tour du joueur de la même couleur.
-                    Est-il nécésaire de leur faire faire un retour en arrière? si on met y_aff[indice]=ytemp,ani[indice].setY(ytemp) ou x_aff[indice]=xtemp,ani[indice].setX(xtemp) je pense
-                    que ça peut le faire, parce que ytemp est l'ancienne coordonnée de la pièce
-                    l'instruction est assez longue et répétitive, mais bon.*//*
-                    JOptionPane.showMessageDialog(this, "Vous ne pouvez pas traverser la rivière, vous allez vous noyer, faites le tour", "Attention",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    switch (pressed) {
-                        case "z":
-                            y_aff[indice] += 95;
-                        case "s":
-                            y_aff[indice] -= 95;
-                        case "q":
-                            x_aff[indice] += 95;
-                        case "d":
-                            x_aff[indice] -= 95;
-                        default:
-                            System.out.println("erreur");
-                    }
-
-                }
-
-            }*/
                 }
                 if ((ani[indice].getNom()).equals("lion") || (ani[indice].getNom()).equals("tigre")) {
                     System.out.println("Saut félin");
