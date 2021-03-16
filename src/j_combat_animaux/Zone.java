@@ -10,19 +10,20 @@ package j_combat_animaux;
  * @author Moi
  */
 public class Zone {
+
     /**
-     * Définition de zone autour des rivières
-     * xd= x du debut de zone
-     * yf= y de la fin de zone
-     **/
-   private int xd;
-   private int xf;
-   private int yd;
-   private int yf;//coordonnées qui constitueront la zone
-   
-   private int x,y;//les témoins pour savoir si on est dans la zone ou pas.
-   private boolean a;// 0=rivière haute 1= rivière basse
-   //il n'y a que deux rivières, donc on peut se permettre d'utiliser un boolean
+     * Définition de zone autour des rivières xd= x du debut de zone yf= y de la
+     * fin de zone
+     *
+     */
+    private int xd;
+    private int xf;
+    private int yd;
+    private int yf;//coordonnées qui constitueront la zone
+
+    private int x, y;//les témoins pour savoir si on est dans la zone ou pas.
+    private boolean a;// 0=rivière haute 1= rivière basse
+    //il n'y a que deux rivières, donc on peut se permettre d'utiliser un boolean
 
     public Zone(int xd, int xf, int yd, int yf, boolean a) {
         this.xd = xd;
@@ -31,11 +32,13 @@ public class Zone {
         this.yf = yf;
         this.a = a;
     }
-   
-   public boolean Inside(int x,int y){
-        if(x>=xd && x<=xf && y>=yd && y<=yf)
+
+    public boolean Inside(int x, int y) {
+        if (x >= xd && x <= xf && y >= yd && y <= yf) {
+            System.out.println("dans la rivière");
             return true;
-        System.out.println("dans la rivière");  
-       return false;
-   }
+        }
+        
+        return false;
+    }
 }

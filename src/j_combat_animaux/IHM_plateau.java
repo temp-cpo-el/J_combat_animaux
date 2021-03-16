@@ -31,11 +31,11 @@ public class IHM_plateau extends javax.swing.JFrame {
     private Zone RH = new Zone(521, 754, 210, 350, false);//définition des zones de rivières
     private Zone RB = new Zone(521, 754, 500, 640, true);
 
-    private int x_zonepd;
-    private int x_zonepf;
-    private int y_zonepd;
-    private int y_zonepf;
-    private Zone_piece piece = new Zone_piece(x_zonepd, x_zonepf, y_zonepd, y_zonepf);
+    private int x_zonepd=0;
+    private int x_zonepf=0;
+    private int y_zonepd=0;
+    private int y_zonepf=0;
+    // private Zone_piece piece = new Zone_piece(x_zonepd, x_zonepf, y_zonepd, y_zonepf);
 
     /*On a trouvé une autre méthode!!! yeah! Définiions des trucs dont on a besoin:*/
     private Animal[] ani = new Animal[16];//j'ai changé la valeur du tableau juste pour les essais
@@ -383,9 +383,11 @@ public class IHM_plateau extends javax.swing.JFrame {
             System.out.println(pressed);//ça change rien de le changer de place je suis d'accord
             traitementBornes();
             traitementRivière();
+            duel();
             jPanel1.repaint();
             //traitementPiege();
             // traitementRivière();
+
             traitementTaniere();
             compteur_tour++;
         }
@@ -619,13 +621,62 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         }
     }
+    private Zone_piece piece = new Zone_piece(x_zonepd, x_zonepf, y_zonepd, y_zonepf);
 
     private void duel() {
-        x_zonepd = x_aff[indice];
-        x_zonepf = x_aff[indice] + 40;
-        y_zonepd = y_aff[indice];
-        y_zonepf = y_aff[indice] + 40;
 
+        x_zonepd = ani[indice].getX() - 55;
+        x_zonepf = ani[indice].getX() + 55;
+        y_zonepd = ani[indice].getY() - 55;
+        y_zonepf = ani[indice].getY() + 55;
+
+        for (int i = 0; i < ani.length; i++) {
+            if (ani[i].getX()>=x_zonepd && ani[i].getX()<=x_zonepf && ani[i].getY()>= y_zonepd && ani[i].getY()<= y_zonepf &&ani[i].isBleu()!=ani[indice].isBleu()) {
+                System.out.println("oui!");
+                if (ani[indice].getRang() < ani[i].getRang()) {
+                     int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
+                    
+                    if (result == 0) {
+                        System.out.println("suicide de la piece");
+                        
+                    } else {
+                        x_aff[indice] = xtemp;
+                        y_aff[indice] = ytemp;
+                        //rajouter le rejouer
+                        coup++;
+                        compteur_tour--;
+
+                    }
+                    
+                }
+            }
+        }
+
+
+            /*if (piece.Insided(ani[i].getX(), ani[i].getY()) && ani[i].isBleu() == ani[indice].isBleu()) {
+                System.out.println("oui!");
+                if (ani[indice].getRang() < ani[i].getRang()) {
+                    int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
+                    
+                    if (result == 1) {
+                        System.out.println("suicide de la piece");
+                        
+                    } else {
+                        x_aff[indice] = xtemp;
+                        y_aff[indice] = ytemp;
+                        //rajouter le rejouer
+                        coup++;
+                        compteur_tour--;
+
+                    }
+                }*/
+        //}
     }
-
 }
+
+
+/*x_aff[indice] = xtemp;
+y_aff[indice] = ytemp;
+                    //rajouter le rejouer
+                    coup++;
+                    compteur_tour--; */
