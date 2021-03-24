@@ -28,12 +28,13 @@ public class IHM_plateau extends javax.swing.JFrame {
     private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
     private File fichierfondplateau = new File("src/images/Fond_plateau_de_jeu0.png");//on va chercher le fichier dans le dossier d'images
     private BufferedImage imageFondPlateau;
-    private ImageIcon isoleil=new ImageIcon("src/images/petit_soleil.jpg");//pour afficher le tour du joueur, mais pour l'instant, ça marche, pareille pour les papattes, du coup je les ai pas rajoutées
+    private ImageIcon isoleil = new ImageIcon("src/images/petit_soleil.jpg");//pour afficher le tour du joueur, mais pour l'instant, ça marche, pareille pour les papattes, du coup je les ai pas rajoutées
     private int[] ligne = new int[7];
     private int[] col = new int[9];
     private Zone RH = new Zone(521, 754, 210, 350, 0);//définition des zones de rivières
     private Zone RB = new Zone(521, 754, 500, 640, 1);
     //private Zone CimR= new Zone(244,329,408,496);
+    private zone_piege cases_piege = new zone_piege(235, 305, 330, 404, 235, 495, 995, 305, 900, 404, 995, 495);//definition zone piege
 
     private int x_zonepd = 0;
     private int x_zonepf = 0;
@@ -50,9 +51,9 @@ public class IHM_plateau extends javax.swing.JFrame {
     private int[] y_aff = new int[16];
 
     //pour la mort
-   private ArrayList<String> morts= new ArrayList<>();//tableau de mort
-   private final int xm=3,ym=200;
-   
+    private ArrayList<String> morts = new ArrayList<>();//tableau de mort
+    private final int xm = 3, ym = 200;
+
     //autres éléments utiles au code:
     private int coup;
     private int xtemp, ytemp;
@@ -88,22 +89,22 @@ public class IHM_plateau extends javax.swing.JFrame {
         col[8] = 995;
         /*Définitions de tous les animaux selon leur classe, c'est plus court: */
 
-        Animal a1 = new Animal("rat", 808, 121, 0, 0, 1, true, false);//rat de rang 1 couleur:bleu
-        Animal a2 = new Animal("chat", 902, 595, 0, 0, 2, true, false);
-        Animal a3 = new Animal("loup", 808, 500, 0, 0, 3, true, false);
-        Animal a4 = new Animal("chien", 903, 215, 0, 0, 4, true, false);
-        Animal a5 = new Animal("panthère", 808, 312, 0, 0, 5, true, false);
-        Animal a6 = new Animal("lion", 997, 121, 0, 0, 6, true, false);
-        Animal a7 = new Animal("tigre", 997, 691, 0, 0, 7, true, false);
-        Animal a8 = new Animal("elephant", 807, 691, 0, 0, 8, true, false);
-        Animal a9 = new Animal("rat", 427, 691, 0, 0, 1, false, false);//rat de rang 1 couleur:rouge
-        Animal a10 = new Animal("chat", 333, 215, 0, 0, 2, false, false);
-        Animal a11 = new Animal("loup", 428, 310, 0, 0, 3, false, false);
-        Animal a12 = new Animal("chien", 333, 596, 0, 0, 4, false, false);
-        Animal a13 = new Animal("panthère", 428, 501, 0, 0, 5, false, false);
-        Animal a14 = new Animal("lion", 239, 691, 0, 0, 6, false, false);
-        Animal a15 = new Animal("tigre", 239, 121, 0, 0, 7, false, false);
-        Animal a16 = new Animal("elephant", 427, 121, 0, 0, 8, false, false);
+        Animal a1 = new Animal("rat", 808, 121, 0, 0, 1, 1, true, false);//rat de rang 1 couleur:bleu
+        Animal a2 = new Animal("chat", 902, 595, 0, 0, 2, 2, true, false);
+        Animal a3 = new Animal("loup", 808, 500, 0, 0, 3, 3, true, false);
+        Animal a4 = new Animal("chien", 903, 215, 0, 0, 4, 4, true, false);
+        Animal a5 = new Animal("panthère", 808, 312, 0, 0, 5, 5, true, false);
+        Animal a6 = new Animal("lion", 997, 121, 0, 0, 6, 6, true, false);
+        Animal a7 = new Animal("tigre", 997, 691, 0, 0, 7, 7, true, false);
+        Animal a8 = new Animal("elephant", 807, 691, 0, 0, 8, 8, true, false);
+        Animal a9 = new Animal("rat", 427, 691, 0, 0, 1, 1, false, false);//rat de rang 1 couleur:rouge
+        Animal a10 = new Animal("chat", 333, 215, 0, 0, 2, 2, false, false);
+        Animal a11 = new Animal("loup", 428, 310, 0, 0, 3, 3, false, false);
+        Animal a12 = new Animal("chien", 333, 596, 0, 0, 4, 4, false, false);
+        Animal a13 = new Animal("panthère", 428, 501, 0, 0, 5, 5, false, false);
+        Animal a14 = new Animal("lion", 239, 691, 0, 0, 6, 6, false, false);
+        Animal a15 = new Animal("tigre", 239, 121, 0, 0, 7, 7, false, false);
+        Animal a16 = new Animal("elephant", 427, 121, 0, 0, 8, 8, false, false);
 
         ajouterAnimal(a1);
         ajouterAnimal(a2);
@@ -416,6 +417,7 @@ public class IHM_plateau extends javax.swing.JFrame {
             traitementBornes();
             traitementRivière();
             duel();
+            piege();
             jPanel1.repaint();
             //traitementPiege();
             traitementTaniere();
@@ -430,7 +432,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
-   
+
     }//GEN-LAST:event_jPanel1MouseEntered
 
     /**
@@ -663,7 +665,6 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         }
     }
-    private Zone_piece piece = new Zone_piece(x_zonepd, x_zonepf, y_zonepd, y_zonepf);
 
     private void duel() {
 // maintenant il reste juste à faire disparaître les images mangées
@@ -677,22 +678,22 @@ public class IHM_plateau extends javax.swing.JFrame {
                 if (ani[i].isBleu() != ani[indice].isBleu()) {
                     System.out.println("oui!");
 
-                    switch (ani[indice].getRang()) {
+                    switch (ani[indice].getRang_partie()) {
                         case 1:
-                            if (ani[i].getRang() == 8) {
+                            if (ani[i].getRang_partie() == 8) {
                                 //ani[i]disparait
-                                morts.add(ani[i].getNom()+ani[i].getCouleur());//on ajoute l'animal à la liste des morts
+                                morts.add(ani[i].getNom() + ani[i].getCouleur());//on ajoute l'animal à la liste des morts
                                 ani[i].setX(xm);
                                 ani[i].setY(ym);//on lui donne les coordonnées des morts
                                 System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
                             } else {
                                 int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
                                 if (result == 0) {
-                                    System.out.println("suicide de la piece "+ ani[indice].getNom()+" "+ani[indice].getCouleur());
+                                    System.out.println("suicide de la piece " + ani[indice].getNom() + " " + ani[indice].getCouleur());
                                     //ani[indice](disparait)
-                                    morts.add(ani[indice].getNom()+ani[indice].getCouleur());
+                                    morts.add(ani[indice].getNom() + ani[indice].getCouleur());
                                     ani[indice].setX(xm);
-                                ani[indice].setY(ym);
+                                    ani[indice].setY(ym);
                                 } else {
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
@@ -704,14 +705,14 @@ public class IHM_plateau extends javax.swing.JFrame {
                             }
                             break;
                         case 8:
-                            if (ani[i].getRang() == 1) {
+                            if (ani[i].getRang_partie() == 1) {
                                 int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
                                 if (result == 0) {
-                                    System.out.println("suicide de la piece "+ ani[indice].getNom()+" "+ani[indice].getCouleur());
+                                    System.out.println("suicide de la piece " + ani[indice].getNom() + " " + ani[indice].getCouleur());
                                     //ani[indice](disparait)
-                                    morts.add(ani[indice].getNom()+ani[indice].getCouleur());
+                                    morts.add(ani[indice].getNom() + ani[indice].getCouleur());
                                     ani[indice].setX(xm);
-                                ani[indice].setY(ym);
+                                    ani[indice].setY(ym);
                                 } else {
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
@@ -721,21 +722,21 @@ public class IHM_plateau extends javax.swing.JFrame {
                                 }
                             } else {
                                 //ani[i]disparait
-                                morts.add(ani[i].getNom()+ani[i].getCouleur());
+                                morts.add(ani[i].getNom() + ani[i].getCouleur());
                                 ani[i].setX(xm);
                                 ani[i].setY(ym);
                                 System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
                             }
                             break;
                         default:
-                            if (ani[indice].getRang() < ani[i].getRang()) {
+                            if (ani[indice].getRang_partie() < ani[i].getRang_partie()) {
                                 int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
                                 if (result == 0) {
-                                    System.out.println("suicide de la piece "+ ani[indice].getNom()+" "+ani[indice].getCouleur());
+                                    System.out.println("suicide de la piece " + ani[indice].getNom() + " " + ani[indice].getCouleur());
                                     //ani[indice](disparait)
-                                    morts.add(ani[indice].getNom()+ani[indice].getCouleur());
+                                    morts.add(ani[indice].getNom() + ani[indice].getCouleur());
                                     ani[indice].setX(xm);
-                                ani[indice].setY(ym);
+                                    ani[indice].setY(ym);
                                 } else {
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
@@ -746,17 +747,28 @@ public class IHM_plateau extends javax.swing.JFrame {
                                 }
                             } else {
                                 //ani[i]disparait
-                                morts.add(ani[i].getNom()+ani[i].getCouleur());
+                                morts.add(ani[i].getNom() + ani[i].getCouleur());
                                 ani[i].setX(xm);
                                 ani[i].setY(ym);
                                 System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
                             }
                             break;
                     }
-                    
+
                 }
             }
         }
 
+    }
+
+    private void piege() {
+
+        if (cases_piege.InsideP(ani[indice].getX(), ani[indice].getY())) {
+            ani[indice].setRang_partie(0);
+            System.out.println("le rang de " + ani[indice].getNom() + ani[indice].getCouleur() + " est " + ani[indice].getRang_partie());
+        } else {
+            ani[indice].setRang_partie(ani[indice].getRang());
+            System.out.println("le rang de " + ani[indice].getNom() + ani[indice].getCouleur() + " est " + ani[indice].getRang_partie());
+        }
     }
 }
