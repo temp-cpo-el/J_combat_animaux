@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,8 +28,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
     private File fichierfondplateau = new File("src/images/Fond_plateau_de_jeu0.png");//on va chercher le fichier dans le dossier d'images
     private BufferedImage imageFondPlateau;
-    private File fichiersoleil=new File("src/images/petit_soleil.png");
-    private BufferedImage imagesoleil;//pour afficher le tour du joueur, mais pour l'instant, ça marche, pareille pour les papattes, du coup je les ai pas rajoutées
+    private ImageIcon isoleil=new ImageIcon("src/images/petit_soleil.jpg");//pour afficher le tour du joueur, mais pour l'instant, ça marche, pareille pour les papattes, du coup je les ai pas rajoutées
     private int[] ligne = new int[7];
     private int[] col = new int[9];
     private Zone RH = new Zone(521, 754, 210, 350, false);//définition des zones de rivières
@@ -193,6 +193,8 @@ public class IHM_plateau extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabelJoueurR = new javax.swing.JLabel();
         jLabelJoueurB = new javax.swing.JLabel();
+        jLabelsoleilbleu = new javax.swing.JLabel();
+        jLabelsoleilrouge = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -284,6 +286,12 @@ public class IHM_plateau extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabelJoueurB)
                                 .addGap(100, 100, 100))))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(jLabelsoleilrouge, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelsoleilbleu, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(175, 175, 175))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,11 +305,18 @@ public class IHM_plateau extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelJoueurB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 531, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelsoleilrouge, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 476, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelsoleilbleu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -452,6 +467,8 @@ public class IHM_plateau extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelJoueurB;
     private javax.swing.JLabel jLabelJoueurR;
+    private javax.swing.JLabel jLabelsoleilbleu;
+    private javax.swing.JLabel jLabelsoleilrouge;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 /* Ajout des toutes les fonctions dont on aura besoin pour faire fonctionner le code :*/
@@ -487,19 +504,11 @@ public class IHM_plateau extends javax.swing.JFrame {
         if (compteur_tour % 2 == 0) {
             tour = false;//tour des rouges
             System.out.println("Tour des rouges");
-         /*   try {
-            imagesoleil = ImageIO.read(fichiersoleil);//utilisation de plateau_de_jeu
-        } catch (IOException ex) {
-            System.out.println("fichiersoleil inutilisable");
-        }*/
+            jLabelsoleilrouge.setIcon(isoleil);
         } else {
             tour = true;//tour des bleus
             System.out.println("Tour des bleus");
-       /*         try {
-            imagesoleil = ImageIO.read(fichiersoleil);//utilisation de plateau_de_jeu
-        } catch (IOException ex) {
-            System.out.println("fichiersoleil inutilisable");
-        }*/
+            jLabelsoleilbleu.setIcon(isoleil);
         }
         coup = 1;//on initialise le nombre de coup possible pour le joueur
         System.out.println("compteur_tour : " + compteur_tour);
@@ -607,6 +616,8 @@ public class IHM_plateau extends javax.swing.JFrame {
                             JOptionPane.INFORMATION_MESSAGE);
                     x_aff[indice] = xtemp;
                     y_aff[indice] = ytemp;
+                    ani[indice].setX(xtemp);
+                    ani[indice].setY(ytemp);
                     //rajouter le rejouer
                     coup++;
                     compteur_tour--;
