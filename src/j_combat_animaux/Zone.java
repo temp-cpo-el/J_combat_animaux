@@ -22,10 +22,10 @@ public class Zone {
     private int yf;//coordonnées qui constitueront la zone
 
     private int x, y;//les témoins pour savoir si on est dans la zone ou pas.
-    private boolean a;// 0=rivière haute 1= rivière basse
+    private int a;// 0=rivière haute 1= rivière basse 2=autre
     //il n'y a que deux rivières, donc on peut se permettre d'utiliser un boolean
 
-    public Zone(int xd, int xf, int yd, int yf, boolean a) {
+    public Zone(int xd, int xf, int yd, int yf, int a) {
         this.xd = xd;
         this.xf = xf;
         this.yd = yd;

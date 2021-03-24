@@ -31,8 +31,9 @@ public class IHM_plateau extends javax.swing.JFrame {
     private ImageIcon isoleil=new ImageIcon("src/images/petit_soleil.jpg");//pour afficher le tour du joueur, mais pour l'instant, ça marche, pareille pour les papattes, du coup je les ai pas rajoutées
     private int[] ligne = new int[7];
     private int[] col = new int[9];
-    private Zone RH = new Zone(521, 754, 210, 350, false);//définition des zones de rivières
-    private Zone RB = new Zone(521, 754, 500, 640, true);
+    private Zone RH = new Zone(521, 754, 210, 350, 0);//définition des zones de rivières
+    private Zone RB = new Zone(521, 754, 500, 640, 1);
+    //private Zone CimR= new Zone(244,329,408,496);
 
     private int x_zonepd = 0;
     private int x_zonepf = 0;
@@ -207,6 +208,9 @@ public class IHM_plateau extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel1MouseEntered(evt);
+            }
         });
         jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -255,6 +259,8 @@ public class IHM_plateau extends javax.swing.JFrame {
         jLabelJoueurB.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabelJoueurB.setForeground(new java.awt.Color(255, 255, 255));
         jLabelJoueurB.setText("Joueur Bleu");
+
+        jLabelsoleilrouge.setBackground(new java.awt.Color(0, 153, 50));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -423,6 +429,10 @@ public class IHM_plateau extends javax.swing.JFrame {
         System.exit(0);//à changer pour insérer plusiurs options (redémarrer, quitter, pause, enregistrer, tatati tatata)
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
+   
+    }//GEN-LAST:event_jPanel1MouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -505,10 +515,12 @@ public class IHM_plateau extends javax.swing.JFrame {
             tour = false;//tour des rouges
             System.out.println("Tour des rouges");
             jLabelsoleilrouge.setIcon(isoleil);
+            jLabelsoleilbleu.setIcon(null);
         } else {
             tour = true;//tour des bleus
             System.out.println("Tour des bleus");
             jLabelsoleilbleu.setIcon(isoleil);
+            jLabelsoleilrouge.setIcon(null);
         }
         coup = 1;//on initialise le nombre de coup possible pour le joueur
         System.out.println("compteur_tour : " + compteur_tour);
