@@ -12,6 +12,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
@@ -26,6 +27,8 @@ public class IHM_plateau extends javax.swing.JFrame {
     private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
     private File fichierfondplateau = new File("src/images/Fond_plateau_de_jeu0.png");//on va chercher le fichier dans le dossier d'images
     private BufferedImage imageFondPlateau;
+    private File fichiersoleil=new File("src/images/petit_soleil.png");
+    private BufferedImage imagesoleil;//pour afficher le tour du joueur, mais pour l'instant, ça marche, pareille pour les papattes, du coup je les ai pas rajoutées
     private int[] ligne = new int[7];
     private int[] col = new int[9];
     private Zone RH = new Zone(521, 754, 210, 350, false);//définition des zones de rivières
@@ -37,7 +40,6 @@ public class IHM_plateau extends javax.swing.JFrame {
     private int y_zonepf = 0;
     // private Zone_piece piece = new Zone_piece(x_zonepd, x_zonepf, y_zonepd, y_zonepf);
 
-    /*On a trouvé une autre méthode!!! yeah! Définiions des trucs dont on a besoin:*/
     private Animal[] ani = new Animal[16];//j'ai changé la valeur du tableau juste pour les essais
     private int nbani = 0;//servira pour choper l'animal correspondant
 
@@ -46,6 +48,10 @@ public class IHM_plateau extends javax.swing.JFrame {
     private int[] x_aff = new int[16];
     private int[] y_aff = new int[16];
 
+    //pour la mort
+   private ArrayList<String> morts= new ArrayList<>();//tableau de mort
+   private final int xm=3,ym=200;
+   
     //autres éléments utiles au code:
     private int coup;
     private int xtemp, ytemp;
@@ -153,10 +159,19 @@ public class IHM_plateau extends javax.swing.JFrame {
                 g.drawImage(imageFondPlateau,0,0, null);
                 //affichage plateau
                 g.drawImage(imagePlateau,229,110, null);
+                /*//affichage soleil
+                if(true){
+                    g.drawImage(imagesoleil,12,200,null);
+                }
+                else{
+                    g.drawImage(imagesoleil,1234,200,null);
+                }*/
                 /*nouveau code du customize code:
                 */
                 for(int i=0; i<ani.length; i++){
-                    g.drawImage(image[i],x_aff[i],y_aff[i],null);
+                    if(!morts.contains(""+ani[i].getNom()+ani[i].getCouleur())){
+                        g.drawImage(image[i],x_aff[i],y_aff[i],null);
+                    }
                     if (ani[i].isIsSelected()){
                         g.setColor(Color.RED);
                         Graphics2D g2 = (Graphics2D) g;
@@ -370,11 +385,7 @@ public class IHM_plateau extends javax.swing.JFrame {
                 x_aff[indice] += 95;
                 pressed = "d";
                 ani[indice].setX(x_aff[indice]);
-            }
-            //}
-            /*if (evt.getKeyChar()==KeyEvent.VK_ENTER && coup!=0){
-           coup--;
-       }*/ //finalement on en a pas besoin si on utilise l'int coup
+            } //}
             if (coup == 0) {//fin du coup possible
                 coup = 0;
             } else {
@@ -386,8 +397,6 @@ public class IHM_plateau extends javax.swing.JFrame {
             duel();
             jPanel1.repaint();
             //traitementPiege();
-            // traitementRivière();
-
             traitementTaniere();
             compteur_tour++;
         }
@@ -478,9 +487,19 @@ public class IHM_plateau extends javax.swing.JFrame {
         if (compteur_tour % 2 == 0) {
             tour = false;//tour des rouges
             System.out.println("Tour des rouges");
+         /*   try {
+            imagesoleil = ImageIO.read(fichiersoleil);//utilisation de plateau_de_jeu
+        } catch (IOException ex) {
+            System.out.println("fichiersoleil inutilisable");
+        }*/
         } else {
             tour = true;//tour des bleus
             System.out.println("Tour des bleus");
+       /*         try {
+            imagesoleil = ImageIO.read(fichiersoleil);//utilisation de plateau_de_jeu
+        } catch (IOException ex) {
+            System.out.println("fichiersoleil inutilisable");
+        }*/
         }
         coup = 1;//on initialise le nombre de coup possible pour le joueur
         System.out.println("compteur_tour : " + compteur_tour);
@@ -624,7 +643,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     private Zone_piece piece = new Zone_piece(x_zonepd, x_zonepf, y_zonepd, y_zonepf);
 
     private void duel() {
-
+// maintenant il reste juste à faire disparaître les images mangées
         x_zonepd = ani[indice].getX() - 55;
         x_zonepf = ani[indice].getX() + 55;
         y_zonepd = ani[indice].getY() - 55;
@@ -639,13 +658,18 @@ public class IHM_plateau extends javax.swing.JFrame {
                         case 1:
                             if (ani[i].getRang() == 8) {
                                 //ani[i]disparait
+                                morts.add(ani[i].getNom()+ani[i].getCouleur());//on ajoute l'animal à la liste des morts
+                                ani[i].setX(xm);
+                                ani[i].setY(ym);//on lui donne les coordonnées des morts
                                 System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
                             } else {
                                 int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
                                 if (result == 0) {
                                     System.out.println("suicide de la piece "+ ani[indice].getNom()+" "+ani[indice].getCouleur());
                                     //ani[indice](disparait)
-
+                                    morts.add(ani[indice].getNom()+ani[indice].getCouleur());
+                                    ani[indice].setX(xm);
+                                ani[indice].setY(ym);
                                 } else {
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
@@ -662,6 +686,9 @@ public class IHM_plateau extends javax.swing.JFrame {
                                 if (result == 0) {
                                     System.out.println("suicide de la piece "+ ani[indice].getNom()+" "+ani[indice].getCouleur());
                                     //ani[indice](disparait)
+                                    morts.add(ani[indice].getNom()+ani[indice].getCouleur());
+                                    ani[indice].setX(xm);
+                                ani[indice].setY(ym);
                                 } else {
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
@@ -671,6 +698,9 @@ public class IHM_plateau extends javax.swing.JFrame {
                                 }
                             } else {
                                 //ani[i]disparait
+                                morts.add(ani[i].getNom()+ani[i].getCouleur());
+                                ani[i].setX(xm);
+                                ani[i].setY(ym);
                                 System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
                             }
                             break;
@@ -680,7 +710,9 @@ public class IHM_plateau extends javax.swing.JFrame {
                                 if (result == 0) {
                                     System.out.println("suicide de la piece "+ ani[indice].getNom()+" "+ani[indice].getCouleur());
                                     //ani[indice](disparait)
-
+                                    morts.add(ani[indice].getNom()+ani[indice].getCouleur());
+                                    ani[indice].setX(xm);
+                                ani[indice].setY(ym);
                                 } else {
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
@@ -691,6 +723,9 @@ public class IHM_plateau extends javax.swing.JFrame {
                                 }
                             } else {
                                 //ani[i]disparait
+                                morts.add(ani[i].getNom()+ani[i].getCouleur());
+                                ani[i].setX(xm);
+                                ani[i].setY(ym);
                                 System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
                             }
                             break;
