@@ -5,7 +5,7 @@
  */
 package j_combat_animaux;
 
-
+//CC
 
 /**
  *
@@ -18,18 +18,20 @@ public class Animal {
     private final int y_init;//coordonnnées de début de partie
     private int x,y;
     private final int rang;//rang de l'animal
+    private int rang_partie;
     private boolean bleu;//0=pion rouge 1=pion bleu
     private String couleur;
     private boolean isSelected;
     
     
 
-    public Animal(String nom, int x_init, int y_init,int x,int y,int rang, boolean bleu,boolean isSelected) {
+    public Animal(String nom, int x_init, int y_init,int x,int y,int rang,int rang_partie, boolean bleu,boolean isSelected) {
         
         this.nom = nom;
         this.x_init = x_init;
         this.y_init = y_init;
         this.rang= rang;
+        this.rang_partie=rang_partie;
         this.bleu = bleu;
          if(!bleu){
              couleur="rouge0";
@@ -49,6 +51,15 @@ public class Animal {
     public int getRang() {
         return rang;
     }
+
+    public int getRang_partie() {
+        return rang_partie;
+    }
+
+    public void setRang_partie(int rang_partie) {
+        this.rang_partie = rang_partie;
+    }
+    
 
     public String getNom() {
         return nom;
