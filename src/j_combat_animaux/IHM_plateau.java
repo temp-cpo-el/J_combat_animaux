@@ -15,7 +15,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -31,8 +35,8 @@ public class IHM_plateau extends javax.swing.JFrame {
     private ImageIcon isoleil = new ImageIcon("src/images/petit_soleil.jpg");//pour afficher le tour du joueur, mais pour l'instant, ça marche, pareille pour les papattes, du coup je les ai pas rajoutées
     private int[] ligne = new int[7];
     private int[] col = new int[9];
-    private Zone RH = new Zone(521, 754, 210, 350, 0);//définition des zones de rivières
-    private Zone RB = new Zone(521, 754, 500, 640, 1);
+    private Zone RH = new Zone(521, 754, 210, 350);//définition des zones de rivières
+    private Zone RB = new Zone(521, 754, 500, 640);
     //private Zone CimR= new Zone(244,329,408,496);
     private zone_piege cases_piege = new zone_piege(235, 305, 330, 404, 235, 495, 995, 305, 900, 404, 995, 495);//definition zone piege
 
@@ -42,7 +46,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     private int y_zonepf = 0;
     // private Zone_piece piece = new Zone_piece(x_zonepd, x_zonepf, y_zonepd, y_zonepf);
 
-    private Animal[] ani = new Animal[16];//j'ai changé la valeur du tableau juste pour les essais
+    public Animal[] ani = new Animal[16];//j'ai changé la valeur du tableau juste pour les essais
     private int nbani = 0;//servira pour choper l'animal correspondant
 
     private File[] tab_fich = new File[16];
@@ -51,8 +55,16 @@ public class IHM_plateau extends javax.swing.JFrame {
     private int[] y_aff = new int[16];
 
     //pour la mort
-    private ArrayList<String> morts = new ArrayList<>();//tableau de mort
-    private final int xm = 3, ym = 200;
+    private ArrayList<String> morts = new ArrayList<>();//tableau de morts
+    //private ArrayList<BufferedImage> im_morts=new ArrayList<>();
+    private JFrame frame_mort = new JFrame();
+    private JPanel panel_mort = new JPanel();//jpanel dans lequel dessiner tous les animaux morts
+    private final int xm = 3, ym = 200; //coordonnées de la souris
+    private JLabel[] label_mort_ins_panel = new JLabel[16];//jLabel dans lequel mettre le jpanel pour dessiner les animaux morts
+    //private JLabel jmort=new JLabel("Le Cimetière putain de ta mère");
+    private Zone cim_R = new Zone(240, 326, 407, 490);//zone cimetière rouge
+    private Zone cim_B = new Zone(1000, 1086, 407, 495);//zone cimetière bleu
+    private int nb_mort = 0;
 
     //autres éléments utiles au code:
     private int coup;
@@ -87,8 +99,8 @@ public class IHM_plateau extends javax.swing.JFrame {
         col[6] = 805;
         col[7] = 900;
         col[8] = 995;
-        /*Définitions de tous les animaux selon leur classe, c'est plus court: */
 
+        /*Définitions de tous les animaux selon leur classe, c'est plus court: */
         Animal a1 = new Animal("rat", 808, 121, 0, 0, 1, 1, true, false);//rat de rang 1 couleur:bleu
         Animal a2 = new Animal("chat", 902, 595, 0, 0, 2, 2, true, false);
         Animal a3 = new Animal("loup", 808, 500, 0, 0, 3, 3, true, false);
@@ -137,7 +149,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.out.println("fichierfondplateau inutilisable");
         }
-
+        frame_mort.setSize(200, 200);//taille de la frame
         creation_aff();
         afficherAnimaux(ani);
 
@@ -339,8 +351,14 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+private int xs, ys;
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        xs = evt.getX();
+        ys = evt.getY();
+        //System.out.println(xs+""+ys);
+        if (cim_R.Inside(xs, ys) || cim_B.Inside(xs, ys)) {
+            afficherMorts();
+        }
         xtemp = evt.getX();
         System.out.println("\nx:" + xtemp);
         ytemp = evt.getY();
@@ -432,7 +450,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
-
+        ///thema ce truc sert à r...
     }//GEN-LAST:event_jPanel1MouseEntered
 
     /**
@@ -664,6 +682,7 @@ public class IHM_plateau extends javax.swing.JFrame {
             }
 
         }
+
     }
 
     private void duel() {
@@ -771,4 +790,33 @@ public class IHM_plateau extends javax.swing.JFrame {
             System.out.println("le rang de " + ani[indice].getNom() + ani[indice].getCouleur() + " est " + ani[indice].getRang_partie());
         }
     }
+
+    private void afficherMorts() {
+        /**
+        for (int i = 0; i < ani.length; i++) {//on cherche dans ani...
+            if (morts.contains(ani[i].getNom() + ani[i].getCouleur())) {//... si le nom d'un animal est présent parmi la liste des morts...
+                System.out.println("\n valeur de nb_mort" + nb_mort);
+                label_mort_ins_panel[nb_mort].setIcon(new ImageIcon(image[i])); //...son image est insérée dans un label,...
+                nb_mort++;//on déplace l'indice pour ouvrir une case vide?
+                System.out.println("dans label y'a quoi?" + label_mort_ins_panel[nb_mort--]);
+                //jmort.setIcon(new ImageIcon(image[i]));
+                //panel_mort.add(jmort);
+                //JOptionPane.showMessageDialog(this,new JLabel("",new ImageIcon(image[i]),jmort.CENTER));
+            }
+
+        }
+        try {// on essaye...
+            for (int i = 0; i < nb_mort; i++) {//...pour tout le tableau de label
+
+                panel_mort.add(label_mort_ins_panel[i]);//...d'insérer chaque label dans le panel_mort...
+            }
+        } catch (NullPointerException e) {
+            System.out.println("don't worry, y'a juste plus rien dans ton tableau");//(si on dépasse, on se rattrappe)
+        }
+        frame_mort.setContentPane(panel_mort);//...on insert le panel dans le frame...
+        frame_mort.setVisible(true);//...on affiche le frame
+        frame_mort.setDefaultCloseOperation(HIDE_ON_CLOSE);//ici on ferme le frame
+        //ça ne marche touuuuuuuuuuuuuuuuuujours paaaaaaAAAaAAAhAaahAhaHaaaaah...*petite vocalise*
+    **/
+     }
 }
