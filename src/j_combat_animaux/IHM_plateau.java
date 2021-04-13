@@ -61,7 +61,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     private JPanel panel_mort = new JPanel();//jpanel dans lequel dessiner tous les animaux morts
     private final int xm = 3, ym = 200; //coordonnées de la souris
     private JLabel[] label_mort_ins_panel = new JLabel[16];//jLabel dans lequel mettre le jpanel pour dessiner les animaux morts
-    //private JLabel jmort=new JLabel("Le Cimetière putain de ta mère");
+    private JLabel jmort=new JLabel("Les morts");
     private Zone cim_R = new Zone(240, 326, 407, 490);//zone cimetière rouge
     private Zone cim_B = new Zone(1000, 1086, 407, 495);//zone cimetière bleu
     private int nb_mort = 0;
@@ -81,6 +81,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     public IHM_plateau(String JoueurR, String JoueurB, int option_deplacement) {
 
         initComponents();
+        frame_mort.setTitle("Les morts");
         //Définition des lignes du plateau Y
         ligne[0] = 118;
         ligne[1] = 210;
@@ -353,16 +354,18 @@ public class IHM_plateau extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 private int xs, ys;
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        xs = evt.getX();
-        ys = evt.getY();
+       // xs = evt.getX();
+        //ys = evt.getY();
         //System.out.println(xs+""+ys);
-        if (cim_R.Inside(xs, ys) || cim_B.Inside(xs, ys)) {
-            afficherMorts();
-        }
+        
         xtemp = evt.getX();
         System.out.println("\nx:" + xtemp);
         ytemp = evt.getY();
         System.out.println("y:" + ytemp + "\n");
+        
+        if (cim_R.Inside(xtemp, ytemp) || cim_B.Inside(xtemp, ytemp)) {//pour afficher les morts
+            afficherMorts();
+        }
         tour_du_joueur();
     }//GEN-LAST:event_jPanel1MouseClicked
 
@@ -793,6 +796,30 @@ private int xs, ys;
 
     private void afficherMorts() {
         /**
+         L'image morte est dans un tableau, morts
+         * on associe un label, on met l'image dans le label
+         * on met le label dans le panel
+         * on affiche le panel
+         **/
+        //drawImage
+        System.out.println("vous entrez dans le cimetière"+morts);
+        for (int i = 0; i < ani.length; i++) {
+          if (morts.contains(ani[i].getNom() + ani[i].getCouleur())) {
+              jmort=new JLabel();
+              jmort.setIcon(new ImageIcon(image[i]));
+              panel_mort.add(jmort, -1);
+          }  
+        }
+        revalidate();
+        //frame_mort.setSize()...
+        repaint();
+
+        frame_mort.setContentPane(panel_mort);//...on insert le panel dans le frame...
+        frame_mort.setVisible(true);//...on affiche le frame
+        frame_mort.setDefaultCloseOperation(HIDE_ON_CLOSE);//ici on ferme le frame
+        System.out.println("vous avez repaint");
+        //JOptionPane.showMessageDialog(this,new JLabel("",new ImageIcon("src/images/paw-png.png"),jmort.CENTER));
+        /**
         for (int i = 0; i < ani.length; i++) {//on cherche dans ani...
             if (morts.contains(ani[i].getNom() + ani[i].getCouleur())) {//... si le nom d'un animal est présent parmi la liste des morts...
                 System.out.println("\n valeur de nb_mort" + nb_mort);
@@ -803,7 +830,6 @@ private int xs, ys;
                 //panel_mort.add(jmort);
                 //JOptionPane.showMessageDialog(this,new JLabel("",new ImageIcon(image[i]),jmort.CENTER));
             }
-
         }
         try {// on essaye...
             for (int i = 0; i < nb_mort; i++) {//...pour tout le tableau de label
