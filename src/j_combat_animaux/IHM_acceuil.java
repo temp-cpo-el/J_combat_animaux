@@ -45,6 +45,7 @@ public class IHM_acceuil extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanelacceuil = new javax.swing.JPanel(){
             public void paintComponent(Graphics g){
                 g.drawImage(imageAcceuil,0,0, null);
@@ -61,8 +62,8 @@ public class IHM_acceuil extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextJoueurB = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jRadioButtonFleche = new javax.swing.JRadioButton();
-        jRadioButtonQZSD = new javax.swing.JRadioButton();
+        jRadioButtonnouvellepartie = new javax.swing.JRadioButton();
+        jRadioButtonreprendrepartie = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -127,41 +128,45 @@ public class IHM_acceuil extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(102, 255, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jRadioButtonFleche.setBackground(new java.awt.Color(102, 255, 153));
-        jRadioButtonFleche.setFont(new java.awt.Font("Rockwell", 1, 16)); // NOI18N
-        jRadioButtonFleche.setText("fleches ");
-        jRadioButtonFleche.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButtonnouvellepartie.setBackground(new java.awt.Color(102, 255, 153));
+        buttonGroup1.add(jRadioButtonnouvellepartie);
+        jRadioButtonnouvellepartie.setFont(new java.awt.Font("Rockwell", 1, 16)); // NOI18N
+        jRadioButtonnouvellepartie.setSelected(true);
+        jRadioButtonnouvellepartie.setText("commencer une nouvelle partie");
+        jRadioButtonnouvellepartie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonFlecheActionPerformed(evt);
+                jRadioButtonnouvellepartieActionPerformed(evt);
             }
         });
 
-        jRadioButtonQZSD.setBackground(new java.awt.Color(102, 255, 153));
-        jRadioButtonQZSD.setFont(new java.awt.Font("Rockwell", 1, 16)); // NOI18N
-        jRadioButtonQZSD.setText("QZSD");
-        jRadioButtonQZSD.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButtonreprendrepartie.setBackground(new java.awt.Color(102, 255, 153));
+        buttonGroup1.add(jRadioButtonreprendrepartie);
+        jRadioButtonreprendrepartie.setFont(new java.awt.Font("Rockwell", 1, 16)); // NOI18N
+        jRadioButtonreprendrepartie.setText("reprendre une partie en cours");
+        jRadioButtonreprendrepartie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonQZSDActionPerformed(evt);
+                jRadioButtonreprendrepartieActionPerformed(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 16)); // NOI18N
-        jLabel5.setText("Options de déplacement");
+        jLabel5.setText("Options de jeu");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButtonFleche)
-                    .addComponent(jRadioButtonQZSD))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addContainerGap())
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButtonreprendrepartie)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addGap(111, 111, 111))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jRadioButtonnouvellepartie)
+                            .addGap(40, 40, 40)))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,9 +174,9 @@ public class IHM_acceuil extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButtonFleche)
+                .addComponent(jRadioButtonnouvellepartie)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButtonQZSD)
+                .addComponent(jRadioButtonreprendrepartie)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -208,15 +213,14 @@ public class IHM_acceuil extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jTextJoueurB, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelacceuilLayout.createSequentialGroup()
-                        .addGap(353, 353, 353)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelacceuilLayout.createSequentialGroup()
                         .addGap(380, 380, 380)
                         .addComponent(jButtonjouer, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelacceuilLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8)
-                        .addGap(40, 40, 40)))
+                    .addGroup(jPanelacceuilLayout.createSequentialGroup()
+                        .addGap(319, 319, 319)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelacceuilLayout.createSequentialGroup()
+                        .addGap(258, 258, 258)
+                        .addComponent(jLabel8)))
                 .addContainerGap(227, Short.MAX_VALUE))
         );
         jPanelacceuilLayout.setVerticalGroup(
@@ -238,9 +242,9 @@ public class IHM_acceuil extends javax.swing.JFrame {
                         .addComponent(jTextJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)
                         .addComponent(jTextJoueurB, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
                 .addComponent(jButtonjouer, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
@@ -262,9 +266,9 @@ public class IHM_acceuil extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButtonQZSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonQZSDActionPerformed
+    private void jRadioButtonreprendrepartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonreprendrepartieActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonQZSDActionPerformed
+    }//GEN-LAST:event_jRadioButtonreprendrepartieActionPerformed
 
     private void jTextJoueurRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextJoueurRActionPerformed
         
@@ -273,27 +277,36 @@ public class IHM_acceuil extends javax.swing.JFrame {
     private void jButtonjouerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonjouerActionPerformed
         String JoueurR=jTextJoueurR.getText();
         String JoueurB=jTextJoueurB.getText();
-        System.out.println("Joueur Rouge"+JoueurR+"\nJoueur Bleu:"+JoueurB);
-        
-        
-        int option_deplacement=0;
-        if (jRadioButtonFleche.isSelected()){
-            option_deplacement=1;           
+        if (JoueurR==""){
+            JoueurR= "Joueur Rouge";
         }
-        if (jRadioButtonQZSD.isSelected()){
-            option_deplacement=2;
+         if (JoueurB==""){
+            JoueurB= "Joueur Bleu";
         }
-        System.out.println(option_deplacement);
+
+
+        System.out.println("Joueur Rouge: "+JoueurR+"\nJoueur Bleu: "+JoueurB);
         
-        IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB,option_deplacement);
+        
+       boolean option_de_jeu=false;
+        if (jRadioButtonnouvellepartie.isSelected()){
+            option_de_jeu=false;           
+        }
+        if (jRadioButtonreprendrepartie.isSelected()){
+            option_de_jeu=true;
+        }
+        System.out.println( "option de jeu="+option_de_jeu);
+        
+        IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB,option_de_jeu);
+        ihm1.setVariable(option_de_jeu);
         ihm1.setVisible(true);
         setVisible(false);//ferme l'ihm d'acceuil
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonjouerActionPerformed
 
-    private void jRadioButtonFlecheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonFlecheActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonFlecheActionPerformed
+    private void jRadioButtonnouvellepartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonnouvellepartieActionPerformed
+        int np=1;
+    }//GEN-LAST:event_jRadioButtonnouvellepartieActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,6 +344,7 @@ public class IHM_acceuil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonjouer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -344,8 +358,8 @@ public class IHM_acceuil extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelacceuil;
-    private javax.swing.JRadioButton jRadioButtonFleche;
-    private javax.swing.JRadioButton jRadioButtonQZSD;
+    private javax.swing.JRadioButton jRadioButtonnouvellepartie;
+    private javax.swing.JRadioButton jRadioButtonreprendrepartie;
     private javax.swing.JTextField jTextJoueurB;
     private javax.swing.JTextField jTextJoueurR;
     // End of variables declaration//GEN-END:variables

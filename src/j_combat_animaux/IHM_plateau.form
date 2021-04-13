@@ -48,11 +48,11 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Component id="jButton1" min="-2" pref="424" max="-2" attributes="0"/>
+                  <Component id="jButtonRecommencer" min="-2" pref="424" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" pref="545" max="-2" attributes="0"/>
+                  <Component id="jButtonSauvegarde" min="-2" pref="545" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jButton3" min="-2" pref="410" max="-2" attributes="0"/>
+                  <Component id="jButtonQuitter" min="-2" pref="410" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -112,9 +112,9 @@
                           <Component id="jLabelsoleilrouge" min="-2" pref="49" max="-2" attributes="0"/>
                           <EmptySpace pref="476" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton1" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
-                              <Component id="jButton2" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
-                              <Component id="jButton3" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                              <Component id="jButtonRecommencer" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                              <Component id="jButtonSauvegarde" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                              <Component id="jButtonQuitter" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
@@ -127,7 +127,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="jButtonRecommencer">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -141,10 +141,10 @@
             <Property name="text" type="java.lang.String" value="Recommencer la Partie"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRecommencerActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="jButtonSauvegarde">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -158,10 +158,10 @@
             <Property name="text" type="java.lang.String" value="Sauvegarder la Partie"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSauvegardeActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="jButtonQuitter">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -175,7 +175,7 @@
             <Property name="text" type="java.lang.String" value="QUITTER"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonQuitterActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">

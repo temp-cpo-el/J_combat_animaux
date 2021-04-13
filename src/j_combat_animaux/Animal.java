@@ -19,8 +19,8 @@ public class Animal {
     private int x,y;
     private final int rang;//rang de l'animal
     private int rang_partie;
-    private boolean bleu;//0=pion rouge 1=pion bleu
-    private String couleur;
+    private final boolean bleu;//0=pion rouge 1=pion bleu
+    private final String couleur;
     private boolean isSelected;
     
     

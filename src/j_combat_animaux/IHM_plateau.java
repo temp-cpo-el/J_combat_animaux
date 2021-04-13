@@ -16,6 +16,13 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -40,7 +47,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     private int x_zonepf = 0;
     private int y_zonepd = 0;
     private int y_zonepf = 0;
-    // private Zone_piece piece = new Zone_piece(x_zonepd, x_zonepf, y_zonepd, y_zonepf);
+    // coordonnées de la zone qui entour la piece
 
     private Animal[] ani = new Animal[16];//j'ai changé la valeur du tableau juste pour les essais
     private int nbani = 0;//servira pour choper l'animal correspondant
@@ -48,7 +55,12 @@ public class IHM_plateau extends javax.swing.JFrame {
     private File[] tab_fich = new File[16];
     private BufferedImage[] image = new BufferedImage[16];
     private int[] x_aff = new int[16];
-    private int[] y_aff = new int[16];
+    private int[] y_aff = new int[16];//coordonnées d'affichage des pieces
+
+    private int[] x_sauv = new int[16];
+    private int[] y_sauv = new int[16];//coordonnéers de la sauvegarde
+    
+    private int[] ligne_sauv=new int[32];
 
     //pour la mort
     private ArrayList<String> morts = new ArrayList<>();//tableau de mort
@@ -56,19 +68,22 @@ public class IHM_plateau extends javax.swing.JFrame {
 
     //autres éléments utiles au code:
     private int coup;
-    private int xtemp, ytemp;
+    private int xtemp, ytemp;//coordonnees de la piece selectionné
     private boolean tour;
     private int compteur_tour = 0;
     private int ligne_proche;
     private int col_proche;
     private int indice = 0;
 
+    boolean option;
+
     /**
      * Creates new form IHM_plateau
      */
-    public IHM_plateau(String JoueurR, String JoueurB, int option_deplacement) {
+    public IHM_plateau(String JoueurR, String JoueurB, boolean option_de_jeu) {
 
         initComponents();
+        setVariable(option_de_jeu);
         //Définition des lignes du plateau Y
         ligne[0] = 118;
         ligne[1] = 210;
@@ -137,8 +152,9 @@ public class IHM_plateau extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.out.println("fichierfondplateau inutilisable");
         }
-
         creation_aff();
+
+        
         afficherAnimaux(ani);
 
         jLabelJoueurR.setText(JoueurR);
@@ -187,9 +203,9 @@ public class IHM_plateau extends javax.swing.JFrame {
             }
         }
         ;
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonRecommencer = new javax.swing.JButton();
+        jButtonSauvegarde = new javax.swing.JButton();
+        jButtonQuitter = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -219,33 +235,33 @@ public class IHM_plateau extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Recommencer la Partie");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRecommencer.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonRecommencer.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jButtonRecommencer.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonRecommencer.setText("Recommencer la Partie");
+        jButtonRecommencer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonRecommencerActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Sauvegarder la Partie");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSauvegarde.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonSauvegarde.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jButtonSauvegarde.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSauvegarde.setText("Sauvegarder la Partie");
+        jButtonSauvegarde.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonSauvegardeActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("QUITTER");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonQuitter.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonQuitter.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jButtonQuitter.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonQuitter.setText("QUITTER");
+        jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonQuitterActionPerformed(evt);
             }
         });
 
@@ -268,11 +284,11 @@ public class IHM_plateau extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonRecommencer, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonSauvegarde, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -318,9 +334,9 @@ public class IHM_plateau extends javax.swing.JFrame {
                         .addComponent(jLabelsoleilrouge, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 476, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButtonRecommencer, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSauvegarde, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelsoleilbleu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -352,13 +368,25 @@ public class IHM_plateau extends javax.swing.JFrame {
         //COMMENT JE FAIS POUR ENLEVER CA????
     }//GEN-LAST:event_jPanel1FocusGained
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonSauvegardeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSauvegardeActionPerformed
+        for (int i = 0; i < 16; i++) {
+            x_sauv[i] = ani[i].getX();
+            y_sauv[i] = ani[i].getY();
+            
+            System.err.println("x_aff" + i + "=" + x_aff[i]);
+            System.err.println("x_sauv" + i + "=" + x_sauv[i]);
+            System.err.println("y_aff" + i + "=" + y_aff[i]);
+            System.err.println("y_sauv" + i + "=" + y_sauv[i]);
+        }
+        sauvegarde();
+
+
+    }//GEN-LAST:event_jButtonSauvegardeActionPerformed
+
+    private void jButtonRecommencerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecommencerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonRecommencerActionPerformed
 
     String pressed;
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
@@ -427,9 +455,9 @@ public class IHM_plateau extends javax.swing.JFrame {
         System.out.println("variable coup= " + coup);
     }//GEN-LAST:event_jPanel1KeyPressed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
         System.exit(0);//à changer pour insérer plusiurs options (redémarrer, quitter, pause, enregistrer, tatati tatata)
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonQuitterActionPerformed
 
     private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
 
@@ -471,9 +499,9 @@ public class IHM_plateau extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonQuitter;
+    private javax.swing.JButton jButtonRecommencer;
+    private javax.swing.JButton jButtonSauvegarde;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -498,18 +526,45 @@ public class IHM_plateau extends javax.swing.JFrame {
     }
 
     private void afficherAnimaux(Animal[] ani) {
-        try {
-            for (int i = 0; i < ani.length; i++) {
-                ani[i].setX(ani[i].getX_init());
-                ani[i].setY(ani[i].getY_init());
-                x_aff[i] = ani[i].getX();
-                y_aff[i] = ani[i].getY();
-                image[i] = ImageIO.read(tab_fich[i]);
+        initComponents();
 
+        System.err.println("option=" + option);
+
+        if (option == true) {
+            lecture();
+            
+            try {
+                for (int i = 0; i < ani.length; i++) {
+                    ani[i].setX(x_sauv[i]);
+                    ani[i].setY(y_sauv[i]);
+                    x_aff[i] = ani[i].getX();
+                    y_aff[i] = ani[i].getY();
+                    System.err.println("x_aff"+i+"="+x_aff[i]);
+                    System.err.println("y_aff"+i+"="+y_aff[i]);
+                    
+                    image[i] = ImageIO.read(tab_fich[i]);
+                    
+
+                }
+            } catch (IOException ex) {
+                System.out.println("affichage des animaux impossible");
             }
-        } catch (IOException ex) {
-            System.out.println("affichage des animaux impossible");
+
+        } if(option==false){
+            try {
+                for (int i = 0; i < ani.length; i++) {
+                    ani[i].setX(ani[i].getX_init());
+                    ani[i].setY(ani[i].getY_init());
+                    x_aff[i] = ani[i].getX();
+                    y_aff[i] = ani[i].getY();
+                    image[i] = ImageIO.read(tab_fich[i]);
+
+                }
+            } catch (IOException ex) {
+                System.out.println("affichage des animaux impossible");
+            }
         }
+
     }
 
     private void tour_du_joueur() {
@@ -771,4 +826,64 @@ public class IHM_plateau extends javax.swing.JFrame {
             System.out.println("le rang de " + ani[indice].getNom() + ani[indice].getCouleur() + " est " + ani[indice].getRang_partie());
         }
     }
-}
+
+    public void setVariable(boolean option_de_jeu) {
+        this.option = option_de_jeu;
+    }
+
+    public void sauvegarde() {
+
+        PrintWriter fichier_sauvegarde;
+        int n = 5;
+        try {
+            fichier_sauvegarde = new PrintWriter(new BufferedWriter(new FileWriter("src/sauvegarde/fichier_sauvegarde.txt")));
+            for (int i = 0; i < 16; i++) {
+                fichier_sauvegarde.println(x_sauv[i]);
+
+            }
+            for (int i = 0; i < 16; i++) {
+                fichier_sauvegarde.println(y_sauv[i]);
+
+            }
+            fichier_sauvegarde.close();
+
+        } catch (IOException ex) {
+            System.out.println("il y a un probleme");
+        }
+    }
+
+     public void lecture() {
+        BufferedReader lecteurAvecBuffer = null;
+        
+
+        try {
+            lecteurAvecBuffer = new BufferedReader(new FileReader("src/sauvegarde/fichier_sauvegarde.txt"));
+        } catch (FileNotFoundException exc) {
+            System.out.println("Erreur d'ouverture");
+        }
+        try {
+            //while (lecteurAvecBuffer.readLine()!=null)
+            for (int i = 0; i < ligne.length; i++) {
+                ligne[i] = Integer.parseInt(lecteurAvecBuffer.readLine());
+            }
+            
+                for (int i = 0; i < ligne.length/2; i++) {
+                    x_sauv[i] = ligne[i];
+                    System.out.println("x_sauv"+i+"="+x_sauv[i]);
+                }
+                for (int i = 16; i < ligne.length; i++){
+                    y_sauv[i-16] = ligne[i];
+                    System.out.println("y_sauv"+i+"="+y_sauv[i]);
+                }
+
+            }catch (IOException ex) {
+            System.out.println("Erreur d'ouverture");
+        }
+            try {
+                lecteurAvecBuffer.close();
+            } catch (IOException ex) {
+                System.out.println("Erreur d'ouverture");
+            }
+        }
+
+    }
