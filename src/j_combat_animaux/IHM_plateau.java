@@ -10,19 +10,21 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
@@ -93,7 +95,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     public IHM_plateau(String JoueurR, String JoueurB, boolean option_de_jeu) {
 
         initComponents();
-        setVariable(option_de_jeu);
+        frame_mort.setTitle("Les morts");
         //Définition des lignes du plateau Y
         ligne[0] = 118;
         ligne[1] = 210;
@@ -378,7 +380,6 @@ private int xs, ys;
         }**/
         tour_du_joueur();
     }//GEN-LAST:event_jPanel1MouseClicked
-
 
     private void jButtonSauvegardeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSauvegardeActionPerformed
         for (int i = 0; i < 16; i++) {
@@ -839,6 +840,33 @@ private int xs, ys;
             System.out.println("le rang de " + ani[indice].getNom() + ani[indice].getCouleur() + " est " + ani[indice].getRang_partie());
         }
     }
+
+    private void afficherMorts() {
+        /**
+         L'image morte est dans un tableau, morts
+         * on associe un label, on met l'image dans le label
+         * on met le label dans le panel
+         * on affiche le panel
+         **/
+        System.out.println("vous entrez dans le cimetière");
+        for (int i = 0; i < ani.length; i++) {
+          if (morts.contains(ani[i].getNom() + ani[i].getCouleur())) {
+              jmort=new JLabel();
+              jmort.setIcon(new ImageIcon(image[i]));
+              panel_mort.add(jmort, -1);
+          }  
+        }
+        nb_mort=morts.size();
+        revalidate();
+        frame_mort.setSize(110, nb_mort*120);
+        repaint();
+
+        frame_mort.setContentPane(panel_mort);//...on insert le panel dans le frame...
+        frame_mort.setVisible(true);//...on affiche le frame
+        frame_mort.setDefaultCloseOperation(HIDE_ON_CLOSE);//ici on ferme le frame
+        System.out.println("Repaint cimetière");
+        //JOptionPane.showMessageDialog(this,new JLabel("",new ImageIcon("src/images/paw-png.png"),jmort.CENTER));
+     }
 
     public void setVariable(boolean option_de_jeu) {
         this.option = option_de_jeu;
