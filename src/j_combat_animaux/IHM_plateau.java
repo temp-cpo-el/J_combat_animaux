@@ -60,7 +60,6 @@ public class IHM_plateau extends javax.swing.JFrame {
     private JFrame frame_mort = new JFrame();
     private JPanel panel_mort = new JPanel();//jpanel dans lequel dessiner tous les animaux morts
     private final int xm = 3, ym = 200; //coordonnées de la souris
-    private JLabel[] label_mort_ins_panel = new JLabel[16];//jLabel dans lequel mettre le jpanel pour dessiner les animaux morts
     private JLabel jmort=new JLabel("Les morts");
     private Zone cim_R = new Zone(240, 326, 407, 490);//zone cimetière rouge
     private Zone cim_B = new Zone(1000, 1086, 407, 495);//zone cimetière bleu
@@ -156,7 +155,7 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         jLabelJoueurR.setText(JoueurR);
         jLabelJoueurB.setText(JoueurB);
-
+        
     }
 
     /**
@@ -269,6 +268,14 @@ public class IHM_plateau extends javax.swing.JFrame {
         jLabelJoueurR.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabelJoueurR.setForeground(new java.awt.Color(255, 255, 255));
         jLabelJoueurR.setText("Joueur Rouge");
+        jLabelJoueurR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelJoueurRMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabelJoueurRMouseEntered(evt);
+            }
+        });
 
         jLabelJoueurB.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabelJoueurB.setForeground(new java.awt.Color(255, 255, 255));
@@ -363,9 +370,9 @@ private int xs, ys;
         ytemp = evt.getY();
         System.out.println("y:" + ytemp + "\n");
         
-        if (cim_R.Inside(xtemp, ytemp) || cim_B.Inside(xtemp, ytemp)) {//pour afficher les morts
+        /**if (cim_R.Inside(xtemp, ytemp) || cim_B.Inside(xtemp, ytemp)) {//pour afficher les morts
             afficherMorts();
-        }
+        }**/
         tour_du_joueur();
     }//GEN-LAST:event_jPanel1MouseClicked
 
@@ -446,6 +453,7 @@ private int xs, ys;
         }
 
         System.out.println("variable coup= " + coup);
+        tour_du_joueur();
     }//GEN-LAST:event_jPanel1KeyPressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -455,6 +463,14 @@ private int xs, ys;
     private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
         ///thema ce truc sert à r...
     }//GEN-LAST:event_jPanel1MouseEntered
+
+    private void jLabelJoueurRMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelJoueurRMouseEntered
+    
+    }//GEN-LAST:event_jLabelJoueurRMouseEntered
+
+    private void jLabelJoueurRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelJoueurRMouseClicked
+       afficherMorts();
+    }//GEN-LAST:event_jLabelJoueurRMouseClicked
 
     /**
      * @param args the command line arguments
@@ -801,8 +817,7 @@ private int xs, ys;
          * on met le label dans le panel
          * on affiche le panel
          **/
-        //drawImage
-        System.out.println("vous entrez dans le cimetière"+morts);
+        System.out.println("vous entrez dans le cimetière");
         for (int i = 0; i < ani.length; i++) {
           if (morts.contains(ani[i].getNom() + ani[i].getCouleur())) {
               jmort=new JLabel();
@@ -810,39 +825,15 @@ private int xs, ys;
               panel_mort.add(jmort, -1);
           }  
         }
+        nb_mort=morts.size();
         revalidate();
-        //frame_mort.setSize()...
+        frame_mort.setSize(110, nb_mort*110);
         repaint();
 
         frame_mort.setContentPane(panel_mort);//...on insert le panel dans le frame...
         frame_mort.setVisible(true);//...on affiche le frame
         frame_mort.setDefaultCloseOperation(HIDE_ON_CLOSE);//ici on ferme le frame
-        System.out.println("vous avez repaint");
+        System.out.println("Repaint cimetière");
         //JOptionPane.showMessageDialog(this,new JLabel("",new ImageIcon("src/images/paw-png.png"),jmort.CENTER));
-        /**
-        for (int i = 0; i < ani.length; i++) {//on cherche dans ani...
-            if (morts.contains(ani[i].getNom() + ani[i].getCouleur())) {//... si le nom d'un animal est présent parmi la liste des morts...
-                System.out.println("\n valeur de nb_mort" + nb_mort);
-                label_mort_ins_panel[nb_mort].setIcon(new ImageIcon(image[i])); //...son image est insérée dans un label,...
-                nb_mort++;//on déplace l'indice pour ouvrir une case vide?
-                System.out.println("dans label y'a quoi?" + label_mort_ins_panel[nb_mort--]);
-                //jmort.setIcon(new ImageIcon(image[i]));
-                //panel_mort.add(jmort);
-                //JOptionPane.showMessageDialog(this,new JLabel("",new ImageIcon(image[i]),jmort.CENTER));
-            }
-        }
-        try {// on essaye...
-            for (int i = 0; i < nb_mort; i++) {//...pour tout le tableau de label
-
-                panel_mort.add(label_mort_ins_panel[i]);//...d'insérer chaque label dans le panel_mort...
-            }
-        } catch (NullPointerException e) {
-            System.out.println("don't worry, y'a juste plus rien dans ton tableau");//(si on dépasse, on se rattrappe)
-        }
-        frame_mort.setContentPane(panel_mort);//...on insert le panel dans le frame...
-        frame_mort.setVisible(true);//...on affiche le frame
-        frame_mort.setDefaultCloseOperation(HIDE_ON_CLOSE);//ici on ferme le frame
-        //ça ne marche touuuuuuuuuuuuuuuuuujours paaaaaaAAAaAAAhAaahAhaHaaaaah...*petite vocalise*
-    **/
      }
 }

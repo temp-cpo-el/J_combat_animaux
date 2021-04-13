@@ -204,6 +204,10 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Joueur Rouge"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelJoueurRMouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelJoueurRMouseEntered"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelJoueurB">
           <Properties>
