@@ -212,17 +212,9 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jPanel1FocusGained(evt);
-            }
-        });
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel1MouseEntered(evt);
             }
         });
         jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -271,9 +263,6 @@ public class IHM_plateau extends javax.swing.JFrame {
         jLabelJoueurR.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelJoueurRMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabelJoueurRMouseEntered(evt);
             }
         });
 
@@ -376,10 +365,6 @@ private int xs, ys;
         tour_du_joueur();
     }//GEN-LAST:event_jPanel1MouseClicked
 
-    private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
-        //COMMENT JE FAIS POUR ENLEVER CA????
-    }//GEN-LAST:event_jPanel1FocusGained
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -459,14 +444,6 @@ private int xs, ys;
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         System.exit(0);//à changer pour insérer plusiurs options (redémarrer, quitter, pause, enregistrer, tatati tatata)
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
-        ///thema ce truc sert à r...
-    }//GEN-LAST:event_jPanel1MouseEntered
-
-    private void jLabelJoueurRMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelJoueurRMouseEntered
-    
-    }//GEN-LAST:event_jLabelJoueurRMouseEntered
 
     private void jLabelJoueurRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelJoueurRMouseClicked
        afficherMorts();
@@ -827,7 +804,7 @@ private int xs, ys;
         }
         nb_mort=morts.size();
         revalidate();
-        frame_mort.setSize(110, nb_mort*110);
+        frame_mort.setSize(110, nb_mort*120);
         repaint();
 
         frame_mort.setContentPane(panel_mort);//...on insert le panel dans le frame...
