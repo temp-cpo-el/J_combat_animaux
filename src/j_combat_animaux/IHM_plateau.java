@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -38,8 +41,8 @@ public class IHM_plateau extends javax.swing.JFrame {
     private ImageIcon isoleil = new ImageIcon("src/images/petit_soleil.jpg");//pour afficher le tour du joueur, mais pour l'instant, ça marche, pareille pour les papattes, du coup je les ai pas rajoutées
     private int[] ligne = new int[7];
     private int[] col = new int[9];
-    private Zone RH = new Zone(521, 754, 210, 350, 0);//définition des zones de rivières
-    private Zone RB = new Zone(521, 754, 500, 640, 1);
+    private Zone RH = new Zone(521, 754, 210, 350);//définition des zones de rivières
+    private Zone RB = new Zone(521, 754, 500, 640);
     //private Zone CimR= new Zone(244,329,408,496);
     private zone_piege cases_piege = new zone_piege(235, 305, 330, 404, 235, 495, 995, 305, 900, 404, 995, 495);//definition zone piege
 
@@ -49,7 +52,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     private int y_zonepf = 0;
     // coordonnées de la zone qui entour la piece
 
-    private Animal[] ani = new Animal[16];//j'ai changé la valeur du tableau juste pour les essais
+    public Animal[] ani = new Animal[16];//j'ai changé la valeur du tableau juste pour les essais
     private int nbani = 0;//servira pour choper l'animal correspondant
 
     private File[] tab_fich = new File[16];
@@ -63,8 +66,15 @@ public class IHM_plateau extends javax.swing.JFrame {
     private int[] ligne_sauv=new int[32];
 
     //pour la mort
-    private ArrayList<String> morts = new ArrayList<>();//tableau de mort
-    private final int xm = 3, ym = 200;
+    private ArrayList<String> morts = new ArrayList<>();//tableau de morts
+    //private ArrayList<BufferedImage> im_morts=new ArrayList<>();
+    private JFrame frame_mort = new JFrame();
+    private JPanel panel_mort = new JPanel();//jpanel dans lequel dessiner tous les animaux morts
+    private final int xm = 3, ym = 200; //coordonnées de la souris
+    private JLabel jmort=new JLabel("Les morts");
+    private Zone cim_R = new Zone(240, 326, 407, 490);//zone cimetière rouge
+    private Zone cim_B = new Zone(1000, 1086, 407, 495);//zone cimetière bleu
+    private int nb_mort = 0;
 
     //autres éléments utiles au code:
     private int coup;
@@ -102,8 +112,8 @@ public class IHM_plateau extends javax.swing.JFrame {
         col[6] = 805;
         col[7] = 900;
         col[8] = 995;
-        /*Définitions de tous les animaux selon leur classe, c'est plus court: */
 
+        /*Définitions de tous les animaux selon leur classe, c'est plus court: */
         Animal a1 = new Animal("rat", 808, 121, 0, 0, 1, 1, true, false);//rat de rang 1 couleur:bleu
         Animal a2 = new Animal("chat", 902, 595, 0, 0, 2, 2, true, false);
         Animal a3 = new Animal("loup", 808, 500, 0, 0, 3, 3, true, false);
@@ -159,7 +169,7 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         jLabelJoueurR.setText(JoueurR);
         jLabelJoueurB.setText(JoueurB);
-
+        
     }
 
     /**
@@ -216,17 +226,9 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jPanel1FocusGained(evt);
-            }
-        });
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel1MouseEntered(evt);
             }
         });
         jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -272,6 +274,11 @@ public class IHM_plateau extends javax.swing.JFrame {
         jLabelJoueurR.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabelJoueurR.setForeground(new java.awt.Color(255, 255, 255));
         jLabelJoueurR.setText("Joueur Rouge");
+        jLabelJoueurR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelJoueurRMouseClicked(evt);
+            }
+        });
 
         jLabelJoueurB.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabelJoueurB.setForeground(new java.awt.Color(255, 255, 255));
@@ -355,18 +362,22 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+private int xs, ys;
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+       // xs = evt.getX();
+        //ys = evt.getY();
+        //System.out.println(xs+""+ys);
+        
         xtemp = evt.getX();
         System.out.println("\nx:" + xtemp);
         ytemp = evt.getY();
         System.out.println("y:" + ytemp + "\n");
+        
+        /**if (cim_R.Inside(xtemp, ytemp) || cim_B.Inside(xtemp, ytemp)) {//pour afficher les morts
+            afficherMorts();
+        }**/
         tour_du_joueur();
     }//GEN-LAST:event_jPanel1MouseClicked
-
-    private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
-        //COMMENT JE FAIS POUR ENLEVER CA????
-    }//GEN-LAST:event_jPanel1FocusGained
 
 
     private void jButtonSauvegardeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSauvegardeActionPerformed
@@ -453,15 +464,16 @@ public class IHM_plateau extends javax.swing.JFrame {
         }
 
         System.out.println("variable coup= " + coup);
+        tour_du_joueur();
     }//GEN-LAST:event_jPanel1KeyPressed
 
     private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
         System.exit(0);//à changer pour insérer plusiurs options (redémarrer, quitter, pause, enregistrer, tatati tatata)
     }//GEN-LAST:event_jButtonQuitterActionPerformed
 
-    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
-
-    }//GEN-LAST:event_jPanel1MouseEntered
+    private void jLabelJoueurRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelJoueurRMouseClicked
+       afficherMorts();
+    }//GEN-LAST:event_jLabelJoueurRMouseClicked
 
     /**
      * @param args the command line arguments
@@ -719,6 +731,7 @@ public class IHM_plateau extends javax.swing.JFrame {
             }
 
         }
+
     }
 
     private void duel() {
