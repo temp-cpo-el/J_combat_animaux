@@ -9,6 +9,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -74,8 +75,9 @@ public class IHM_plateau extends javax.swing.JFrame {
     private JPanel panel_mort = new JPanel();//jpanel dans lequel dessiner tous les animaux morts
     private final int xm = 3, ym = 200; //coordonnées de la souris
     private JLabel jmort=new JLabel("Les morts");
-    private Zone cim_R = new Zone(240, 326, 407, 490);//zone cimetière rouge
-    private Zone cim_B = new Zone(1000, 1086, 407, 495);//zone cimetière bleu
+    //private Zone cim_R = new Zone(240, 326, 407, 490);//zone cimetière rouge
+    //private Zone cim_B = new Zone(1000, 1086, 407, 495);//zone cimetière bleu
+    //^ ces deux lignes ne servent plus parce qu'on prend pour zone à cliquer  le nom des joueurs
     private int nb_mort = 0;
 
     //autres éléments utiles au code:
@@ -87,12 +89,12 @@ public class IHM_plateau extends javax.swing.JFrame {
     private int col_proche;
     private int indice = 0;
 
-    boolean option;
+    private boolean option=false;
 
     /**
      * Creates new form IHM_plateau
      */
-    public IHM_plateau(String JoueurR, String JoueurB, boolean option_de_jeu) {
+    public IHM_plateau(String JoueurR, String JoueurB) {
 
         initComponents();
         frame_mort.setTitle("Les morts");
@@ -165,8 +167,6 @@ public class IHM_plateau extends javax.swing.JFrame {
             System.out.println("fichierfondplateau inutilisable");
         }
         creation_aff();
-
-        
         afficherAnimaux(ani);
 
         jLabelJoueurR.setText(JoueurR);
@@ -225,6 +225,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         jLabelJoueurB = new javax.swing.JLabel();
         jLabelsoleilbleu = new javax.swing.JLabel();
         jLabelsoleilrouge = new javax.swing.JLabel();
+        jButtonReprendre = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -288,16 +289,28 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         jLabelsoleilrouge.setBackground(new java.awt.Color(0, 153, 50));
 
+        jButtonReprendre.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonReprendre.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jButtonReprendre.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonReprendre.setText("Reprendre Dernière Partie");
+        jButtonReprendre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReprendreActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButtonRecommencer, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonRecommencer, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonSauvegarde, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonReprendre, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButtonSauvegarde, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -310,7 +323,7 @@ public class IHM_plateau extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 406, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
@@ -339,23 +352,21 @@ public class IHM_plateau extends javax.swing.JFrame {
                     .addComponent(jLabelJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelsoleilrouge, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 476, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonRecommencer, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonSauvegarde, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelsoleilbleu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jLabelsoleilrouge, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelsoleilbleu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 476, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRecommencer, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSauvegarde, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonReprendre, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1311, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,12 +375,8 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private int xs, ys;
+
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-       // xs = evt.getX();
-        //ys = evt.getY();
-        //System.out.println(xs+""+ys);
-        
         xtemp = evt.getX();
         System.out.println("\nx:" + xtemp);
         ytemp = evt.getY();
@@ -422,26 +429,8 @@ private int xs, ys;
     String pressed;
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
 
-        /*if (option_deplacement == 1) {
-            if (evt.getKeyChar() == KeyEvent.VK_KP_DOWN  && coup > 0) {//fleche vers le bas
-                y_aff[indice] -= 95;
-            }
-            if (evt.getKeyChar() == KeyEvent.VK_KP_UP && coup > 0) {//^|
-
-                y_aff[indice] += 95;
-            }
-            if (evt.getKeyChar() == KeyEvent.VK_LEFT && coup > 0) {//<-
-
-                x_aff[indice] -= 95;
-            }
-            if (evt.getKeyChar() == KeyEvent.VK_RIGHT && coup > 0) {//->
-
-                x_aff[indice] += 95;
-            }
-            
-        }*/
-        //if (option_deplacement == 2) {
         if (coup > 0 && ani[indice].isBleu() == tour) {
+
             xtemp = ani[indice].getX();//pour pouvoir les comparer après
             ytemp = ani[indice].getY();//pour pouvoir les comparer après
             if (evt.getKeyChar() == 'z' && coup > 0) {//Z
@@ -471,6 +460,7 @@ private int xs, ys;
                 coup = 0;
             } else {
                 coup--;
+                System.out.println("coup à 0");
             }
             System.out.println(pressed);//ça change rien de le changer de place je suis d'accord
             traitementBornes();
@@ -494,6 +484,13 @@ private int xs, ys;
     private void jLabelJoueurRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelJoueurRMouseClicked
        afficherMorts();
     }//GEN-LAST:event_jLabelJoueurRMouseClicked
+
+    private void jButtonReprendreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReprendreActionPerformed
+    option=true;
+    //JOptionPane.showMessageDialog(this, "Reprise de la partie précédente","",JOptionPane.INFORMATION_MESSAGE);
+    afficherAnimaux(ani);
+    option=false;
+    }//GEN-LAST:event_jButtonReprendreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -533,6 +530,7 @@ private int xs, ys;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonQuitter;
     private javax.swing.JButton jButtonRecommencer;
+    private javax.swing.JButton jButtonReprendre;
     private javax.swing.JButton jButtonSauvegarde;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -558,31 +556,26 @@ private int xs, ys;
     }
 
     private void afficherAnimaux(Animal[] ani) {
-        initComponents();
-
+        //initComponents(); <-- pourquoi est-ce qu'il y a un initcomponents ici? il sort d'où? ça fait combien de temps qu'il est là?
         System.err.println("option=" + option);
-
-        if (option == true) {
-            lecture();
-            
+        //setVariable();
+        if (option == true) {// on reprend lez coordonnées enregistrées
+            lecture();//on récupère les valeurs dans le fichier 'fichier_sauvegarde.txt'
             try {
                 for (int i = 0; i < ani.length; i++) {
                     ani[i].setX(x_sauv[i]);
                     ani[i].setY(y_sauv[i]);
                     x_aff[i] = ani[i].getX();
                     y_aff[i] = ani[i].getY();
-                    System.err.println("x_aff"+i+"="+x_aff[i]);
-                    System.err.println("y_aff"+i+"="+y_aff[i]);
-                    
-                    image[i] = ImageIO.read(tab_fich[i]);
-                    
-
+                    //System.out.println("x_aff"+i+"="+x_aff[i]);
+                    //System.out.println("y_aff"+i+"="+y_aff[i]);
+                    image[i] = ImageIO.read(tab_fich[i]);//dessiner les animaux
                 }
             } catch (IOException ex) {
                 System.out.println("affichage des animaux impossible");
             }
 
-        } if(option==false){
+        } if(option==false){//on prend les coordonnées initiales avec le jeu
             try {
                 for (int i = 0; i < ani.length; i++) {
                     ani[i].setX(ani[i].getX_init());
@@ -613,6 +606,7 @@ private int xs, ys;
         }
         coup = 1;//on initialise le nombre de coup possible pour le joueur
         System.out.println("compteur_tour : " + compteur_tour);
+        System.out.println("coup : " + coup);
         selecAnimaux();
 
     }
@@ -652,9 +646,7 @@ private int xs, ys;
                 indice = i;
             }//on a deux conditions, une pour cahque couleur
         }
-
         jPanel1.repaint();//on repaint à la fin de selecanimaux pour afficher le cercle
-
     }
 
     private void traitementBornes() {
@@ -894,7 +886,7 @@ private int xs, ys;
     public void sauvegarde() {
 
         PrintWriter fichier_sauvegarde;
-        int n = 5;
+        //int n = 5;
         try {
             fichier_sauvegarde = new PrintWriter(new BufferedWriter(new FileWriter("src/sauvegarde/fichier_sauvegarde.txt")));
             for (int i = 0; i < 16; i++) {
@@ -908,42 +900,47 @@ private int xs, ys;
             fichier_sauvegarde.close();
 
         } catch (IOException ex) {
-            System.out.println("il y a un probleme");
+            System.out.println("Problème dans la sauvegarde");
         }
+       // JOptionPane.showMessageDialog(this, "La partie a bien été enregistrée", "Vous pouvez quitter la partie",JOptionPane.INFORMATION_MESSAGE);
     }
 
      public void lecture() {
-        BufferedReader lecteurAvecBuffer = null;
+         System.out.println("debut  de lecture");
+        BufferedReader lecteur = null;
         
 
         try {
-            lecteurAvecBuffer = new BufferedReader(new FileReader("src/sauvegarde/fichier_sauvegarde.txt"));
+            lecteur = new BufferedReader(new FileReader("src/sauvegarde/fichier_sauvegarde.txt"));
         } catch (FileNotFoundException exc) {
             System.out.println("Erreur d'ouverture");
         }
         try {
             //while (lecteurAvecBuffer.readLine()!=null)
-            for (int i = 0; i < ligne.length; i++) {
-                ligne[i] = Integer.parseInt(lecteurAvecBuffer.readLine());
+            for (int i = 0; i < ligne_sauv.length; i++) {
+                ligne_sauv[i] = Integer.parseInt(lecteur.readLine());
             }
             
-                for (int i = 0; i < ligne.length/2; i++) {
-                    x_sauv[i] = ligne[i];
+                for (int i = 0; i < ligne_sauv.length/2; i++) {
+                    x_sauv[i] = ligne_sauv[i];
                     System.out.println("x_sauv"+i+"="+x_sauv[i]);
                 }
-                for (int i = 16; i < ligne.length; i++){
-                    y_sauv[i-16] = ligne[i];
-                    System.out.println("y_sauv"+i+"="+y_sauv[i]);
+                for (int i = 16; i < ligne_sauv.length; i++){
+                    y_sauv[i-16] = ligne_sauv[i];
+                    System.out.println("y_sauv"+i+"="+y_sauv[i-16]);
                 }
 
-            }catch (IOException ex) {
-            System.out.println("Erreur d'ouverture");
-            }
-            try {
-                lecteurAvecBuffer.close();
-            } catch (IOException ex) {
-                System.out.println("Erreur d'ouverture");
-            }
+        }catch (IOException ex) {
+            System.out.println("Erreur de lecture du fichier_sauvegarde");
+        }
+        try {
+        lecteur.close();
+                //System.out.println("fermeture, fin de lecture");
+        } catch (IOException ex) {
+        System.out.println("Erreur de fermeture du fichier_sauvegarde");
+        } 
+    System.out.println("fin de de lecture");
     }
-
 }
+
+
