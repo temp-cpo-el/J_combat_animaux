@@ -20,6 +20,10 @@ public class IHM_acceuil extends javax.swing.JFrame {
 
     private File fichierAcceuil = new File("src/images/acceuil0.jpg");
     private BufferedImage imageAcceuil;
+    //public boolean option_de_jeu;
+    private String JoueurB,JoueurR;
+    private IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB);
+    
     /**
      * Creates new form IHM_acceuil
      */
@@ -32,6 +36,13 @@ public class IHM_acceuil extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.out.println("fichierAcceuil inutilisable");
         }
+       /*
+      if (jRadioButtonnouvellepartie.isSelected()){
+            option_de_jeu=false;           
+        }
+        if (jRadioButtonreprendrepartie.isSelected()){
+            option_de_jeu=true;
+        }*/  
     }
 
     /**
@@ -131,7 +142,6 @@ public class IHM_acceuil extends javax.swing.JFrame {
         jRadioButtonnouvellepartie.setBackground(new java.awt.Color(102, 255, 153));
         buttonGroup1.add(jRadioButtonnouvellepartie);
         jRadioButtonnouvellepartie.setFont(new java.awt.Font("Rockwell", 1, 16)); // NOI18N
-        jRadioButtonnouvellepartie.setSelected(true);
         jRadioButtonnouvellepartie.setText("commencer une nouvelle partie");
         jRadioButtonnouvellepartie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,7 +277,7 @@ public class IHM_acceuil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButtonreprendrepartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonreprendrepartieActionPerformed
-        // TODO add your handling code here:
+       /*option_de_jeu=true;*/
     }//GEN-LAST:event_jRadioButtonreprendrepartieActionPerformed
 
     private void jTextJoueurRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextJoueurRActionPerformed
@@ -275,8 +285,8 @@ public class IHM_acceuil extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextJoueurRActionPerformed
 
     private void jButtonjouerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonjouerActionPerformed
-        String JoueurR=jTextJoueurR.getText();
-        String JoueurB=jTextJoueurB.getText();
+        JoueurR=jTextJoueurR.getText();
+        JoueurB=jTextJoueurB.getText();
         if (JoueurR==""){
             JoueurR= "Joueur Rouge";
         }
@@ -284,28 +294,30 @@ public class IHM_acceuil extends javax.swing.JFrame {
             JoueurB= "Joueur Bleu";
         }
 
-
         System.out.println("Joueur Rouge: "+JoueurR+"\nJoueur Bleu: "+JoueurB);
         
         
-       boolean option_de_jeu=false;
-        if (jRadioButtonnouvellepartie.isSelected()){
+       
+        /*if (jRadioButtonnouvellepartie.isSelected()){
             option_de_jeu=false;           
         }
         if (jRadioButtonreprendrepartie.isSelected()){
             option_de_jeu=true;
-        }
-        System.out.println( "option de jeu="+option_de_jeu);
-        
-        IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB,option_de_jeu);
-        ihm1.setVariable(option_de_jeu);
+        }*/
+        //System.out.println( "option de jeu="+option_de_jeu);
+       
+      
+        //ihm1.setVariable(option_de_jeu);
+       /* IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB,option_de_jeu);
+        ihm1.setVariable(option_de_jeu);*/
         ihm1.setVisible(true);
         setVisible(false);//ferme l'ihm d'acceuil
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonjouerActionPerformed
 
     private void jRadioButtonnouvellepartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonnouvellepartieActionPerformed
-        int np=1;
+        //int np=1;
+//        option_de_jeu=false;
     }//GEN-LAST:event_jRadioButtonnouvellepartieActionPerformed
 
     /**
