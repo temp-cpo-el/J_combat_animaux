@@ -398,6 +398,25 @@ private int xs, ys;
 
     private void jButtonRecommencerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecommencerActionPerformed
         // TODO add your handling code here:
+        int recommencer=JOptionPane.showConfirmDialog(this,"vouler vous recommencer la partie?");
+        System.out.println(recommencer);
+        if (recommencer==0){
+            compteur_tour=0;
+            for (int i = 0; i < ani.length; i++) {
+               x_aff[i]=ani[i].getX_init(); 
+               ani[i].setX(x_aff[i]);
+               y_aff[i]=ani[i].getY_init(); 
+               ani[i].setY(y_aff[i]);
+               
+              repaint(); 
+               
+               
+            }
+        
+        }
+        
+        
+        
     }//GEN-LAST:event_jButtonRecommencerActionPerformed
 
     String pressed;
@@ -919,12 +938,12 @@ private int xs, ys;
 
             }catch (IOException ex) {
             System.out.println("Erreur d'ouverture");
-        }
+            }
             try {
                 lecteurAvecBuffer.close();
             } catch (IOException ex) {
                 System.out.println("Erreur d'ouverture");
             }
-        }
-
     }
+
+}
