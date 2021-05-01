@@ -458,6 +458,9 @@ System.out.println("vous avez appuyé sur une touche");
     }//GEN-LAST:event_jLabelJoueurRMouseClicked
 
     private void jButtonNouvelleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNouvelleActionPerformed
+    //vider le tableau des morts
+    morts.clear();
+    nb_mort=0; 
     IHM_acceuil ihm_a= new IHM_acceuil();
     ihm_a.setVisible(true);
         setVisible(false);
