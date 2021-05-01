@@ -90,6 +90,9 @@ public class IHM_plateau extends javax.swing.JFrame {
     private int indice = 0;
 
     private boolean option=false;
+    
+    //on tente un truc...
+    //private IHM_acceuil ihm_a= new IHM_acceuil();
 
     /**
      * Creates new form IHM_plateau
@@ -223,7 +226,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         jLabelsoleilbleu = new javax.swing.JLabel();
         jLabelsoleilrouge = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
-        jButtonRecommencer = new javax.swing.JButton();
+        jButtonNouvelle = new javax.swing.JButton();
         jButtonreprendre = new javax.swing.JButton();
         jButtonsauvegarde = new javax.swing.JButton();
         jButtonquitter = new javax.swing.JButton();
@@ -263,20 +266,20 @@ public class IHM_plateau extends javax.swing.JFrame {
         jToolBar1.setBackground(new java.awt.Color(0, 0, 0));
         jToolBar1.setRollover(true);
 
-        jButtonRecommencer.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonRecommencer.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
-        jButtonRecommencer.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonRecommencer.setText("Nouvelle Partie");
-        jButtonRecommencer.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray));
-        jButtonRecommencer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonRecommencer.setNextFocusableComponent(jPanel1);
-        jButtonRecommencer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonRecommencer.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNouvelle.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonNouvelle.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
+        jButtonNouvelle.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonNouvelle.setText("Nouvelle Partie");
+        jButtonNouvelle.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray));
+        jButtonNouvelle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonNouvelle.setNextFocusableComponent(jPanel1);
+        jButtonNouvelle.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonNouvelle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRecommencerActionPerformed(evt);
+                jButtonNouvelleActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButtonRecommencer);
+        jToolBar1.add(jButtonNouvelle);
 
         jButtonreprendre.setBackground(new java.awt.Color(0, 0, 0));
         jButtonreprendre.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
@@ -454,15 +457,17 @@ System.out.println("vous avez appuyé sur une touche");
        afficherMorts();
     }//GEN-LAST:event_jLabelJoueurRMouseClicked
 
-    private void jButtonRecommencerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecommencerActionPerformed
-option=false;        
-//pour l'instant, ça ne devrais pas bugguer outre mesure
-    }//GEN-LAST:event_jButtonRecommencerActionPerformed
+    private void jButtonNouvelleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNouvelleActionPerformed
+    IHM_acceuil ihm_a= new IHM_acceuil();
+    ihm_a.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jButtonNouvelleActionPerformed
 
     private void jButtonreprendreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonreprendreActionPerformed
             option=true;
     //JOptionPane.showMessageDialog(this, "Reprise de la partie précédente","",JOptionPane.INFORMATION_MESSAGE);
     afficherAnimaux(ani);
+    option=false;
     }//GEN-LAST:event_jButtonreprendreActionPerformed
 
     private void jButtonsauvegardeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonsauvegardeActionPerformed
@@ -518,7 +523,7 @@ option=false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonRecommencer;
+    private javax.swing.JButton jButtonNouvelle;
     private javax.swing.JButton jButtonquitter;
     private javax.swing.JButton jButtonreprendre;
     private javax.swing.JButton jButtonsauvegarde;
