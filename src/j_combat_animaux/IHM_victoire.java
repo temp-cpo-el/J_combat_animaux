@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,6 +52,8 @@ public class IHM_victoire extends javax.swing.JFrame {
         ;
         jLabel1 = new javax.swing.JLabel();
         jLabelNom_du_vinqueur = new javax.swing.JLabel();
+        jButtonRecommencer = new javax.swing.JButton();
+        jButtonQuitter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,19 +65,44 @@ public class IHM_victoire extends javax.swing.JFrame {
         jLabelNom_du_vinqueur.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNom_du_vinqueur.setText("     X");
 
+        jButtonRecommencer.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonRecommencer.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jButtonRecommencer.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonRecommencer.setText("Nouvelle Partie");
+        jButtonRecommencer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRecommencerActionPerformed(evt);
+            }
+        });
+
+        jButtonQuitter.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonQuitter.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jButtonQuitter.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonQuitter.setText("Quitter Jeu de la Junlge");
+        jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonQuitterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelvictoireLayout = new javax.swing.GroupLayout(jPanelvictoire);
         jPanelvictoire.setLayout(jPanelvictoireLayout);
         jPanelvictoireLayout.setHorizontalGroup(
             jPanelvictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelvictoireLayout.createSequentialGroup()
-                .addContainerGap(327, Short.MAX_VALUE)
+                .addContainerGap(219, Short.MAX_VALUE)
                 .addGroup(jPanelvictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelvictoireLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(257, 257, 257))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelvictoireLayout.createSequentialGroup()
                         .addComponent(jLabelNom_du_vinqueur, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(417, 417, 417))))
+                        .addGap(417, 417, 417))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelvictoireLayout.createSequentialGroup()
+                        .addComponent(jButtonRecommencer, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96)
+                        .addComponent(jButtonQuitter)
+                        .addGap(221, 221, 221))))
         );
         jPanelvictoireLayout.setVerticalGroup(
             jPanelvictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,7 +111,11 @@ public class IHM_victoire extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelNom_du_vinqueur)
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addGroup(jPanelvictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRecommencer, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(130, 130, 130))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -99,6 +131,17 @@ public class IHM_victoire extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRecommencerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecommencerActionPerformed
+     IHM_acceuil ihm=new IHM_acceuil();
+     ihm.setVisible(true);
+     setVisible(false);
+    }//GEN-LAST:event_jButtonRecommencerActionPerformed
+
+    private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
+        JOptionPane.showMessageDialog(this, "Merci d'avoir joué ,\n Au revoir!");
+        System.exit(0);
+    }//GEN-LAST:event_jButtonQuitterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,6 +179,8 @@ public class IHM_victoire extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonQuitter;
+    private javax.swing.JButton jButtonRecommencer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelNom_du_vinqueur;
     private javax.swing.JPanel jPanelvictoire;
