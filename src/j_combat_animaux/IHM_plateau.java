@@ -9,12 +9,12 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
+
 import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
+
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -153,7 +153,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         ajouterAnimal(a16);
 
         setBounds(0, 0, 1330, 915);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
-        jPanel1.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
+        jPanel1.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (sert à prendre le clavier en compte)
         try {
             imagePlateau = ImageIO.read(fichierplateau);//utilisation de plateau_de_jeu
         } catch (IOException ex) {
@@ -215,9 +215,6 @@ public class IHM_plateau extends javax.swing.JFrame {
             }
         }
         ;
-        jButtonRecommencer = new javax.swing.JButton();
-        jButtonSauvegarde = new javax.swing.JButton();
-        jButtonQuitter = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -225,7 +222,11 @@ public class IHM_plateau extends javax.swing.JFrame {
         jLabelJoueurB = new javax.swing.JLabel();
         jLabelsoleilbleu = new javax.swing.JLabel();
         jLabelsoleilrouge = new javax.swing.JLabel();
-        jButtonReprendre = new javax.swing.JButton();
+        jToolBar1 = new javax.swing.JToolBar();
+        jButtonRecommencer = new javax.swing.JButton();
+        jButtonreprendre = new javax.swing.JButton();
+        jButtonsauvegarde = new javax.swing.JButton();
+        jButtonquitter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -237,36 +238,6 @@ public class IHM_plateau extends javax.swing.JFrame {
         jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jPanel1KeyPressed(evt);
-            }
-        });
-
-        jButtonRecommencer.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonRecommencer.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jButtonRecommencer.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonRecommencer.setText("Recommencer la Partie");
-        jButtonRecommencer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRecommencerActionPerformed(evt);
-            }
-        });
-
-        jButtonSauvegarde.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonSauvegarde.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jButtonSauvegarde.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonSauvegarde.setText("Sauvegarder la Partie");
-        jButtonSauvegarde.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSauvegardeActionPerformed(evt);
-            }
-        });
-
-        jButtonQuitter.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonQuitter.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jButtonQuitter.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonQuitter.setText("QUITTER");
-        jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonQuitterActionPerformed(evt);
             }
         });
 
@@ -289,64 +260,109 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         jLabelsoleilrouge.setBackground(new java.awt.Color(0, 153, 50));
 
-        jButtonReprendre.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonReprendre.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jButtonReprendre.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonReprendre.setText("Reprendre Dernière Partie");
-        jButtonReprendre.addActionListener(new java.awt.event.ActionListener() {
+        jToolBar1.setBackground(new java.awt.Color(0, 0, 0));
+        jToolBar1.setRollover(true);
+
+        jButtonRecommencer.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonRecommencer.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
+        jButtonRecommencer.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonRecommencer.setText("Nouvelle Partie");
+        jButtonRecommencer.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray));
+        jButtonRecommencer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonRecommencer.setNextFocusableComponent(jPanel1);
+        jButtonRecommencer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonRecommencer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReprendreActionPerformed(evt);
+                jButtonRecommencerActionPerformed(evt);
             }
         });
+        jToolBar1.add(jButtonRecommencer);
+
+        jButtonreprendre.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonreprendre.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
+        jButtonreprendre.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonreprendre.setText("Reprendre partie précédente");
+        jButtonreprendre.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray));
+        jButtonreprendre.setFocusable(false);
+        jButtonreprendre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonreprendre.setNextFocusableComponent(jPanel1);
+        jButtonreprendre.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonreprendre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonreprendreActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonreprendre);
+
+        jButtonsauvegarde.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonsauvegarde.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
+        jButtonsauvegarde.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonsauvegarde.setText("Sauvegarder");
+        jButtonsauvegarde.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray));
+        jButtonsauvegarde.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonsauvegarde.setNextFocusableComponent(jPanel1);
+        jButtonsauvegarde.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonsauvegarde.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonsauvegardeActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonsauvegarde);
+
+        jButtonquitter.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonquitter.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
+        jButtonquitter.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonquitter.setText("Quitter");
+        jButtonquitter.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray));
+        jButtonquitter.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonquitter.setNextFocusableComponent(jPanel1);
+        jButtonquitter.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonquitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonquitterActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButtonquitter);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButtonRecommencer, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonReprendre, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonSauvegarde, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(jLabelJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(196, 196, 196)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 406, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(85, 85, 85))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelJoueurB)
-                                .addGap(100, 100, 100))))))
+                        .addGap(0, 614, Short.MAX_VALUE)
+                        .addComponent(jLabelJoueurB)
+                        .addGap(100, 100, 100))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(jLabelsoleilrouge, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelsoleilbleu, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(175, 175, 175))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 497, Short.MAX_VALUE)
+                .addComponent(jLabel1))
+            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel1))
-                .addGap(23, 23, 23)
+                .addGap(51, 51, 51)
                 .addComponent(jLabel3)
-                .addGap(37, 37, 37)
+                .addGap(152, 152, 152)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelJoueurB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -354,12 +370,7 @@ public class IHM_plateau extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelsoleilrouge, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelsoleilbleu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 476, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonRecommencer, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSauvegarde, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonReprendre, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(356, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -388,47 +399,9 @@ public class IHM_plateau extends javax.swing.JFrame {
         tour_du_joueur();
     }//GEN-LAST:event_jPanel1MouseClicked
 
-    private void jButtonSauvegardeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSauvegardeActionPerformed
-        for (int i = 0; i < 16; i++) {
-            x_sauv[i] = ani[i].getX();
-            y_sauv[i] = ani[i].getY();
-            
-            System.err.println("x_aff" + i + "=" + x_aff[i]);
-            System.err.println("x_sauv" + i + "=" + x_sauv[i]);
-            System.err.println("y_aff" + i + "=" + y_aff[i]);
-            System.err.println("y_sauv" + i + "=" + y_sauv[i]);
-        }
-        sauvegarde();
-
-
-    }//GEN-LAST:event_jButtonSauvegardeActionPerformed
-
-    private void jButtonRecommencerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecommencerActionPerformed
-        // TODO add your handling code here:
-        int recommencer=JOptionPane.showConfirmDialog(this,"vouler vous recommencer la partie?");
-        System.out.println(recommencer);
-        if (recommencer==0){
-            compteur_tour=0;
-            for (int i = 0; i < ani.length; i++) {
-               x_aff[i]=ani[i].getX_init(); 
-               ani[i].setX(x_aff[i]);
-               y_aff[i]=ani[i].getY_init(); 
-               ani[i].setY(y_aff[i]);
-               
-              repaint(); 
-               
-               
-            }
-        
-        }
-        
-        
-        
-    }//GEN-LAST:event_jButtonRecommencerActionPerformed
-
-    String pressed;
+    private String pressed;
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
-
+System.out.println("vous avez appuyé sur une touche");
         if (coup > 0 && ani[indice].isBleu() == tour) {
 
             xtemp = ani[indice].getX();//pour pouvoir les comparer après
@@ -477,20 +450,37 @@ public class IHM_plateau extends javax.swing.JFrame {
         tour_du_joueur();
     }//GEN-LAST:event_jPanel1KeyPressed
 
-    private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
-        System.exit(0);//à changer pour insérer plusiurs options (redémarrer, quitter, pause, enregistrer, tatati tatata)
-    }//GEN-LAST:event_jButtonQuitterActionPerformed
-
     private void jLabelJoueurRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelJoueurRMouseClicked
        afficherMorts();
     }//GEN-LAST:event_jLabelJoueurRMouseClicked
 
-    private void jButtonReprendreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReprendreActionPerformed
-    option=true;
+    private void jButtonRecommencerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecommencerActionPerformed
+option=false;        
+//pour l'instant, ça ne devrais pas bugguer outre mesure
+    }//GEN-LAST:event_jButtonRecommencerActionPerformed
+
+    private void jButtonreprendreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonreprendreActionPerformed
+            option=true;
     //JOptionPane.showMessageDialog(this, "Reprise de la partie précédente","",JOptionPane.INFORMATION_MESSAGE);
     afficherAnimaux(ani);
-    option=false;
-    }//GEN-LAST:event_jButtonReprendreActionPerformed
+    }//GEN-LAST:event_jButtonreprendreActionPerformed
+
+    private void jButtonsauvegardeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonsauvegardeActionPerformed
+            for (int i = 0; i < 16; i++) {
+            x_sauv[i] = ani[i].getX();
+            y_sauv[i] = ani[i].getY();
+            
+            System.err.println("x_aff" + i + "=" + x_aff[i]);
+            System.err.println("x_sauv" + i + "=" + x_sauv[i]);
+            System.err.println("y_aff" + i + "=" + y_aff[i]);
+            System.err.println("y_sauv" + i + "=" + y_sauv[i]);
+        }
+        sauvegarde();
+    }//GEN-LAST:event_jButtonsauvegardeActionPerformed
+
+    private void jButtonquitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonquitterActionPerformed
+      System.exit(0);
+    }//GEN-LAST:event_jButtonquitterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -528,10 +518,10 @@ public class IHM_plateau extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonQuitter;
     private javax.swing.JButton jButtonRecommencer;
-    private javax.swing.JButton jButtonReprendre;
-    private javax.swing.JButton jButtonSauvegarde;
+    private javax.swing.JButton jButtonquitter;
+    private javax.swing.JButton jButtonreprendre;
+    private javax.swing.JButton jButtonsauvegarde;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -540,6 +530,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelsoleilbleu;
     private javax.swing.JLabel jLabelsoleilrouge;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 /* Ajout des toutes les fonctions dont on aura besoin pour faire fonctionner le code :*/
 
@@ -589,7 +580,7 @@ public class IHM_plateau extends javax.swing.JFrame {
                 System.out.println("affichage des animaux impossible");
             }
         }
-
+        
     }
 
     private void tour_du_joueur() {
@@ -646,6 +637,8 @@ public class IHM_plateau extends javax.swing.JFrame {
                 indice = i;
             }//on a deux conditions, une pour cahque couleur
         }
+        System.out.println("animal selectionné :"+ ani[indice].getNom()+ani[indice].getCouleur());
+       //le setFocusable ici ne sert à rien malheureusement
         jPanel1.repaint();//on repaint à la fin de selecanimaux pour afficher le cercle
     }
 
@@ -695,6 +688,7 @@ public class IHM_plateau extends javax.swing.JFrame {
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && ani[indice].isBleu() && tour) {
             //gagnant=JoueurB;
             IHM_victoire ihm1 = new IHM_victoire();
+            setVisible(false);
             ihm1.setVisible(true);
         }
 
@@ -879,9 +873,9 @@ public class IHM_plateau extends javax.swing.JFrame {
         //JOptionPane.showMessageDialog(this,new JLabel("",new ImageIcon("src/images/paw-png.png"),jmort.CENTER));
      }
 
-    public void setVariable(boolean option_de_jeu) {
+    /*public void setVariable(boolean option_de_jeu) {
         this.option = option_de_jeu;
-    }
+    }*/
 
     public void sauvegarde() {
 
