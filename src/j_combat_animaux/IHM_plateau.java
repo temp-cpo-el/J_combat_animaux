@@ -265,11 +265,13 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         jToolBar1.setBackground(new java.awt.Color(0, 0, 0));
         jToolBar1.setRollover(true);
+        jToolBar1.setMaximumSize(new java.awt.Dimension(331, 50));
+        jToolBar1.setMinimumSize(new java.awt.Dimension(331, 50));
 
         jButtonNouvelle.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonNouvelle.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
+        jButtonNouvelle.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         jButtonNouvelle.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonNouvelle.setText("Nouvelle Partie");
+        jButtonNouvelle.setText(" Nouvelle Partie ");
         jButtonNouvelle.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray));
         jButtonNouvelle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonNouvelle.setNextFocusableComponent(jPanel1);
@@ -282,9 +284,9 @@ public class IHM_plateau extends javax.swing.JFrame {
         jToolBar1.add(jButtonNouvelle);
 
         jButtonreprendre.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonreprendre.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
+        jButtonreprendre.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         jButtonreprendre.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonreprendre.setText("Reprendre partie précédente");
+        jButtonreprendre.setText(" Reprendre partie précédente ");
         jButtonreprendre.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray));
         jButtonreprendre.setFocusable(false);
         jButtonreprendre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -298,9 +300,9 @@ public class IHM_plateau extends javax.swing.JFrame {
         jToolBar1.add(jButtonreprendre);
 
         jButtonsauvegarde.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonsauvegarde.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
+        jButtonsauvegarde.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         jButtonsauvegarde.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonsauvegarde.setText("Sauvegarder");
+        jButtonsauvegarde.setText(" Sauvegarder ");
         jButtonsauvegarde.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray));
         jButtonsauvegarde.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonsauvegarde.setNextFocusableComponent(jPanel1);
@@ -313,11 +315,11 @@ public class IHM_plateau extends javax.swing.JFrame {
         jToolBar1.add(jButtonsauvegarde);
 
         jButtonquitter.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonquitter.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
+        jButtonquitter.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         jButtonquitter.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonquitter.setText("Quitter");
+        jButtonquitter.setText(" Quitter ");
         jButtonquitter.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray));
-        jButtonquitter.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonquitter.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButtonquitter.setNextFocusableComponent(jPanel1);
         jButtonquitter.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonquitter.addActionListener(new java.awt.event.ActionListener() {
@@ -351,19 +353,17 @@ public class IHM_plateau extends javax.swing.JFrame {
                 .addGap(175, 175, 175))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 497, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1))
             .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel1))
-                .addGap(51, 51, 51)
+                .addGap(144, 144, 144)
                 .addComponent(jLabel3)
                 .addGap(152, 152, 152)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -373,7 +373,8 @@ public class IHM_plateau extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelsoleilrouge, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelsoleilbleu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(356, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
