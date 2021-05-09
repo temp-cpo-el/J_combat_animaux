@@ -44,13 +44,13 @@ public class IHM_plateau extends javax.swing.JFrame {
     private ImageIcon isoleil = new ImageIcon("src/images/petit_soleil.jpg");//pour afficher le tour du joueur, mais pour l'instant, ça marche, pareille pour les papattes, du coup je les ai pas rajoutées
     private int[] ligne = new int[7];
     private int[] col = new int[9];
-    private Zone RH = new Zone(521, 754, 210, 350);//définition des zones de rivières
-    private Zone RB = new Zone(521, 754, 500, 640);
+    private Zone RH = new Zone(477, 710, 210, 350);//définition des zones de rivières
+    private Zone RB = new Zone(477, 710, 500, 640);
     //private Zone CimR= new Zone(244,329,408,496);
     
     
     
-    private zone_piege cases_piege = new zone_piege(235, 305, 330, 404, 235, 495, 995, 305, 900, 404, 995, 495);//definition zone piege
+    private zone_piege cases_piege = new zone_piege(191, 305, 286, 404, 191, 495, 951, 305, 856, 404, 951, 495);//definition zone piege
 
     private int x_zonepd = 0;
     private int x_zonepf = 0;
@@ -113,33 +113,33 @@ public class IHM_plateau extends javax.swing.JFrame {
         ligne[5] = 590;
         ligne[6] = 685;
         //Définition des colonnes du plateau X
-        col[0] = 235;
-        col[1] = 330;
-        col[2] = 425;
-        col[3] = 520;
-        col[4] = 615;
-        col[5] = 711;
-        col[6] = 805;
-        col[7] = 900;
-        col[8] = 995;
+        col[0] = 191;
+        col[1] = 286;
+        col[2] = 381;
+        col[3] = 476;
+        col[4] = 571;
+        col[5] = 667;
+        col[6] = 761;
+        col[7] = 856;
+        col[8] = 951;
 
         /*Définitions de tous les animaux selon leur classe, c'est plus court: */
-        Animal a1 = new Animal("rat", 808, 121, 0, 0, 1, 1, true, false);//rat de rang 1 couleur:bleu
-        Animal a2 = new Animal("chat", 902, 595, 0, 0, 2, 2, true, false);
-        Animal a3 = new Animal("loup", 808, 500, 0, 0, 3, 3, true, false);
-        Animal a4 = new Animal("chien", 903, 215, 0, 0, 4, 4, true, false);
-        Animal a5 = new Animal("panthère", 808, 312, 0, 0, 5, 5, true, false);
-        Animal a6 = new Animal("lion", 997, 121, 0, 0, 6, 6, true, false);
-        Animal a7 = new Animal("tigre", 997, 691, 0, 0, 7, 7, true, false);
-        Animal a8 = new Animal("elephant", 807, 691, 0, 0, 8, 8, true, false);
-        Animal a9 = new Animal("rat", 427, 691, 0, 0, 1, 1, false, false);//rat de rang 1 couleur:rouge
-        Animal a10 = new Animal("chat", 333, 215, 0, 0, 2, 2, false, false);
-        Animal a11 = new Animal("loup", 428, 310, 0, 0, 3, 3, false, false);
-        Animal a12 = new Animal("chien", 333, 596, 0, 0, 4, 4, false, false);
-        Animal a13 = new Animal("panthère", 428, 501, 0, 0, 5, 5, false, false);
-        Animal a14 = new Animal("lion", 239, 691, 0, 0, 6, 6, false, false);
-        Animal a15 = new Animal("tigre", 239, 121, 0, 0, 7, 7, false, false);
-        Animal a16 = new Animal("elephant", 427, 121, 0, 0, 8, 8, false, false);
+        Animal a1 = new Animal("rat", 764, 121, 0, 0, 1, 1, true, false);//rat de rang 1 couleur:bleu
+        Animal a2 = new Animal("chat", 858, 595, 0, 0, 2, 2, true, false);
+        Animal a3 = new Animal("loup", 764, 500, 0, 0, 3, 3, true, false);
+        Animal a4 = new Animal("chien", 859, 215, 0, 0, 4, 4, true, false);
+        Animal a5 = new Animal("panthère", 764, 312, 0, 0, 5, 5, true, false);
+        Animal a6 = new Animal("lion", 953, 121, 0, 0, 6, 6, true, false);
+        Animal a7 = new Animal("tigre", 953, 691, 0, 0, 7, 7, true, false);
+        Animal a8 = new Animal("elephant", 763, 691, 0, 0, 8, 8, true, false);
+        Animal a9 = new Animal("rat", 383, 691, 0, 0, 1, 1, false, false);//rat de rang 1 couleur:rouge
+        Animal a10 = new Animal("chat", 289, 215, 0, 0, 2, 2, false, false);
+        Animal a11 = new Animal("loup", 385, 310, 0, 0, 3, 3, false, false);
+        Animal a12 = new Animal("chien", 289, 596, 0, 0, 4, 4, false, false);
+        Animal a13 = new Animal("panthère", 384, 501, 0, 0, 5, 5, false, false);
+        Animal a14 = new Animal("lion", 195, 691, 0, 0, 6, 6, false, false);
+        Animal a15 = new Animal("tigre", 195, 121, 0, 0, 7, 7, false, false);
+        Animal a16 = new Animal("elephant", 383, 121, 0, 0, 8, 8, false, false);
 
         ajouterAnimal(a1);
         ajouterAnimal(a2);
@@ -158,7 +158,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         ajouterAnimal(a15);
         ajouterAnimal(a16);
 
-        setBounds(0, 0, 1330, 915);     //poser un setBounds(positionné au milieu de l'écran, 524,672);
+        setBounds(0, 0, 1243, 915);     //changement de la taille du plateau, je sais pas trop pourquoi mais il est plus court que ce qu'on zait mis à la base
         jPanel1.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (sert à prendre le clavier en compte)
         try {
             imagePlateau = ImageIO.read(fichierplateau);//utilisation de plateau_de_jeu
@@ -196,7 +196,7 @@ public class IHM_plateau extends javax.swing.JFrame {
                 //affichage fond plateau
                 g.drawImage(imageFondPlateau,0,0, null);
                 //affichage plateau
-                g.drawImage(imagePlateau,229,110, null);
+                g.drawImage(imagePlateau,185,110, null);
                 /*//affichage soleil
                 if(true){
                     g.drawImage(imagesoleil,12,200,null);
@@ -253,16 +253,21 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/animaux_1_48.PNG"))); // NOI18N
 
-        jLabelJoueurR.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabelJoueurR.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jLabelJoueurR.setForeground(new java.awt.Color(255, 255, 255));
         jLabelJoueurR.setText("Joueur Rouge");
+        jLabelJoueurR.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentRemoved(java.awt.event.ContainerEvent evt) {
+                jLabelJoueurRComponentRemoved(evt);
+            }
+        });
         jLabelJoueurR.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelJoueurRMouseClicked(evt);
             }
         });
 
-        jLabelJoueurB.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabelJoueurB.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jLabelJoueurB.setForeground(new java.awt.Color(255, 255, 255));
         jLabelJoueurB.setText("Joueur Bleu");
 
@@ -274,9 +279,9 @@ public class IHM_plateau extends javax.swing.JFrame {
         jToolBar1.setMinimumSize(new java.awt.Dimension(331, 50));
 
         jButtonNouvelle.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonNouvelle.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
+        jButtonNouvelle.setFont(new java.awt.Font("Maiandra GD", 0, 36)); // NOI18N
         jButtonNouvelle.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonNouvelle.setText(" Nouvelle Partie ");
+        jButtonNouvelle.setText("  Nouvelle Partie  ");
         jButtonNouvelle.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray));
         jButtonNouvelle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonNouvelle.setNextFocusableComponent(jPanel1);
@@ -289,9 +294,9 @@ public class IHM_plateau extends javax.swing.JFrame {
         jToolBar1.add(jButtonNouvelle);
 
         jButtonreprendre.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonreprendre.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
+        jButtonreprendre.setFont(new java.awt.Font("Maiandra GD", 0, 36)); // NOI18N
         jButtonreprendre.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonreprendre.setText(" Reprendre partie précédente ");
+        jButtonreprendre.setText("  Reprendre partie précédente  ");
         jButtonreprendre.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray));
         jButtonreprendre.setFocusable(false);
         jButtonreprendre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -305,9 +310,9 @@ public class IHM_plateau extends javax.swing.JFrame {
         jToolBar1.add(jButtonreprendre);
 
         jButtonsauvegarde.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonsauvegarde.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
+        jButtonsauvegarde.setFont(new java.awt.Font("Maiandra GD", 0, 36)); // NOI18N
         jButtonsauvegarde.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonsauvegarde.setText(" Sauvegarder ");
+        jButtonsauvegarde.setText("  Sauvegarder  ");
         jButtonsauvegarde.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray));
         jButtonsauvegarde.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonsauvegarde.setNextFocusableComponent(jPanel1);
@@ -320,9 +325,9 @@ public class IHM_plateau extends javax.swing.JFrame {
         jToolBar1.add(jButtonsauvegarde);
 
         jButtonquitter.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonquitter.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
+        jButtonquitter.setFont(new java.awt.Font("Maiandra GD", 0, 36)); // NOI18N
         jButtonquitter.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonquitter.setText(" Quitter ");
+        jButtonquitter.setText("  Quitter  ");
         jButtonquitter.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.gray, java.awt.Color.lightGray));
         jButtonquitter.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButtonquitter.setNextFocusableComponent(jPanel1);
@@ -339,18 +344,6 @@ public class IHM_plateau extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(196, 196, 196)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 614, Short.MAX_VALUE)
-                        .addComponent(jLabelJoueurB)
-                        .addGap(100, 100, 100))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(jLabelsoleilrouge, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -360,7 +353,16 @@ public class IHM_plateau extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1))
-            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelJoueurB)
+                .addGap(19, 19, 19))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(423, 423, 423)
+                .addComponent(jLabel3))
+            .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 1221, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,13 +370,13 @@ public class IHM_plateau extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel1))
-                .addGap(144, 144, 144)
-                .addComponent(jLabel3)
-                .addGap(152, 152, 152)
+                .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelJoueurB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabelJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelJoueurB, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addComponent(jLabel3)
+                .addGap(217, 217, 217)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelsoleilrouge, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelsoleilbleu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -495,6 +497,10 @@ System.out.println("vous avez appuyé sur une touche");
     private void jButtonquitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonquitterActionPerformed
       System.exit(0);
     }//GEN-LAST:event_jButtonquitterActionPerformed
+
+    private void jLabelJoueurRComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jLabelJoueurRComponentRemoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelJoueurRComponentRemoved
 
     /**
      * @param args the command line arguments
@@ -660,13 +666,13 @@ System.out.println("vous avez appuyé sur une touche");
         //taille du panel:1800x1038
         //taille de link:90x90
         // Gauche
-        if (x_aff[indice] < 239) {
-            x_aff[indice] = 239;
+        if (x_aff[indice] < 195) {
+            x_aff[indice] = 195;
             ani[indice].setX(x_aff[indice]);
         }
         //Droite
-        if (x_aff[indice] > 1049) {
-            x_aff[indice] = 997;
+        if (x_aff[indice] > 1005) {
+            x_aff[indice] = 953;
             ani[indice].setX(x_aff[indice]);
         }
         //Haut
@@ -695,14 +701,16 @@ System.out.println("vous avez appuyé sur une touche");
         //personnagexLink|yLink + 9x90
         if ((col[8]) < x_aff[indice] && x_aff[indice] < (col[8] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && !ani[indice].isBleu() && !tour) {
+            gagnant=jLabelJoueurR.getText();
+            IHM_victoire ihm1 = new IHM_victoire(gagnant);
            // gagnant=this.getJoueurR();
-            IHM_victoire ihm1 = new IHM_victoire();
+            
             ihm1.setVisible(true);
         }
         if ((col[0]) < x_aff[indice] && x_aff[indice] < (col[0] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && ani[indice].isBleu() && tour) {
-           // gagnant=this.getJoueurB();
-            IHM_victoire ihm1 = new IHM_victoire();
+            gagnant=jLabelJoueurB.getText();
+            IHM_victoire ihm1 = new IHM_victoire(gagnant);
             setVisible(false);
             ihm1.setVisible(true);
         }
