@@ -791,14 +791,28 @@ public class IHM_plateau extends javax.swing.JFrame {
                             // }
                             if (ani[i].getRang_partie() == 8) {
                                 //ani[i]disparait
-                                if (RH.Inside(xtemp, ytemp) || RB.Inside(xtemp, ytemp)) {
-                                    JOptionPane.showMessageDialog(this, "Il faut d'abord sortir de la rivière avant de pouvoir attaquer l'éléphant!");
+                               /* if (RH.Inside(xtemp, ytemp) || RB.Inside(xtemp, ytemp)) {
+                                    int resultat =JOptionPane.showConfirmDialog(this, "Il faut d'abord sortir de la rivière avant de pouvoir attaquer l'éléphant!"+"\nEtes vous vaiment sur de vouloir sacrifier cette pièce?");
+                                    if (resultat == 0) {
+                                    System.out.println("suicide de la piece " + ani[indice].getNom() + " " + ani[indice].getCouleur());
+                                    //ani[indice](disparait)
+                                    morts.add(ani[indice].getNom() + ani[indice].getCouleur());
+                                    ani[indice].setX(xm);
+                                    ani[indice].setY(ym);
+                                } else {
+                                    x_aff[indice] = xtemp;
+                                    y_aff[indice] = ytemp;
+
+                                    coup++;
+                                    compteur_tour--;
+
+                                }
                                 } else {
                                     morts.add(ani[i].getNom() + ani[i].getCouleur());//on ajoute l'animal à la liste des morts
                                     ani[i].setX(xm);
                                     ani[i].setY(ym);//on lui donne les coordonnées des morts
                                     System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
-                                }
+                                }*/
                             } else {
                                 int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
                                 if (result == 0) {
