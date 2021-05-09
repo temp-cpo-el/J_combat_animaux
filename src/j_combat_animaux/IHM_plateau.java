@@ -344,6 +344,10 @@ public class IHM_plateau extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(423, 423, 423)
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(jLabelsoleilrouge, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -703,8 +707,6 @@ System.out.println("vous avez appuyé sur une touche");
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && !ani[indice].isBleu() && !tour) {
             gagnant=jLabelJoueurR.getText();
             IHM_victoire ihm1 = new IHM_victoire(gagnant);
-           // gagnant=this.getJoueurR();
-            
             ihm1.setVisible(true);
         }
         if ((col[0]) < x_aff[indice] && x_aff[indice] < (col[0] + 20)
