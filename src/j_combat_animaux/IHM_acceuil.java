@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JTextField;
 
 /**
  *
@@ -21,8 +22,27 @@ public class IHM_acceuil extends javax.swing.JFrame {
     private File fichierAcceuil = new File("src/images/acceuil0.jpg");
     private BufferedImage imageAcceuil;
     //public boolean option_de_jeu;
-    private String JoueurB,JoueurR;
+    public String JoueurB,JoueurR;
     private IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB);
+
+    public JTextField getjTextJoueurB() {
+        return jTextJoueurB;
+    }
+
+    public void setjTextJoueurB(JTextField jTextJoueurB) {
+        this.jTextJoueurB = jTextJoueurB;
+    }
+
+    public JTextField getjTextJoueurR() {
+        return jTextJoueurR;
+    }
+
+    public void setjTextJoueurR(JTextField jTextJoueurR) {
+        this.jTextJoueurR = jTextJoueurR;
+    }
+    
+    
+    
     
     /**
      * Creates new form IHM_acceuil
@@ -311,7 +331,8 @@ public class IHM_acceuil extends javax.swing.JFrame {
        /* IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB,option_de_jeu);
         ihm1.setVariable(option_de_jeu);*/
         ihm1.setVisible(true);
-        setVisible(false);//ferme l'ihm d'acceuil
+        setVisible(false);//ferme l'ihm d'acceuil {                                                           
+        //int np=1;
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonjouerActionPerformed
 

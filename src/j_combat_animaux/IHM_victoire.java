@@ -173,6 +173,7 @@ public class IHM_victoire extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+               // jLabelNom_du_vinqueur=set texte("");
                 new IHM_victoire().setVisible(true);
             }
         });

@@ -47,6 +47,9 @@ public class IHM_plateau extends javax.swing.JFrame {
     private Zone RH = new Zone(521, 754, 210, 350);//définition des zones de rivières
     private Zone RB = new Zone(521, 754, 500, 640);
     //private Zone CimR= new Zone(244,329,408,496);
+    
+    
+    
     private zone_piege cases_piege = new zone_piege(235, 305, 330, 404, 235, 495, 995, 305, 900, 404, 995, 495);//definition zone piege
 
     private int x_zonepd = 0;
@@ -175,6 +178,8 @@ public class IHM_plateau extends javax.swing.JFrame {
         jLabelJoueurR.setText(JoueurR);
         jLabelJoueurB.setText(JoueurB);
         
+       // jLabelJoueurR.setVisible(true);
+       // jLabelJoueurB.setVisible(true);
     }
 
     /**
@@ -685,17 +690,18 @@ System.out.println("vous avez appuyé sur une touche");
     String gagnant;
 
     private void traitementTaniere() {
+        //this.IHM_acceuil=IHM_acceuil;
         //potion900| 500 + 38x60
         //personnagexLink|yLink + 9x90
         if ((col[8]) < x_aff[indice] && x_aff[indice] < (col[8] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && !ani[indice].isBleu() && !tour) {
-            //gagnant=JoueurR;
+           // gagnant=this.getJoueurR();
             IHM_victoire ihm1 = new IHM_victoire();
             ihm1.setVisible(true);
         }
         if ((col[0]) < x_aff[indice] && x_aff[indice] < (col[0] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && ani[indice].isBleu() && tour) {
-            //gagnant=JoueurB;
+           // gagnant=this.getJoueurB();
             IHM_victoire ihm1 = new IHM_victoire();
             setVisible(false);
             ihm1.setVisible(true);
@@ -763,6 +769,9 @@ System.out.println("vous avez appuyé sur une touche");
 
                     switch (ani[indice].getRang_partie()) {
                         case 1:
+                           //if (RH.Inside(ani[indice].getX(), ani[indice].getY()) || RB.Inside(ani[indice].getX(), ani[indice].getY())) {
+                          //     JOptionPane.showMessageDialog(this,"le rat ne peut pas manger un autre animal en sortant de la rivière");
+                          // }
                             if (ani[i].getRang_partie() == 8) {
                                 //ani[i]disparait
                                 morts.add(ani[i].getNom() + ani[i].getCouleur());//on ajoute l'animal à la liste des morts
