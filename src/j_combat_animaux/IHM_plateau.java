@@ -41,7 +41,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
     private File fichierfondplateau = new File("src/images/Fond_plateau_de_jeu0.png");//on va chercher le fichier dans le dossier d'images
     private BufferedImage imageFondPlateau;
-    private ImageIcon isoleil = new ImageIcon("src/images/petit_soleil.jpg");//pour afficher le tour du joueur, mais pour l'instant, ça marche, pareille pour les papattes, du coup je les ai pas rajoutées
+    private ImageIcon isoleil = new ImageIcon("src/images/petit_soleil.png");//pour afficher le tour du joueur, mais pour l'instant, ça marche, pareille pour les papattes, du coup je les ai pas rajoutées
     private int[] ligne = new int[7];
     private int[] col = new int[9];
     private Zone RH = new Zone(477, 710, 210, 350);//définition des zones de rivières
@@ -482,6 +482,12 @@ System.out.println("vous avez appuyé sur une touche");
     //JOptionPane.showMessageDialog(this, "Reprise de la partie précédente","",JOptionPane.INFORMATION_MESSAGE);
     afficherAnimaux(ani);
     option=false;
+        for (int i = 0; i < ani.length; i++) {
+            if (ani[i].getX()==xm && ani[i].getY()==ym){
+                morts.add(ani[i].getNom() + ani[i].getCouleur());
+            }
+            
+        }
     }//GEN-LAST:event_jButtonreprendreActionPerformed
 
     private void jButtonsauvegardeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonsauvegardeActionPerformed
@@ -610,13 +616,13 @@ System.out.println("vous avez appuyé sur une touche");
         if (compteur_tour % 2 == 0) {
             tour = false;//tour des rouges
             System.out.println("Tour des rouges");
-            jLabelsoleilrouge.setIcon(isoleil);
-            jLabelsoleilbleu.setIcon(null);
+            jLabelJoueurR.setIcon(isoleil);
+            jLabelJoueurB.setIcon(null);
         } else {
             tour = true;//tour des bleus
             System.out.println("Tour des bleus");
-            jLabelsoleilbleu.setIcon(isoleil);
-            jLabelsoleilrouge.setIcon(null);
+            jLabelJoueurB.setIcon(isoleil);
+            jLabelJoueurR.setIcon(null);
         }
         coup = 1;//on initialise le nombre de coup possible pour le joueur
         System.out.println("compteur_tour : " + compteur_tour);
@@ -918,6 +924,8 @@ System.out.println("vous avez appuyé sur une touche");
                 fichier_sauvegarde.println(y_sauv[i]);
 
             }
+            fichier_sauvegarde.println(jLabelJoueurR.getText());//on commence par rouge
+            fichier_sauvegarde.println(jLabelJoueurB.getText());//puis bleu
             fichier_sauvegarde.close();
 
         } catch (IOException ex) {
@@ -940,6 +948,12 @@ System.out.println("vous avez appuyé sur une touche");
             //while (lecteurAvecBuffer.readLine()!=null)
             for (int i = 0; i < ligne_sauv.length; i++) {
                 ligne_sauv[i] = Integer.parseInt(lecteur.readLine());
+                /*if (i==(ligne_sauv.length-1)){//pour lire les nom s des joueurs, il faut qu'on tranforme les 'int' en 'String'
+                    jLabelJoueurR.setText(ligne_sauv[i]);
+                }
+                if (i==(ligne_sauv.length)){
+                    jLabelJoueurR.setText(ligne_sauv[i]);
+                }*/
             }
             
                 for (int i = 0; i < ligne_sauv.length/2; i++) {
@@ -950,7 +964,8 @@ System.out.println("vous avez appuyé sur une touche");
                     y_sauv[i-16] = ligne_sauv[i];
                     System.out.println("y_sauv"+i+"="+y_sauv[i-16]);
                 }
-
+            
+                
         }catch (IOException ex) {
             System.out.println("Erreur de lecture du fichier_sauvegarde");
         }
