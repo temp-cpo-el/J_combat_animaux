@@ -101,8 +101,8 @@ public class IHM_victoire extends javax.swing.JFrame {
                         .addComponent(jButtonQuitter)
                         .addGap(221, 221, 221))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelvictoireLayout.createSequentialGroup()
-                        .addComponent(jLabelNom_du_vinqueur, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(190, 190, 190))))
+                        .addComponent(jLabelNom_du_vinqueur, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(161, 161, 161))))
         );
         jPanelvictoireLayout.setVerticalGroup(
             jPanelvictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
