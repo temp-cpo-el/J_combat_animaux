@@ -23,11 +23,11 @@ public class IHM_victoire extends javax.swing.JFrame {
     /**
      * Creates new form IHM_victoire
      */
-    public IHM_victoire() {
+    public IHM_victoire(String nom_vainqueur) {
         initComponents();
         setBounds(0, 0, 985, 600);
         jPanelvictoire.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
-        
+        jLabelNom_du_vinqueur.setText(nom_vainqueur);
         try {
             imageVictoire = ImageIO.read(fichiervictoire);//utilisation de plateau_de_jeu
         } catch (IOException ex) {
@@ -171,12 +171,12 @@ public class IHM_victoire extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        /*
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // jLabelNom_du_vinqueur=set texte("");
-                new IHM_victoire().setVisible(true);
-            }
-        });
+                new IHM_victoire(String nom_vainqueur).setVisible(true);
+}
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

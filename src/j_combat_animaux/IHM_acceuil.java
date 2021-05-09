@@ -22,27 +22,8 @@ public class IHM_acceuil extends javax.swing.JFrame {
     private File fichierAcceuil = new File("src/images/acceuil0.jpg");
     private BufferedImage imageAcceuil;
     //public boolean option_de_jeu;
-    public String JoueurB,JoueurR;
-    private IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB);
+    private String JoueurB,JoueurR;
 
-    public JTextField getjTextJoueurB() {
-        return jTextJoueurB;
-    }
-
-    public void setjTextJoueurB(JTextField jTextJoueurB) {
-        this.jTextJoueurB = jTextJoueurB;
-    }
-
-    public JTextField getjTextJoueurR() {
-        return jTextJoueurR;
-    }
-
-    public void setjTextJoueurR(JTextField jTextJoueurR) {
-        this.jTextJoueurR = jTextJoueurR;
-    }
-    
-    
-    
     
     /**
      * Creates new form IHM_acceuil
@@ -330,6 +311,7 @@ public class IHM_acceuil extends javax.swing.JFrame {
         //ihm1.setVariable(option_de_jeu);
        /* IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB,option_de_jeu);
         ihm1.setVariable(option_de_jeu);*/
+        IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB);
         ihm1.setVisible(true);
         setVisible(false);//ferme l'ihm d'acceuil {                                                           
         //int np=1;
