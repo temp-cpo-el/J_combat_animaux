@@ -687,14 +687,14 @@ System.out.println("vous avez appuyé sur une touche");
         //personnagexLink|yLink + 9x90
         if ((col[8]) < x_aff[indice] && x_aff[indice] < (col[8] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && !ani[indice].isBleu() && !tour) {
-            //gagnant=JoueurR;
-            IHM_victoire ihm1 = new IHM_victoire();
+            gagnant=jLabelJoueurR.getText();
+            IHM_victoire ihm1 = new IHM_victoire(gagnant);
             ihm1.setVisible(true);
         }
         if ((col[0]) < x_aff[indice] && x_aff[indice] < (col[0] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && ani[indice].isBleu() && tour) {
-            //gagnant=JoueurB;
-            IHM_victoire ihm1 = new IHM_victoire();
+            gagnant=jLabelJoueurB.getText();
+            IHM_victoire ihm1 = new IHM_victoire(gagnant);
             setVisible(false);
             ihm1.setVisible(true);
         }
