@@ -22,7 +22,7 @@ public class IHM_acceuil extends javax.swing.JFrame {
     private BufferedImage imageAcceuil;
     //public boolean option_de_jeu;
     private String JoueurB,JoueurR;
-    private IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB);
+
     
     /**
      * Creates new form IHM_acceuil
@@ -310,6 +310,7 @@ public class IHM_acceuil extends javax.swing.JFrame {
         //ihm1.setVariable(option_de_jeu);
        /* IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB,option_de_jeu);
         ihm1.setVariable(option_de_jeu);*/
+        IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB);
         ihm1.setVisible(true);
         setVisible(false);//ferme l'ihm d'acceuil
         // TODO add your handling code here:
