@@ -63,7 +63,7 @@ public class IHM_victoire extends javax.swing.JFrame {
 
         jLabelNom_du_vinqueur.setFont(new java.awt.Font("Viner Hand ITC", 1, 48)); // NOI18N
         jLabelNom_du_vinqueur.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelNom_du_vinqueur.setText("     X");
+        jLabelNom_du_vinqueur.setText("                 X");
 
         jButtonRecommencer.setBackground(new java.awt.Color(0, 0, 0));
         jButtonRecommencer.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
@@ -93,25 +93,24 @@ public class IHM_victoire extends javax.swing.JFrame {
                 .addContainerGap(219, Short.MAX_VALUE)
                 .addGroup(jPanelvictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelvictoireLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(257, 257, 257))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelvictoireLayout.createSequentialGroup()
                         .addComponent(jButtonRecommencer, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(96, 96, 96)
                         .addComponent(jButtonQuitter)
                         .addGap(221, 221, 221))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelvictoireLayout.createSequentialGroup()
-                        .addComponent(jLabelNom_du_vinqueur, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(161, 161, 161))))
+                        .addGroup(jPanelvictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelNom_du_vinqueur, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(231, 231, 231))))
         );
         jPanelvictoireLayout.setVerticalGroup(
             jPanelvictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelvictoireLayout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelNom_du_vinqueur)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addGroup(jPanelvictoireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRecommencer, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
