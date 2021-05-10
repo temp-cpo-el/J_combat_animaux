@@ -129,8 +129,6 @@ public class IHM_acceuil extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("pseudo:");
 
-        jTextJoueurB.setText("B");
-
         jLabel7.setFont(new java.awt.Font("Viner Hand ITC", 1, 24)); // NOI18N
         jLabel7.setText("dans");
 
@@ -229,10 +227,10 @@ public class IHM_acceuil extends javax.swing.JFrame {
     private void jButtonjouerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonjouerActionPerformed
         JoueurR=jTextJoueurR.getText();
         JoueurB=jTextJoueurB.getText();
-        if (jTextJoueurR.getText().equals("")){
+        if (jTextJoueurR.getText().isEmpty()){
             JoueurR= "Joueur Rouge";
         }
-         if (jTextJoueurB.getText().equals("")){
+         if (jTextJoueurB.getText().isEmpty()){
             JoueurB= "Joueur Bleu";
         }
 
