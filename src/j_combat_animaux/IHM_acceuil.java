@@ -253,6 +253,7 @@ public class IHM_acceuil extends javax.swing.JFrame {
         IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB);
         ihm1.setVisible(true);
         setVisible(false);//ferme l'ihm d'acceuil {                                                           
+        JOptionPane.showMessageDialog(ihm1, "Les rouges commencent\nSélectionner un animal avec la souris puis,\nZ : monter\nS : descendre\nQ : Gauche\nD : droite\nBonne partie!");
         //int np=1;
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonjouerActionPerformed

@@ -781,7 +781,8 @@ public class IHM_plateau extends javax.swing.JFrame {
         y_zonepf = ani[indice].getY() + 55;
 
         for (int i = 0; i < ani.length; i++) {
-            if (ani[i].getX() >= x_zonepd && ani[i].getX() <= x_zonepf && ani[i].getY() >= y_zonepd && ani[i].getY() <= y_zonepf && i != indice) {
+            if(new Zone(x_zonepd,x_zonepf,y_zonepd,y_zonepf).Inside(ani[i].getX(),ani[i].getY()) && i!=indice){//j'ai mis ça, comme ça on utilise nos classes 
+            //if (ani[i].getX() >= x_zonepd && ani[i].getX() <= x_zonepf && ani[i].getY() >= y_zonepd && ani[i].getY() <= y_zonepf && i != indice) {
                 if (ani[i].isBleu() != ani[indice].isBleu()) {
                     System.out.println("oui!");
 
@@ -799,7 +800,6 @@ public class IHM_plateau extends javax.swing.JFrame {
                                 } else {
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
-
                                     coup++;
                                     compteur_tour--;
                                 }
@@ -824,7 +824,6 @@ public class IHM_plateau extends javax.swing.JFrame {
                                 } else {
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
-
                                     coup++;
                                     compteur_tour--;
 
@@ -843,7 +842,6 @@ public class IHM_plateau extends javax.swing.JFrame {
                                 } else {
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
-
                                     coup++;
                                     compteur_tour--;
                                 }
@@ -867,7 +865,6 @@ public class IHM_plateau extends javax.swing.JFrame {
                                 } else {
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
-
                                     coup++;
                                     compteur_tour--;
 
@@ -886,7 +883,6 @@ public class IHM_plateau extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Vos animaux ne se mangent pas entre eux!");
                     x_aff[indice] = xtemp;
                     y_aff[indice] = ytemp;
-
                     coup++;
                     compteur_tour--;
                 }
