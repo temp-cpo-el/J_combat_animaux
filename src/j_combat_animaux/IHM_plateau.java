@@ -48,9 +48,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     private Zone RH = new Zone(477, 710, 210, 350);//définition des zones de rivières
     private Zone RB = new Zone(477, 710, 500, 640);
     //private Zone CimR= new Zone(244,329,408,496);
-    
-    
-    
+
     private zone_piege cases_piege = new zone_piege(191, 305, 286, 404, 191, 495, 951, 305, 856, 404, 951, 495);//definition zone piege
 
     private int x_zonepd = 0;
@@ -69,8 +67,8 @@ public class IHM_plateau extends javax.swing.JFrame {
 
     private int[] x_sauv = new int[16];
     private int[] y_sauv = new int[16];//coordonnéers de la sauvegarde
-    
-    private int[] ligne_sauv=new int[32];
+
+    private int[] ligne_sauv = new int[32];
 
     //pour la mort
     private ArrayList<String> morts = new ArrayList<>();//tableau de morts
@@ -78,7 +76,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     private JFrame frame_mort = new JFrame();
     private JPanel panel_mort = new JPanel();//jpanel dans lequel dessiner tous les animaux morts
     private final int xm = 3, ym = 200; //coordonnées de la souris
-    private JLabel jmort=new JLabel("Les morts");
+    private JLabel jmort = new JLabel("Les morts");
     //private Zone cim_R = new Zone(240, 326, 407, 490);//zone cimetière rouge
     //private Zone cim_B = new Zone(1000, 1086, 407, 495);//zone cimetière bleu
     //^ ces deux lignes ne servent plus parce qu'on prend pour zone à cliquer  le nom des joueurs
@@ -93,11 +91,10 @@ public class IHM_plateau extends javax.swing.JFrame {
     private int col_proche;
     private int indice = 0;
 
-    private boolean option=false;
-    
+    private boolean option = false;
+
     //on tente un truc...
     //private IHM_acceuil ihm_a= new IHM_acceuil();
-
     /**
      * Creates new form IHM_plateau
      */
@@ -178,9 +175,9 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         jLabelJoueurR.setText(JoueurR);
         jLabelJoueurB.setText(JoueurB);
-        
-       // jLabelJoueurR.setVisible(true);
-       // jLabelJoueurB.setVisible(true);
+
+        // jLabelJoueurR.setVisible(true);
+        // jLabelJoueurB.setVisible(true);
     }
 
     /**
@@ -345,10 +342,6 @@ public class IHM_plateau extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(423, 423, 423)
-                .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(jLabelsoleilrouge, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -365,9 +358,12 @@ public class IHM_plateau extends javax.swing.JFrame {
                 .addComponent(jLabelJoueurB)
                 .addGap(19, 19, 19))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(423, 423, 423)
-                .addComponent(jLabel3))
-            .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 1221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(423, 423, 423)
+                        .addComponent(jLabel3))
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 1221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -408,16 +404,18 @@ public class IHM_plateau extends javax.swing.JFrame {
         System.out.println("\nx:" + xtemp);
         ytemp = evt.getY();
         System.out.println("y:" + ytemp + "\n");
-        
-        /**if (cim_R.Inside(xtemp, ytemp) || cim_B.Inside(xtemp, ytemp)) {//pour afficher les morts
-            afficherMorts();
-        }**/
+
+        /**
+         * if (cim_R.Inside(xtemp, ytemp) || cim_B.Inside(xtemp, ytemp)) {//pour
+         * afficher les morts afficherMorts();
+        }*
+         */
         tour_du_joueur();
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private String pressed;
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
-System.out.println("vous avez appuyé sur une touche");
+        System.out.println("vous avez appuyé sur une touche");
         if (coup > 0 && ani[indice].isBleu() == tour) {
 
             xtemp = ani[indice].getX();//pour pouvoir les comparer après
@@ -468,36 +466,36 @@ System.out.println("vous avez appuyé sur une touche");
     }//GEN-LAST:event_jPanel1KeyPressed
 
     private void jLabelJoueurRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelJoueurRMouseClicked
-       afficherMorts();
+        afficherMorts();
     }//GEN-LAST:event_jLabelJoueurRMouseClicked
 
     private void jButtonNouvelleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNouvelleActionPerformed
-    //vider le tableau des morts
-    morts.clear();
-    nb_mort=0; 
-    IHM_acceuil ihm_a= new IHM_acceuil();
-    ihm_a.setVisible(true);
+        //vider le tableau des morts
+        morts.clear();
+        nb_mort = 0;
+        IHM_acceuil ihm_a = new IHM_acceuil();
+        ihm_a.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButtonNouvelleActionPerformed
 
     private void jButtonreprendreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonreprendreActionPerformed
-            option=true;
-    //JOptionPane.showMessageDialog(this, "Reprise de la partie précédente","",JOptionPane.INFORMATION_MESSAGE);
-    afficherAnimaux(ani);
-    option=false;
+        option = true;
+        //JOptionPane.showMessageDialog(this, "Reprise de la partie précédente","",JOptionPane.INFORMATION_MESSAGE);
+        afficherAnimaux(ani);
+        option = false;
         for (int i = 0; i < ani.length; i++) {
-            if (ani[i].getX()==xm && ani[i].getY()==ym){
+            if (ani[i].getX() == xm && ani[i].getY() == ym) {
                 morts.add(ani[i].getNom() + ani[i].getCouleur());
             }
-            
+
         }
     }//GEN-LAST:event_jButtonreprendreActionPerformed
 
     private void jButtonsauvegardeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonsauvegardeActionPerformed
-            for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 16; i++) {
             x_sauv[i] = ani[i].getX();
             y_sauv[i] = ani[i].getY();
-            
+
             System.err.println("x_aff" + i + "=" + x_aff[i]);
             System.err.println("x_sauv" + i + "=" + x_sauv[i]);
             System.err.println("y_aff" + i + "=" + y_aff[i]);
@@ -507,7 +505,7 @@ System.out.println("vous avez appuyé sur une touche");
     }//GEN-LAST:event_jButtonsauvegardeActionPerformed
 
     private void jButtonquitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonquitterActionPerformed
-      System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jButtonquitterActionPerformed
 
     private void jLabelJoueurRComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jLabelJoueurRComponentRemoved
@@ -598,7 +596,8 @@ System.out.println("vous avez appuyé sur une touche");
                 System.out.println("affichage des animaux impossible");
             }
 
-        } if(option==false){//on prend les coordonnées initiales avec le jeu
+        }
+        if (option == false) {//on prend les coordonnées initiales avec le jeu
             try {
                 for (int i = 0; i < ani.length; i++) {
                     ani[i].setX(ani[i].getX_init());
@@ -612,7 +611,7 @@ System.out.println("vous avez appuyé sur une touche");
                 System.out.println("affichage des animaux impossible");
             }
         }
-        
+
     }
 
     private void tour_du_joueur() {
@@ -669,8 +668,8 @@ System.out.println("vous avez appuyé sur une touche");
                 indice = i;
             }//on a deux conditions, une pour cahque couleur
         }
-        System.out.println("animal selectionné :"+ ani[indice].getNom()+ani[indice].getCouleur());
-       //le setFocusable ici ne sert à rien malheureusement
+        System.out.println("animal selectionné :" + ani[indice].getNom() + ani[indice].getCouleur());
+        //le setFocusable ici ne sert à rien malheureusement
         jPanel1.repaint();//on repaint à la fin de selecanimaux pour afficher le cercle
     }
 
@@ -713,13 +712,13 @@ System.out.println("vous avez appuyé sur une touche");
         //personnagexLink|yLink + 9x90
         if ((col[8]) < x_aff[indice] && x_aff[indice] < (col[8] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && !ani[indice].isBleu() && !tour) {
-            gagnant=jLabelJoueurR.getText();
+            gagnant = jLabelJoueurR.getText();
             IHM_victoire ihm1 = new IHM_victoire(gagnant);
             ihm1.setVisible(true);
         }
         if ((col[0]) < x_aff[indice] && x_aff[indice] < (col[0] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && ani[indice].isBleu() && tour) {
-            gagnant=jLabelJoueurB.getText();
+            gagnant = jLabelJoueurB.getText();
             IHM_victoire ihm1 = new IHM_victoire(gagnant);
             setVisible(false);
             ihm1.setVisible(true);
@@ -775,6 +774,8 @@ System.out.println("vous avez appuyé sur une touche");
 
     private void duel() {
 // maintenant il reste juste à faire disparaître les images mangées
+        //ani[indice]->animal selectionné
+        //Ani[i]->animal dasn le perimetrede duel de ani[indice]
         x_zonepd = ani[indice].getX() - 55;
         x_zonepf = ani[indice].getX() + 55;
         y_zonepd = ani[indice].getY() - 55;
@@ -787,9 +788,9 @@ System.out.println("vous avez appuyé sur une touche");
 
                     switch (ani[indice].getRang_partie()) {
                         case 1:
-                           //if (RH.Inside(ani[indice].getX(), ani[indice].getY()) || RB.Inside(ani[indice].getX(), ani[indice].getY())) {
-                          //     JOptionPane.showMessageDialog(this,"le rat ne peut pas manger un autre animal en sortant de la rivière");
-                          // }
+                            //if (RH.Inside(ani[indice].getX(), ani[indice].getY()) || RB.Inside(ani[indice].getX(), ani[indice].getY())) {
+                            //     JOptionPane.showMessageDialog(this,"le rat ne peut pas manger un autre animal en sortant de la rivière");
+                            // }
                             if (ani[i].getRang_partie() == 8) {
                                 //ani[i]disparait
                                 morts.add(ani[i].getNom() + ani[i].getCouleur());//on ajoute l'animal à la liste des morts
@@ -904,9 +905,9 @@ System.out.println("vous avez appuyé sur une touche");
               panel_mort.add(jmort, -1);
           }  
         }
-        nb_mort=morts.size();
+        nb_mort = morts.size();
         revalidate();
-        frame_mort.setSize(110, nb_mort*120);
+        frame_mort.setSize(110, nb_mort * 120);
         repaint();
 
         frame_mort.setContentPane(panel_mort);//...on insert le panel dans le frame...
@@ -914,12 +915,11 @@ System.out.println("vous avez appuyé sur une touche");
         frame_mort.setDefaultCloseOperation(HIDE_ON_CLOSE);//ici on ferme le frame
         System.out.println("Repaint cimetière");
         //JOptionPane.showMessageDialog(this,new JLabel("",new ImageIcon("src/images/paw-png.png"),jmort.CENTER));
-     }
+    }
 
     /*public void setVariable(boolean option_de_jeu) {
         this.option = option_de_jeu;
     }*/
-
     public void sauvegarde() {
 
         PrintWriter fichier_sauvegarde;
@@ -941,13 +941,12 @@ System.out.println("vous avez appuyé sur une touche");
         } catch (IOException ex) {
             System.out.println("Problème dans la sauvegarde");
         }
-       // JOptionPane.showMessageDialog(this, "La partie a bien été enregistrée", "Vous pouvez quitter la partie",JOptionPane.INFORMATION_MESSAGE);
+        // JOptionPane.showMessageDialog(this, "La partie a bien été enregistrée", "Vous pouvez quitter la partie",JOptionPane.INFORMATION_MESSAGE);
     }
 
-     public void lecture() {
-         System.out.println("debut  de lecture");
+    public void lecture() {
+        System.out.println("debut  de lecture");
         BufferedReader lecteur = null;
-        
 
         try {
             lecteur = new BufferedReader(new FileReader("src/sauvegarde/fichier_sauvegarde.txt"));
@@ -984,12 +983,12 @@ jLabelJoueurR.setText(lecteur.readLine());
             System.out.println("Erreur de lecture du fichier_sauvegarde");
         }
         try {
-        lecteur.close();
-                //System.out.println("fermeture, fin de lecture");
+            lecteur.close();
+            //System.out.println("fermeture, fin de lecture");
         } catch (IOException ex) {
-        System.out.println("Erreur de fermeture du fichier_sauvegarde");
-        } 
-    System.out.println("fin de de lecture");
+            System.out.println("Erreur de fermeture du fichier_sauvegarde");
+        }
+        System.out.println("fin de de lecture");
     }
 /*
     private void traitementChevauchement() {
@@ -1017,5 +1016,3 @@ jLabelJoueurR.setText(lecteur.readLine());
                     }
     }*/
 }
-
-
