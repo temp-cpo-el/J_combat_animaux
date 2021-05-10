@@ -407,8 +407,7 @@ public class IHM_plateau extends javax.swing.JFrame {
 
         /**
          * if (cim_R.Inside(xtemp, ytemp) || cim_B.Inside(xtemp, ytemp)) {//pour
-         * afficher les morts afficherMorts();
-        }*
+         * afficher les morts afficherMorts(); }*
          */
         tour_du_joueur();
     }//GEN-LAST:event_jPanel1MouseClicked
@@ -773,7 +772,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     }
 
     private void duel() {
-// maintenant il reste juste à faire disparaître les images mangées
+
         //ani[indice]->animal selectionné
         //ani[i]->animal dasn le perimetrede duel de ani[indice]
         x_zonepd = ani[indice].getX() - 55;
@@ -789,33 +788,33 @@ public class IHM_plateau extends javax.swing.JFrame {
                     switch (ani[indice].getRang_partie()) {
                         case 1:
                             if (RH.Inside(xtemp, ytemp) || RB.Inside(xtemp, ytemp)) {
-                               JOptionPane.showMessageDialog(this,"le rat ne peut pas manger un autre animal en sortant de la rivière");
-                            int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
+                                JOptionPane.showMessageDialog(this, "le rat ne peut pas manger un autre animal en sortant de la rivière");
+                                int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
                                 if (result == 0) {
                                     System.out.println("suicide de la piece " + ani[indice].getNom() + " " + ani[indice].getCouleur());
                                     //ani[indice](disparait)
                                     morts.add(ani[indice].getNom() + ani[indice].getCouleur());
                                     ani[indice].setX(xm);
                                     ani[indice].setY(ym);
-                                }   else {
+                                } else {
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
 
                                     coup++;
                                     compteur_tour--;
                                 }
-                            break;
-                             }
-                            if (ani[i].getRang_partie() == 8 ) {
+                                break;
+                            }
+                            if (ani[i].getRang_partie() == 8) {
                                 //ani[i]disparait
                                 morts.add(ani[i].getNom() + ani[i].getCouleur());//on ajoute l'animal à la liste des morts
                                 //morts.add(); // Integer.toString(int i)  //String.Valueof(int) 
-                                
+
                                 ani[i].setX(xm);
                                 ani[i].setY(ym);//on lui donne les coordonnées des morts
                                 System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
                             } else {
-                                 int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
+                                int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
                                 if (result == 0) {
                                     System.out.println("suicide de la piece " + ani[indice].getNom() + " " + ani[indice].getCouleur());
                                     //ani[indice](disparait)
@@ -883,6 +882,13 @@ public class IHM_plateau extends javax.swing.JFrame {
                             break;
                     }
 
+                } else {
+                    JOptionPane.showMessageDialog(this, "Vos animaux ne se mangent pas entre eux!");
+                    x_aff[indice] = xtemp;
+                    y_aff[indice] = ytemp;
+
+                    coup++;
+                    compteur_tour--;
                 }
             }
         }
@@ -900,25 +906,25 @@ public class IHM_plateau extends javax.swing.JFrame {
         }
     }
 //private int entree_morts=0;
+
     private void afficherMorts() {
         /**
-         L'image morte est dans un tableau, morts
-         * on associe un label, on met l'image dans le label
-         * on met le label dans le panel
-         * on affiche le panel
-         * pour ne pas répéter l'affichage d'animaux déjà présents dans la fenêtre, 
-         * comment faire?
-         **/
+         * L'image morte est dans un tableau, morts on associe un label, on met
+         * l'image dans le label on met le label dans le panel on affiche le
+         * panel pour ne pas répéter l'affichage d'animaux déjà présents dans la
+         * fenêtre, comment faire?
+         *
+         */
         System.out.println("vous entrez dans le cimetière");
         //int deja_affiche=panel_mort.getComponentCount();
         //Component []truc=panel_mort.getComponents();
         //System.out.println("deja affiché : "+truc.toString());//aficher le nombre de truc dans le panel mort
         for (int i = 0; i < ani.length; i++) {
-          if (morts.contains(ani[i].getNom() + ani[i].getCouleur())) {
-              jmort=new JLabel();
-              jmort.setIcon(new ImageIcon(image[i]));//éviter les répétitions
-              panel_mort.add(jmort, -1);
-          }  
+            if (morts.contains(ani[i].getNom() + ani[i].getCouleur())) {
+                jmort = new JLabel();
+                jmort.setIcon(new ImageIcon(image[i]));//éviter les répétitions
+                panel_mort.add(jmort, -1);
+            }
         }
         nb_mort = morts.size();
         revalidate();
@@ -979,22 +985,20 @@ public class IHM_plateau extends javax.swing.JFrame {
                     jLabelJoueurR.setText(ligne_sauv[i]);
                 }*/
             }
-            
-                for (int i = 0; i < ligne_sauv.length/2; i++) {
-                    x_sauv[i] = ligne_sauv[i];
-                    System.out.println("x_sauv"+i+"="+x_sauv[i]);
-                }
-                for (int i = 16; i < ligne_sauv.length; i++){
-                    y_sauv[i-16] = ligne_sauv[i];
-                    System.out.println("y_sauv"+i+"="+y_sauv[i-16]);
-                }
 
-jLabelJoueurB.setText(lecteur.readLine()); //reprendre les noms enregistrés
-jLabelJoueurR.setText(lecteur.readLine());
+            for (int i = 0; i < ligne_sauv.length / 2; i++) {
+                x_sauv[i] = ligne_sauv[i];
+                System.out.println("x_sauv" + i + "=" + x_sauv[i]);
+            }
+            for (int i = 16; i < ligne_sauv.length; i++) {
+                y_sauv[i - 16] = ligne_sauv[i];
+                System.out.println("y_sauv" + i + "=" + y_sauv[i - 16]);
+            }
 
-            
-                
-        }catch (IOException ex) {
+            jLabelJoueurB.setText(lecteur.readLine()); //reprendre les noms enregistrés
+            jLabelJoueurR.setText(lecteur.readLine());
+
+        } catch (IOException ex) {
             System.out.println("Erreur de lecture du fichier_sauvegarde");
         }
         try {
@@ -1005,7 +1009,7 @@ jLabelJoueurR.setText(lecteur.readLine());
         }
         System.out.println("fin de de lecture");
     }
-/*
+    /*
     private void traitementChevauchement() {
          switch (pressed) {
                         case "z":
