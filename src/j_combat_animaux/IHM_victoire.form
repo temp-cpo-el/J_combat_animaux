@@ -45,18 +45,17 @@
                   <EmptySpace pref="219" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabel1" min="-2" pref="486" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="257" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabelNom_du_vinqueur" min="-2" pref="176" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="417" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
                           <Component id="jButtonRecommencer" min="-2" pref="271" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                           <Component id="jButtonQuitter" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabelNom_du_vinqueur" min="-2" pref="512" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" pref="486" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="231" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -67,9 +66,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="75" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelNom_du_vinqueur" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="93" max="32767" attributes="0"/>
+                  <EmptySpace pref="102" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonRecommencer" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
                       <Component id="jButtonQuitter" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
@@ -99,7 +98,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="     X"/>
+            <Property name="text" type="java.lang.String" value="                 X"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonRecommencer">

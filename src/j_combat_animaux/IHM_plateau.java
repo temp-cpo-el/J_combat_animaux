@@ -974,6 +974,10 @@ System.out.println("vous avez appuyé sur une touche");
                     y_sauv[i-16] = ligne_sauv[i];
                     System.out.println("y_sauv"+i+"="+y_sauv[i-16]);
                 }
+
+jLabelJoueurB.setText(lecteur.readLine()); //reprendre les noms enregistrés
+jLabelJoueurR.setText(lecteur.readLine());
+
             
                 
         }catch (IOException ex) {

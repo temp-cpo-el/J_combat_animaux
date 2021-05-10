@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -30,7 +31,7 @@ public class IHM_acceuil extends javax.swing.JFrame {
      */
     public IHM_acceuil() {
         initComponents();
-        setBounds(0, 0, 972,600);
+        setBounds(0, 0, 977,708);
          jPanelacceuil.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
         try {
             imageAcceuil = ImageIO.read(fichierAcceuil);//utilisation de plateau_de_jeu
@@ -73,12 +74,9 @@ public class IHM_acceuil extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextJoueurB = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jRadioButtonnouvellepartie = new javax.swing.JRadioButton();
-        jRadioButtonreprendrepartie = new javax.swing.JRadioButton();
-        jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,8 +102,8 @@ public class IHM_acceuil extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonjouer.setBackground(new java.awt.Color(0, 51, 0));
-        jButtonjouer.setFont(new java.awt.Font("Viner Hand ITC", 1, 24)); // NOI18N
+        jButtonjouer.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonjouer.setFont(new java.awt.Font("Viner Hand ITC", 1, 48)); // NOI18N
         jButtonjouer.setForeground(new java.awt.Color(255, 255, 255));
         jButtonjouer.setText("JOUER");
         jButtonjouer.addActionListener(new java.awt.event.ActionListener() {
@@ -137,65 +135,21 @@ public class IHM_acceuil extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("pseudo:");
 
-        jPanel2.setBackground(new java.awt.Color(102, 255, 153));
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jRadioButtonnouvellepartie.setBackground(new java.awt.Color(102, 255, 153));
-        buttonGroup1.add(jRadioButtonnouvellepartie);
-        jRadioButtonnouvellepartie.setFont(new java.awt.Font("Rockwell", 1, 16)); // NOI18N
-        jRadioButtonnouvellepartie.setText("commencer une nouvelle partie");
-        jRadioButtonnouvellepartie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonnouvellepartieActionPerformed(evt);
-            }
-        });
-
-        jRadioButtonreprendrepartie.setBackground(new java.awt.Color(102, 255, 153));
-        buttonGroup1.add(jRadioButtonreprendrepartie);
-        jRadioButtonreprendrepartie.setFont(new java.awt.Font("Rockwell", 1, 16)); // NOI18N
-        jRadioButtonreprendrepartie.setText("reprendre une partie en cours");
-        jRadioButtonreprendrepartie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonreprendrepartieActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 16)); // NOI18N
-        jLabel5.setText("Options de jeu");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButtonreprendrepartie)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addGap(111, 111, 111))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jRadioButtonnouvellepartie)
-                            .addGap(40, 40, 40)))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jRadioButtonnouvellepartie)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButtonreprendrepartie)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         jLabel7.setFont(new java.awt.Font("Viner Hand ITC", 1, 24)); // NOI18N
         jLabel7.setText("dans");
 
         jLabel8.setFont(new java.awt.Font("Viner Hand ITC", 1, 48)); // NOI18N
         jLabel8.setText("Le jeu de la jungle!");
+
+        jButton1.setBackground(new java.awt.Color(0, 51, 0));
+        jButton1.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("voir les regles du jeu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelacceuilLayout = new javax.swing.GroupLayout(jPanelacceuil);
         jPanelacceuil.setLayout(jPanelacceuilLayout);
@@ -224,14 +178,14 @@ public class IHM_acceuil extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jTextJoueurB, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelacceuilLayout.createSequentialGroup()
-                        .addGap(380, 380, 380)
-                        .addComponent(jButtonjouer, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelacceuilLayout.createSequentialGroup()
-                        .addGap(319, 319, 319)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelacceuilLayout.createSequentialGroup()
                         .addGap(258, 258, 258)
-                        .addComponent(jLabel8)))
+                        .addComponent(jLabel8))
+                    .addGroup(jPanelacceuilLayout.createSequentialGroup()
+                        .addGap(305, 305, 305)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelacceuilLayout.createSequentialGroup()
+                        .addGap(371, 371, 371)
+                        .addComponent(jButtonjouer, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(227, Short.MAX_VALUE))
         );
         jPanelacceuilLayout.setVerticalGroup(
@@ -253,11 +207,11 @@ public class IHM_acceuil extends javax.swing.JFrame {
                         .addComponent(jTextJoueurR, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)
                         .addComponent(jTextJoueurB, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jButtonjouer, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(56, 56, 56)
+                .addComponent(jButtonjouer)
+                .addGap(108, 108, 108))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -270,16 +224,11 @@ public class IHM_acceuil extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelacceuil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(59, 59, 59))
+                .addComponent(jPanelacceuil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jRadioButtonreprendrepartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonreprendrepartieActionPerformed
-       /*option_de_jeu=true;*/
-    }//GEN-LAST:event_jRadioButtonreprendrepartieActionPerformed
 
     private void jTextJoueurRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextJoueurRActionPerformed
         
@@ -318,10 +267,17 @@ public class IHM_acceuil extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonjouerActionPerformed
 
-    private void jRadioButtonnouvellepartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonnouvellepartieActionPerformed
-        //int np=1;
-//        option_de_jeu=false;
-    }//GEN-LAST:event_jRadioButtonnouvellepartieActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this,"            But du jeu  \n Le but du jeu est d'atteindre la tanière adverse avant l'adversaire ( la casse blanche du plateau).  "
+                + "\n           Comment jouer? \nChaque joueur a 8 sorte d'animaux à votre dispositon:\n-Le rat, le plus faible qui peut se faire manger par tous les autres animaux sauf l'Elephant qu'il peut manger ainsi que le rat de l'autre équipe. Il peut aussi nager dans la rivière (cases bleus). "
+                + "\n-Le chat, il peut se faire manger par tout le monde sauf le rat qu'il peut manger aissi que le chat adverse, il ne peut pas traverser la rivière et doit en faire le tour."
+                + "\n-Le Loup peut manger tout le monde sauf le rat et le chat qu'il peut manger ainsi que le loup adverse,il ne peut pas traverser la rivière et doit en faire le tour."
+                + "\n    et ainsi de suite pour tous les animaux( Vous pourrez trouver le rand des animaux en haut du plateua de jeu)."
+                + "\n il y a une exception pour le tigre et le lion qui peuvent sauter la rivière."
+                + "\nLorsqu'un animal est sur une case marron alors il peut etre manger par nimporte quel animal."
+                + "A vous de jouer!","Regle du jeu",JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,30 +307,28 @@ public class IHM_acceuil extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        /*
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IHM_acceuil().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonjouer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelacceuil;
-    private javax.swing.JRadioButton jRadioButtonnouvellepartie;
-    private javax.swing.JRadioButton jRadioButtonreprendrepartie;
     private javax.swing.JTextField jTextJoueurB;
     private javax.swing.JTextField jTextJoueurR;
     // End of variables declaration//GEN-END:variables
