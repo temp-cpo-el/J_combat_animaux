@@ -775,7 +775,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     private void duel() {
 // maintenant il reste juste à faire disparaître les images mangées
         //ani[indice]->animal selectionné
-        //Ani[i]->animal dasn le perimetrede duel de ani[indice]
+        //ani[i]->animal dasn le perimetrede duel de ani[indice]
         x_zonepd = ani[indice].getX() - 55;
         x_zonepf = ani[indice].getX() + 55;
         y_zonepd = ani[indice].getY() - 55;
@@ -788,10 +788,18 @@ public class IHM_plateau extends javax.swing.JFrame {
 
                     switch (ani[indice].getRang_partie()) {
                         case 1:
-                            //if (RH.Inside(ani[indice].getX(), ani[indice].getY()) || RB.Inside(ani[indice].getX(), ani[indice].getY())) {
-                            //     JOptionPane.showMessageDialog(this,"le rat ne peut pas manger un autre animal en sortant de la rivière");
-                            // }
-                            if (ani[i].getRang_partie() == 8) {
+                            if (RH.Inside(xtemp, ytemp) || RB.Inside(xtemp, ytemp)) {
+                               JOptionPane.showMessageDialog(this,"le rat ne peut pas manger un autre animal en sortant de la rivière");
+                            int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
+                                if (result == 0) {
+                                    System.out.println("suicide de la piece " + ani[indice].getNom() + " " + ani[indice].getCouleur());
+                                    //ani[indice](disparait)
+                                    morts.add(ani[indice].getNom() + ani[indice].getCouleur());
+                                    ani[indice].setX(xm);
+                                    ani[indice].setY(ym);
+                            break;
+                             }}
+                            if (ani[i].getRang_partie() == 8 ) {
                                 //ani[i]disparait
                                 morts.add(ani[i].getNom() + ani[i].getCouleur());//on ajoute l'animal à la liste des morts
                                 //morts.add(); // Integer.toString(int i)  //String.Valueof(int) 
@@ -800,7 +808,7 @@ public class IHM_plateau extends javax.swing.JFrame {
                                 ani[i].setY(ym);//on lui donne les coordonnées des morts
                                 System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
                             } else {
-                                int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
+                                 int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
                                 if (result == 0) {
                                     System.out.println("suicide de la piece " + ani[indice].getNom() + " " + ani[indice].getCouleur());
                                     //ani[indice](disparait)
