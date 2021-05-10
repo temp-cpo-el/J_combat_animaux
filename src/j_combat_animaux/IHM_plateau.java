@@ -7,6 +7,7 @@ package j_combat_animaux;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -452,6 +453,7 @@ System.out.println("vous avez appuyé sur une touche");
             }
             System.out.println(pressed);//ça change rien de le changer de place je suis d'accord
             traitementBornes();
+//            traitementChevauchement();
             traitementRivière();
             duel();
             piege();
@@ -791,6 +793,8 @@ System.out.println("vous avez appuyé sur une touche");
                             if (ani[i].getRang_partie() == 8) {
                                 //ani[i]disparait
                                 morts.add(ani[i].getNom() + ani[i].getCouleur());//on ajoute l'animal à la liste des morts
+                                //morts.add(); // Integer.toString(int i)  //String.Valueof(int) 
+                                
                                 ani[i].setX(xm);
                                 ani[i].setY(ym);//on lui donne les coordonnées des morts
                                 System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
@@ -879,19 +883,24 @@ System.out.println("vous avez appuyé sur une touche");
             System.out.println("le rang de " + ani[indice].getNom() + ani[indice].getCouleur() + " est " + ani[indice].getRang_partie());
         }
     }
-
+//private int entree_morts=0;
     private void afficherMorts() {
         /**
          L'image morte est dans un tableau, morts
          * on associe un label, on met l'image dans le label
          * on met le label dans le panel
          * on affiche le panel
+         * pour ne pas répéter l'affichage d'animaux déjà présents dans la fenêtre, 
+         * comment faire?
          **/
         System.out.println("vous entrez dans le cimetière");
+        //int deja_affiche=panel_mort.getComponentCount();
+        //Component []truc=panel_mort.getComponents();
+        //System.out.println("deja affiché : "+truc.toString());//aficher le nombre de truc dans le panel mort
         for (int i = 0; i < ani.length; i++) {
           if (morts.contains(ani[i].getNom() + ani[i].getCouleur())) {
               jmort=new JLabel();
-              jmort.setIcon(new ImageIcon(image[i]));
+              jmort.setIcon(new ImageIcon(image[i]));//éviter les répétitions
               panel_mort.add(jmort, -1);
           }  
         }
@@ -978,6 +987,31 @@ System.out.println("vous avez appuyé sur une touche");
         } 
     System.out.println("fin de de lecture");
     }
+/*
+    private void traitementChevauchement() {
+         switch (pressed) {
+                        case "z":
+                            
+                            break;
+                        case "s":
+                            
+                            break;
+                        case "q":
+                            for (int i = 0; i < ani.length; i++) {
+                            if((new Zone(xtemp-101,xtemp-97,ytemp-5,ytemp+5)).Inside(ani[i].getX(),ani[i].getY()) && i!=indice && tour==ani[indice].isBleu()){
+                                System.out.println("case prise");
+                                x_aff[indice]=xtemp;
+                                ani[indice].setX(x_aff[indice]);
+                                coup++;
+                                compteur_tour--;
+                            }}
+                            break;
+                        case "d":
+                            break;
+                        default:
+                            System.out.println("piece probablement chevauchante");
+                    }
+    }*/
 }
 
 
