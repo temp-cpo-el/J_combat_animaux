@@ -123,17 +123,13 @@ public class IHM_acceuil extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(7, 0, 0));
         jLabel3.setText("Joueur Bleu");
 
-        jTextJoueurR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextJoueurRActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("pseudo:");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("pseudo:");
+
+        jTextJoueurB.setText("B");
 
         jLabel7.setFont(new java.awt.Font("Viner Hand ITC", 1, 24)); // NOI18N
         jLabel7.setText("dans");
@@ -230,17 +226,13 @@ public class IHM_acceuil extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextJoueurRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextJoueurRActionPerformed
-        
-    }//GEN-LAST:event_jTextJoueurRActionPerformed
-
     private void jButtonjouerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonjouerActionPerformed
         JoueurR=jTextJoueurR.getText();
         JoueurB=jTextJoueurB.getText();
-        if (JoueurR==""){
+        if (jTextJoueurR.getText().equals("")){
             JoueurR= "Joueur Rouge";
         }
-         if (JoueurB==""){
+         if (jTextJoueurB.getText().equals("")){
             JoueurB= "Joueur Bleu";
         }
 

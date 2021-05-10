@@ -203,9 +203,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextJoueurR">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextJoueurRActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -224,6 +221,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextJoueurB">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="B"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
