@@ -797,8 +797,15 @@ public class IHM_plateau extends javax.swing.JFrame {
                                     morts.add(ani[indice].getNom() + ani[indice].getCouleur());
                                     ani[indice].setX(xm);
                                     ani[indice].setY(ym);
+                                }   else {
+                                    x_aff[indice] = xtemp;
+                                    y_aff[indice] = ytemp;
+
+                                    coup++;
+                                    compteur_tour--;
+                                }
                             break;
-                             }}
+                             }
                             if (ani[i].getRang_partie() == 8 ) {
                                 //ani[i]disparait
                                 morts.add(ani[i].getNom() + ani[i].getCouleur());//on ajoute l'animal à la liste des morts

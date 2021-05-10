@@ -269,13 +269,13 @@ public class IHM_acceuil extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this,"            But du jeu  \n Le but du jeu est d'atteindre la tanière adverse avant l'adversaire ( la casse blanche du plateau).  "
-                + "\n           Comment jouer? \nChaque joueur a 8 sorte d'animaux à votre dispositon:\n-Le rat, le plus faible qui peut se faire manger par tous les autres animaux sauf l'Elephant qu'il peut manger ainsi que le rat de l'autre équipe. Il peut aussi nager dans la rivière (cases bleus). "
-                + "\n-Le chat, il peut se faire manger par tout le monde sauf le rat qu'il peut manger aissi que le chat adverse, il ne peut pas traverser la rivière et doit en faire le tour."
+        JOptionPane.showMessageDialog(this,"            But du jeu  \n Le but du jeu est d'atteindre la tanière adverse avant l'adversaire ( la case blanche du plateau).  "
+                + "\n           Comment jouer? \nChaque joueur a 8 sortes d'animaux à sa dispositon:\n-Le rat, le plus faible qui peut se faire manger par tous les autres animaux sauf l'Elephant qu'il peut manger ainsi que le rat de l'autre équipe. Il peut aussi nager dans la rivière (cases bleues). "
+                + "\n-Le chat, il peut se faire manger par tout le monde sauf le rat qu'il peut manger ainsi que le chat adverse, il ne peut pas traverser la rivière et doit en faire le tour."
                 + "\n-Le Loup peut manger tout le monde sauf le rat et le chat qu'il peut manger ainsi que le loup adverse,il ne peut pas traverser la rivière et doit en faire le tour."
-                + "\n    et ainsi de suite pour tous les animaux( Vous pourrez trouver le rand des animaux en haut du plateua de jeu)."
-                + "\n il y a une exception pour le tigre et le lion qui peuvent sauter la rivière."
-                + "\nLorsqu'un animal est sur une case marron alors il peut etre manger par nimporte quel animal."
+                + "\n    et ainsi de suite pour tous les animaux( Vous pourrez trouver le rang des animaux en haut du plateau de jeu)."
+                + "\n il y a une exception pour le tigre et le lion qui peuvent sauter au dessus de la rivière."
+                + "\nLorsqu'un animal est sur une case marron alors il peut être mangé par n'importe quel animal."
                 + "A vous de jouer!","Regle du jeu",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
