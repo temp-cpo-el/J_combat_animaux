@@ -26,10 +26,10 @@ public class IHM_victoire extends javax.swing.JFrame {
     public IHM_victoire(String nom_vainqueur) {
         initComponents();
         setBounds(0, 0, 985, 600);
-        jPanelvictoire.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
+        jPanelvictoire.setFocusable(true);
         jLabelNom_du_vinqueur.setText(nom_vainqueur);
         try {
-            imageVictoire = ImageIO.read(fichiervictoire);//utilisation de plateau_de_jeu
+            imageVictoire = ImageIO.read(fichiervictoire);
         } catch (IOException ex) {
             System.out.println("fichiervictoire inutilisable");
         }
