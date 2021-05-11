@@ -448,14 +448,12 @@ public class IHM_plateau extends javax.swing.JFrame {
                 coup--;
                 System.out.println("coup à 0");
             }
-            System.out.println(pressed);//ça change rien de le changer de place je suis d'accord
+            System.out.println(pressed);
             traitementBornes();
-//            traitementChevauchement();
             traitementRivière();
             duel();
             piege();
             jPanel1.repaint();
-            //traitementPiege();
             traitementTaniere();
             compteur_tour++;
         }
@@ -706,9 +704,6 @@ public class IHM_plateau extends javax.swing.JFrame {
     String gagnant;
 
     private void traitementTaniere() {
-        //this.IHM_acceuil=IHM_acceuil;
-        //potion900| 500 + 38x60
-        //personnagexLink|yLink + 9x90
         if ((col[8]) < x_aff[indice] && x_aff[indice] < (col[8] + 20)
                 && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && !ani[indice].isBleu() && !tour) {
             gagnant = jLabelJoueurR.getText();
@@ -721,6 +716,16 @@ public class IHM_plateau extends javax.swing.JFrame {
             IHM_victoire ihm1 = new IHM_victoire(gagnant);
             setVisible(false);
             ihm1.setVisible(true);
+        }
+        if (morts.size() == 15) {//si il ne rest plus qu'un animal sur le plateau, la couleur restante gagne
+            for (int i = 0; i < ani.length; i++) {
+                if (!morts.contains(ani[i].getNom() + ani[i].getCouleur())) {
+                    /*
+                //    
+                //  
+                     */
+                }
+            }
         }
 
     }
@@ -781,8 +786,8 @@ public class IHM_plateau extends javax.swing.JFrame {
         y_zonepf = ani[indice].getY() + 55;
 
         for (int i = 0; i < ani.length; i++) {
-            if(new Zone(x_zonepd,x_zonepf,y_zonepd,y_zonepf).Inside(ani[i].getX(),ani[i].getY()) && i!=indice){//j'ai mis ça, comme ça on utilise nos classes 
-            //if (ani[i].getX() >= x_zonepd && ani[i].getX() <= x_zonepf && ani[i].getY() >= y_zonepd && ani[i].getY() <= y_zonepf && i != indice) {
+            if (new Zone(x_zonepd, x_zonepf, y_zonepd, y_zonepf).Inside(ani[i].getX(), ani[i].getY()) && i != indice) {//j'ai mis ça, comme ça on utilise nos classes 
+                //if (ani[i].getX() >= x_zonepd && ani[i].getX() <= x_zonepf && ani[i].getY() >= y_zonepd && ani[i].getY() <= y_zonepf && i != indice) {
                 if (ani[i].isBleu() != ani[indice].isBleu()) {
                     System.out.println("oui!");
 
@@ -958,7 +963,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.out.println("Problème dans la sauvegarde");
         }
-        // JOptionPane.showMessageDialog(this, "La partie a bien été enregistrée", "Vous pouvez quitter la partie",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "La partie a bien été enregistrée", "Vous pouvez quitter la partie", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void lecture() {
@@ -969,23 +974,20 @@ public class IHM_plateau extends javax.swing.JFrame {
             lecteur = new BufferedReader(new FileReader("src/sauvegarde/fichier_sauvegarde.txt"));
         } catch (FileNotFoundException exc) {
             System.out.println("Erreur d'ouverture");
+            JOptionPane.showMessageDialog(this, "ERREUR\nLa partie sauvegardée est introuvable,\n La partie va être réinitialisée","sauvegarde introuvable",JOptionPane.INFORMATION_MESSAGE);
+            option = false;
+            afficherAnimaux(ani);
         }
         try {
-            //while (lecteurAvecBuffer.readLine()!=null)
             for (int i = 0; i < ligne_sauv.length; i++) {
                 ligne_sauv[i] = Integer.parseInt(lecteur.readLine());
-                /*if (i==(ligne_sauv.length-1)){//pour lire les nom s des joueurs, il faut qu'on tranforme les 'int' en 'String'
-                    jLabelJoueurR.setText(ligne_sauv[i]);
-                }
-                if (i==(ligne_sauv.length)){
-                    jLabelJoueurR.setText(ligne_sauv[i]);
-                }*/
             }
 
             for (int i = 0; i < ligne_sauv.length / 2; i++) {
                 x_sauv[i] = ligne_sauv[i];
                 System.out.println("x_sauv" + i + "=" + x_sauv[i]);
             }
+
             for (int i = 16; i < ligne_sauv.length; i++) {
                 y_sauv[i - 16] = ligne_sauv[i];
                 System.out.println("y_sauv" + i + "=" + y_sauv[i - 16]);
@@ -994,40 +996,20 @@ public class IHM_plateau extends javax.swing.JFrame {
             jLabelJoueurB.setText(lecteur.readLine()); //reprendre les noms enregistrés
             jLabelJoueurR.setText(lecteur.readLine());
 
+        } catch (NumberFormatException ex) {
+            System.out.println("Erreur de lecture du fichier_sauvegarde");
+            JOptionPane.showMessageDialog(this, "ERREUR\nLa partie sauvegardée n'a pu être téléchargée correctement,\n La partie va être réinitialisée");
+            option = false;
+            afficherAnimaux(ani);
         } catch (IOException ex) {
             System.out.println("Erreur de lecture du fichier_sauvegarde");
         }
         try {
             lecteur.close();
-            //System.out.println("fermeture, fin de lecture");
         } catch (IOException ex) {
             System.out.println("Erreur de fermeture du fichier_sauvegarde");
         }
         System.out.println("fin de de lecture");
     }
-    /*
-    private void traitementChevauchement() {
-         switch (pressed) {
-                        case "z":
-                            
-                            break;
-                        case "s":
-                            
-                            break;
-                        case "q":
-                            for (int i = 0; i < ani.length; i++) {
-                            if((new Zone(xtemp-101,xtemp-97,ytemp-5,ytemp+5)).Inside(ani[i].getX(),ani[i].getY()) && i!=indice && tour==ani[indice].isBleu()){
-                                System.out.println("case prise");
-                                x_aff[indice]=xtemp;
-                                ani[indice].setX(x_aff[indice]);
-                                coup++;
-                                compteur_tour--;
-                            }}
-                            break;
-                        case "d":
-                            break;
-                        default:
-                            System.out.println("piece probablement chevauchante");
-                    }
-    }*/
+
 }
