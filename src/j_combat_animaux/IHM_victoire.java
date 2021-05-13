@@ -134,7 +134,7 @@ public class IHM_victoire extends javax.swing.JFrame {
     private void jButtonRecommencerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecommencerActionPerformed
      IHM_acceuil ihm=new IHM_acceuil();
      ihm.setVisible(true);
-     setVisible(false);
+     setVisible(false);//sir nouvelle partie retour a l'ihm d'accueil
     }//GEN-LAST:event_jButtonRecommencerActionPerformed
 
     private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed

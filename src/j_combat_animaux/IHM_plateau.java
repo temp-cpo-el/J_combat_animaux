@@ -423,7 +423,7 @@ public class IHM_plateau extends javax.swing.JFrame {
             }
             System.out.println(pressed);
             traitementBornes();//On vérifie si l'animal reste bien dans le plateau
-            traitementRivière();//On vérifie sur l'animal a le droit d'aller dans l'eau ou pas
+            traitementRivière();//On vérifie le comportement de l'animal par rapport a la rivière
             duel();//On vérifie si son déplacement engage un duel
             piege();//On vérifie si la case est une case piège
             jPanel1.repaint();
@@ -477,7 +477,7 @@ public class IHM_plateau extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonsauvegardeActionPerformed
 
     private void jButtonquitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonquitterActionPerformed
-            System.exit(0);
+            System.exit(0);//quitter le jeu
     }//GEN-LAST:event_jButtonquitterActionPerformed
 
     /**
@@ -560,7 +560,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         *Avec ani un tableau composé de Animal
         **/ 
         System.err.println("option=" + option);
-        if (option == true) {// on reprend lez coordonnées enregistrées
+        if (option == true) {// on reprend les coordonnées enregistrées
             lecture();//on récupère les valeurs dans le fichier 'fichier_sauvegarde.txt'
             try {
                 for (int i = 0; i < ani.length; i++) {
@@ -594,7 +594,7 @@ public class IHM_plateau extends javax.swing.JFrame {
 
     private void tour_du_joueur() {
         /**
-        *En fonction de la variable compteur_tour, une partie des pions se manipulable et l'autre pas
+        *En fonction de la variable compteur_tour, une partie des pions est manipulable et l'autre pas
          **/
         if (compteur_tour % 2 == 0) {
             tour = false;//tour des rouges
@@ -639,7 +639,7 @@ public class IHM_plateau extends javax.swing.JFrame {
 
             if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && ani[i].isBleu() && tour) {
                 ani[i].setIsSelected(true);//si notre clic correspond aux conditions, le booléen isSelected devient true
-                indice = i;//in récupère l'indice correspondant à l'image dans le tableau d'animaux
+                indice = i;//on récupère l'indice correspondant à l'image dans le tableau d'animaux
 
             }
             if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && !ani[i].isBleu() && !tour) {
@@ -669,7 +669,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         }
         //Haut
         if (y_aff[indice] < 121) {
-            y_aff[indice] = 121;
+            y_aff[indice] = 121;//correstpond a la ligne
             ani[indice].setY(y_aff[indice]);
         }
         //BAS
@@ -686,11 +686,14 @@ public class IHM_plateau extends javax.swing.JFrame {
     }
     private String gagnant;
 private int m_bleu=8;
-        private int m_rouge=8;
+private int m_rouge=8;
+        
+        
     private void traitementTaniere() {
         /**
          * On cherche à savoir si l'animal a réussi à se placer sur la case tanière
-         *On utilise la classe Zone pour encadrer le point d'origine de la pièce, si celle si est bien dans la zone, et qu'elle est de la bonne couleur, la phase victoire est enclenchée
+         *On utilise la classe Zone pour encadrer le point d'origine de la pièce, si celle si est bien dans la zone, et qu'elle est de la bonne
+         * couleur, la phase victoire est enclenchée
          **/
         
         if((new Zone(col[8],col[8]+20,ligne[3],ligne[3]+20)).Inside(x_aff[indice], y_aff[indice]) && !ani[indice].isBleu() && !tour){   
@@ -728,7 +731,7 @@ private int m_bleu=8;
  **/
         if (ani[indice].getNom() != "rat") {//dixit pour tous les autres animaux
             if (RH.Inside(ani[indice].getX(), ani[indice].getY()) || RB.Inside(ani[indice].getX(), ani[indice].getY())) {//si leurs coordonnées atterissent dans la rivière
-                if (ani[indice].getNom() != "tigre" && ani[indice].getNom() != "lion") {
+                if (ani[indice].getNom() != "tigre" && ani[indice].getNom() != "lion") {//si ce n'est ni un lion ni un tigre
                     JOptionPane.showMessageDialog(this, "Vous ne pouvez pas traverser la rivière, vous allez vous noyer, faites le tour", "Attention",
                             JOptionPane.INFORMATION_MESSAGE);
                     x_aff[indice] = xtemp;
@@ -740,7 +743,7 @@ private int m_bleu=8;
                     compteur_tour--;
                 }
                 if ((ani[indice].getNom()).equals("lion") || (ani[indice].getNom()).equals("tigre")) {
-                    System.out.println("Saut félin");
+                    System.out.println("Saut félin");//si c'est un lion ou un tigre
                     switch (pressed) {
                         case "z":
                             System.out.println("remontée");
@@ -761,6 +764,7 @@ private int m_bleu=8;
                             break;
                         default:
                             System.out.println("erreur");
+                            //saut au dessus de la rivière
                     }
 
                 }
@@ -772,23 +776,23 @@ private int m_bleu=8;
 
     private void duel() {
         /**
-         *Lorsque deux animaux se retrouvent sur la même, nous utilisons duel(), il y a alors deux cas :
+         *Lorsque deux animaux se retrouvent sur la même case, nous utilisons duel(), il y a alors deux cas :
          * La couleur des pièces en conflit est la même, on replace la dernière pièce à son emplacement antérieur
          * La couleur des pièces en conflit est différente, on compare leur rang pour savoir qui mange qui
          **/
         //ani[indice]->animal selectionné
         //ani[i]->animal dasn le perimetrede duel de ani[indice]
-        x_zonepd = ani[indice].getX() - 55;
-        x_zonepf = ani[indice].getX() + 55;
-        y_zonepd = ani[indice].getY() - 55;
-        y_zonepf = ani[indice].getY() + 55;//zone délimitant les alentours de la pièce ani[indice]
+        x_zonepd = ani[indice].getX() - 40;
+        x_zonepf = ani[indice].getX() + 40;
+        y_zonepd = ani[indice].getY() - 40;
+        y_zonepf = ani[indice].getY() + 40;//zone délimitant les alentours de la pièce ani[indice]
 
-        for (int i = 0; i < ani.length; i++) {
+        for (int i = 0; i < ani.length; i++) {//on passe en revu tous les animaux pour voir si l'un d'eu est dans la zone de l'animal sélectionné
             if (new Zone(x_zonepd, x_zonepf, y_zonepd, y_zonepf).Inside(ani[i].getX(), ani[i].getY()) && i != indice) {
-                if (ani[i].isBleu() != ani[indice].isBleu()) {
-                    switch (ani[indice].getRang_partie()) {
-                        case 1:
-                            if (RH.Inside(xtemp, ytemp) || RB.Inside(xtemp, ytemp)) {
+                if (ani[i].isBleu() != ani[indice].isBleu()) {//si il sont de couleur opposé a la piece selectionné
+                    switch (ani[indice].getRang_partie()) {//suivant le rang de la piece selectionné, comportement different
+                        case 1://rat
+                            if (RH.Inside(xtemp, ytemp) || RB.Inside(xtemp, ytemp)) {// le rat ne peut pas  vienir de la rivière pour manger un autre animal sinon il se fait manger
                                 JOptionPane.showMessageDialog(this, "le rat ne peut pas manger un autre animal en sortant de la rivière");
                                 int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
                                 if (result == 0) {
@@ -806,7 +810,7 @@ private int m_bleu=8;
                                 }
                                 break;
                             }
-                            if (ani[i].getRang_partie() == 8) {
+                            if (ani[i].getRang_partie() == 8) {//si l'animal attaqué par le rat est un éléphant
                                 //ani[i]disparait
                                 morts.add(ani[i].getNom() + ani[i].getCouleur());//on ajoute l'animal à la liste des morts
                                 //morts.add(); // Integer.toString(int i)  //String.Valueof(int) 
@@ -814,7 +818,7 @@ private int m_bleu=8;
                                 ani[i].setX(xm);
                                 ani[i].setY(ym);//on lui donne les coordonnées des morts
                                 System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
-                            } else {
+                            } else {// si ce n'est pas un elephant le rat ce fait manger
                                 int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
                                 if (result == 0) {
                                     System.out.println("suicide de la piece " + ani[indice].getNom() + " " + ani[indice].getCouleur());
@@ -832,10 +836,10 @@ private int m_bleu=8;
                                 }
                             }
                             break;
-                        case 8:
-                            if (ani[i].getRang_partie() == 1) {
+                        case 8://l'animal selectionné est un éléphant
+                            if (ani[i].getRang_partie() == 1) {// si il tente de manger un rat il va ce faire manger
                                 int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
-                                if (result == 0) {
+                                if (result == 0) {//reponse OUI
                                     System.out.println("suicide de la piece " + ani[indice].getNom() + " " + ani[indice].getCouleur());
                                     //ani[indice](disparait)
                                     morts.add(ani[indice].getNom() + ani[indice].getCouleur());
@@ -845,47 +849,25 @@ private int m_bleu=8;
                                         m_bleu--;
                                     }else{
                                         m_rouge--;
-                                    }
-                                } else {
+                                    }//comtage des pieces mangées
+                                } else {//reponse NON
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
                                     coup++;
                                     compteur_tour--;
                                 }
-                                break;
-                            }
-                            if (ani[i].getRang_partie() == 8) {
-                                //ani[i]disparait
-                                morts.add(ani[i].getNom() + ani[i].getCouleur());//on ajoute l'animal à la liste des morts
-                                ani[i].setX(xm);
-                                ani[i].setY(ym);//on lui donne les coordonnées des morts
-                                if (ani[indice].isBleu()){
-                                        m_bleu--;
-                                    }else{
-                                        m_rouge--;
-                                    }
-                                System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
                             } else {
-                                int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
-                                if (result == 0) {
-                                    System.out.println("suicide de la piece " + ani[indice].getNom() + " " + ani[indice].getCouleur());
                                     //ani[indice](disparait)
-                                    morts.add(ani[indice].getNom() + ani[indice].getCouleur());
-                                    ani[indice].setX(xm);
-                                    ani[indice].setY(ym);
-                                    if (ani[indice].isBleu()){
+                                    morts.add(ani[i].getNom() + ani[i].getCouleur());
+                                    ani[i].setX(xm);
+                                    ani[i].setY(ym);
+                                    if (ani[i].isBleu()){
                                         m_bleu--;
                                     }else{
                                         m_rouge--;
                                     }
-                                } else {
-                                    x_aff[indice] = xtemp;
-                                    y_aff[indice] = ytemp;
-                                    coup++;
-                                    compteur_tour--;
 
                                 }
-                            }
                             break;
                         default:
                             if (ani[indice].getRang_partie() < ani[i].getRang_partie()) {
@@ -909,6 +891,7 @@ private int m_bleu=8;
 
                                 }
                             } else {
+                                
                                 //ani[i]disparait
                                 morts.add(ani[i].getNom() + ani[i].getCouleur());
                                 ani[i].setX(xm);

@@ -17,7 +17,7 @@ public class Main {
      */
     public static void main(String[] args) {
         IHM_acceuil ihm0=new IHM_acceuil();
-        ihm0.setVisible(true);
+        ihm0.setVisible(true);//affichage de l'ihm d'accueil pour commencer le jeu
     }
     
 }
