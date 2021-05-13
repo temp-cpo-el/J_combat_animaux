@@ -1,13 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @author ELOISE
+ * @author ANNA
  */
 package j_combat_animaux;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -31,23 +30,18 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 
-/**
- *
- * @author ELOISE
- * @author ANNA
- */
+
 public class IHM_plateau extends javax.swing.JFrame {
 
     private File fichierplateau = new File("src/images/plateau3.png");//on va chercher le fichier dans le dossier d'images
-    private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner à chaque coup
+    private BufferedImage imagePlateau;//la placer en tant que bufferedImage permet de la redessiner 
     private File fichierfondplateau = new File("src/images/Fond_plateau_de_jeu0.png");//on va chercher le fichier dans le dossier d'images
     private BufferedImage imageFondPlateau;
-    private ImageIcon isoleil = new ImageIcon("src/images/petit_soleil.png");//pour afficher le tour du joueur, mais pour l'instant, ça marche, pareille pour les papattes, du coup je les ai pas rajoutées
+    private ImageIcon isoleil = new ImageIcon("src/images/petit_soleil.png");//pour afficher le tour du joueur à coté de son nom
     private int[] ligne = new int[7];
     private int[] col = new int[9];
     private Zone RH = new Zone(477, 710, 210, 350);//définition des zones de rivières
     private Zone RB = new Zone(477, 710, 500, 640);
-    //private Zone CimR= new Zone(244,329,408,496);
 
     private zone_piege cases_piege = new zone_piege(191, 305, 286, 404, 191, 495, 951, 305, 856, 404, 951, 495);//definition zone piege
 
@@ -55,10 +49,10 @@ public class IHM_plateau extends javax.swing.JFrame {
     private int x_zonepf = 0;
     private int y_zonepd = 0;
     private int y_zonepf = 0;
-    // coordonnées de la zone qui entour la piece
+    // coordonnées de la zone qui entoure la piece
 
-    public Animal[] ani = new Animal[16];//j'ai changé la valeur du tableau juste pour les essais
-    private int nbani = 0;//servira pour choper l'animal correspondant
+    public Animal[] ani = new Animal[16];
+    private int nbani = 0;//servira pour compter les animaux et donner le caractère de la victoire
 
     private File[] tab_fich = new File[16];
     private BufferedImage[] image = new BufferedImage[16];
@@ -70,38 +64,29 @@ public class IHM_plateau extends javax.swing.JFrame {
 
     private int[] ligne_sauv = new int[32];
 
-    //pour la mort
+    //pour la mort des pièces
     private ArrayList<String> morts = new ArrayList<>();//tableau de morts
-    //private ArrayList<BufferedImage> im_morts=new ArrayList<>();
     private JFrame frame_mort = new JFrame();
     private JPanel panel_mort = new JPanel();//jpanel dans lequel dessiner tous les animaux morts
-    private final int xm = 3, ym = 200; //coordonnées de la souris
+    private final int xm = 3, ym = 200; //coordonnées des images reconnues comme mortes
     private JLabel jmort = new JLabel("Les morts");
-    //private Zone cim_R = new Zone(240, 326, 407, 490);//zone cimetière rouge
-    //private Zone cim_B = new Zone(1000, 1086, 407, 495);//zone cimetière bleu
-    //^ ces deux lignes ne servent plus parce qu'on prend pour zone à cliquer  le nom des joueurs
     private int nb_mort = 0;
 
     //autres éléments utiles au code:
-    private int coup;
-    private int xtemp, ytemp;//coordonnees de la piece selectionné
-    private boolean tour;
-    private int compteur_tour = 0;
-    private int ligne_proche;
-    private int col_proche;
-    private int indice = 0;
+    private int coup;//coups restant à jouer
+    private int xtemp, ytemp;//coordonnees de la piece selectionnée
+    private boolean tour;//définir le tour du joueur
+    private int compteur_tour = 0;//combien de tours ont été effectués
+    private int ligne_proche;//ligne immédiatement inférieure à la position de la souris
+    private int col_proche;//colonne immédiatement inférieure à la position de la sourie
+    private int indice = 0;//sert à reconnaître un animal dans le tableau ani[]
 
-    private boolean option = false;
+    private boolean option = false;//utilisation des coordonnées du jeu ou du fichier_sauvegarde
 
-    //on tente un truc...
-    //private IHM_acceuil ihm_a= new IHM_acceuil();
-    /**
-     * Creates new form IHM_plateau
-     */
     public IHM_plateau(String JoueurR, String JoueurB) {
 
         initComponents();
-        frame_mort.setTitle("Les morts");
+        frame_mort.setTitle("Les morts");//Création d'une frame pour y mettre l'image des pièces mortes
         //Définition des lignes du plateau Y
         ligne[0] = 118;
         ligne[1] = 210;
@@ -121,7 +106,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         col[7] = 856;
         col[8] = 951;
 
-        /*Définitions de tous les animaux selon leur classe, c'est plus court: */
+        /*Définitions de tous les animaux selon leur classe*/
         Animal a1 = new Animal("rat", 764, 121, 0, 0, 1, 1, true, false);//rat de rang 1 couleur:bleu
         Animal a2 = new Animal("chat", 858, 595, 0, 0, 2, 2, true, false);
         Animal a3 = new Animal("loup", 764, 500, 0, 0, 3, 3, true, false);
@@ -139,7 +124,7 @@ public class IHM_plateau extends javax.swing.JFrame {
         Animal a15 = new Animal("tigre", 195, 121, 0, 0, 7, 7, false, false);
         Animal a16 = new Animal("elephant", 383, 121, 0, 0, 8, 8, false, false);
 
-        ajouterAnimal(a1);
+        ajouterAnimal(a1);//ajout des animaux au tableau ani[]
         ajouterAnimal(a2);
         ajouterAnimal(a3);
         ajouterAnimal(a4);
@@ -156,28 +141,25 @@ public class IHM_plateau extends javax.swing.JFrame {
         ajouterAnimal(a15);
         ajouterAnimal(a16);
 
-        setBounds(0, 0, 1243, 915);     //changement de la taille du plateau, je sais pas trop pourquoi mais il est plus court que ce qu'on zait mis à la base
-        jPanel1.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (sert à prendre le clavier en compte)
+        setBounds(0, 0, 1243, 915);     //changement de la taille de la fenêtre pour correspondre à la taille du plateau
+        jPanel1.setFocusable(true);//sert à prendre le clavier en compte
         try {
             imagePlateau = ImageIO.read(fichierplateau);//utilisation de plateau_de_jeu
         } catch (IOException ex) {
             System.out.println("fichierplateau inutilisable");
         }
 
-        /* Ce qui nous sauvera, parce que tout le reste est dans une fonction autre part!*/
         try {
             imageFondPlateau = ImageIO.read(fichierfondplateau);//utilisation de plateau_de_jeu
         } catch (IOException ex) {
             System.out.println("fichierfondplateau inutilisable");
         }
-        creation_aff();
-        afficherAnimaux(ani);
+        creation_aff(); //création des images
+        afficherAnimaux(ani);//affichage des images
 
-        jLabelJoueurR.setText(JoueurR);
+        jLabelJoueurR.setText(JoueurR);//Attribution des jLabel de joueur
         jLabelJoueurB.setText(JoueurB);
-
-        // jLabelJoueurR.setVisible(true);
-        // jLabelJoueurB.setVisible(true);
+;
     }
 
     /**
@@ -254,11 +236,6 @@ public class IHM_plateau extends javax.swing.JFrame {
         jLabelJoueurR.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
         jLabelJoueurR.setForeground(new java.awt.Color(255, 255, 255));
         jLabelJoueurR.setText("Joueur Rouge");
-        jLabelJoueurR.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentRemoved(java.awt.event.ContainerEvent evt) {
-                jLabelJoueurRComponentRemoved(evt);
-            }
-        });
         jLabelJoueurR.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelJoueurRMouseClicked(evt);
@@ -400,29 +377,25 @@ public class IHM_plateau extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+//Récupération des coordonnées du clic
         xtemp = evt.getX();
         System.out.println("\nx:" + xtemp);
         ytemp = evt.getY();
         System.out.println("y:" + ytemp + "\n");
 
-        /**
-         * if (cim_R.Inside(xtemp, ytemp) || cim_B.Inside(xtemp, ytemp)) {//pour
-         * afficher les morts afficherMorts(); }*
-         */
-        tour_du_joueur();
+        tour_du_joueur(); //On définit la couleur qui a le droit d'effectuer des actions
     }//GEN-LAST:event_jPanel1MouseClicked
 
-    private String pressed;
+    private String pressed; //Connaître la valeur de la touche pressée
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
-        System.out.println("vous avez appuyé sur une touche");
-        if (coup > 0 && ani[indice].isBleu() == tour) {
+        if (coup > 0 && ani[indice].isBleu() == tour) {//Si il reste un coup à jouer et que la couleur de l'animal associé est la bonneest la bonne
 
             xtemp = ani[indice].getX();//pour pouvoir les comparer après
             ytemp = ani[indice].getY();//pour pouvoir les comparer après
             if (evt.getKeyChar() == 'z' && coup > 0) {//Z
-                y_aff[indice] -= 95;
+                y_aff[indice] -= 95;//change les paramètres d'affichage
                 pressed = "z";
-                ani[indice].setY(y_aff[indice]);
+                ani[indice].setY(y_aff[indice]);//on les remplace les anciennes coordonnées avec les nouvelles
             }
             if (evt.getKeyChar() == 's' && coup > 0) {//S
 
@@ -448,28 +421,27 @@ public class IHM_plateau extends javax.swing.JFrame {
                 coup--;
                 System.out.println("coup à 0");
             }
-            System.out.println(pressed);//ça change rien de le changer de place je suis d'accord
-            traitementBornes();
-//            traitementChevauchement();
-            traitementRivière();
-            duel();
-            piege();
+            System.out.println(pressed);
+            traitementBornes();//On vérifie si l'animal reste bien dans le plateau
+            traitementRivière();//On vérifie sur l'animal a le droit d'aller dans l'eau ou pas
+            duel();//On vérifie si son déplacement engage un duel
+            piege();//On vérifie si la case est une case piège
             jPanel1.repaint();
-            //traitementPiege();
-            traitementTaniere();
-            compteur_tour++;
+            traitementTaniere();//Effectuer le traitement tanière permet de voir le mouvement final avant l'apparition de l'ihm_victoire
+            compteur_tour++;//Un tour est passsé
         }
 
         System.out.println("variable coup= " + coup);
-        tour_du_joueur();
+        tour_du_joueur();//grâce à compteur_tour, permet de changer de couleur pouvant agir sur le plateau
     }//GEN-LAST:event_jPanel1KeyPressed
 
     private void jLabelJoueurRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelJoueurRMouseClicked
-        afficherMorts();
+        afficherMorts();//Ouvre une fenêtre avec les animaux mangés affichés
     }//GEN-LAST:event_jLabelJoueurRMouseClicked
 
     private void jButtonNouvelleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNouvelleActionPerformed
-        //vider le tableau des morts
+//on repasse par l'ihm_acceuil pour démarrer une nouvelle partie        
+//vider le tableau des morts
         morts.clear();
         nb_mort = 0;
         IHM_acceuil ihm_a = new IHM_acceuil();
@@ -478,10 +450,11 @@ public class IHM_plateau extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonNouvelleActionPerformed
 
     private void jButtonreprendreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonreprendreActionPerformed
+        //option=true permet de lancer la lecture d'un fichier_sauvegarde dans le prochain afficherAnimaux() 
         option = true;
-        //JOptionPane.showMessageDialog(this, "Reprise de la partie précédente","",JOptionPane.INFORMATION_MESSAGE);
         afficherAnimaux(ani);
         option = false;
+        //On replace les animaux morts dans le ArrayList et la fenêtre correspondante
         for (int i = 0; i < ani.length; i++) {
             if (ani[i].getX() == xm && ani[i].getY() == ym) {
                 morts.add(ani[i].getNom() + ani[i].getCouleur());
@@ -491,25 +464,21 @@ public class IHM_plateau extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonreprendreActionPerformed
 
     private void jButtonsauvegardeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonsauvegardeActionPerformed
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 16; i++) {//enregistrement des coordonées des animaux pour écriture du fichier sauvegarde
             x_sauv[i] = ani[i].getX();
             y_sauv[i] = ani[i].getY();
-
+/*
             System.err.println("x_aff" + i + "=" + x_aff[i]);
             System.err.println("x_sauv" + i + "=" + x_sauv[i]);
             System.err.println("y_aff" + i + "=" + y_aff[i]);
             System.err.println("y_sauv" + i + "=" + y_sauv[i]);
-        }
-        sauvegarde();
+  */      }
+        sauvegarde();//écriture du ficher_sauvegarde
     }//GEN-LAST:event_jButtonsauvegardeActionPerformed
 
     private void jButtonquitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonquitterActionPerformed
-        System.exit(0);
+            System.exit(0);
     }//GEN-LAST:event_jButtonquitterActionPerformed
-
-    private void jLabelJoueurRComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jLabelJoueurRComponentRemoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabelJoueurRComponentRemoved
 
     /**
      * @param args the command line arguments
@@ -564,21 +533,33 @@ public class IHM_plateau extends javax.swing.JFrame {
 /* Ajout des toutes les fonctions dont on aura besoin pour faire fonctionner le code :*/
 
     private void ajouterAnimal(Animal a) {
+        /**
+         *ajouterAnimal() permet d'ajouter un animal au tableau ani[]
+         * 
+         * avec a un Animal précédemment créé
+         **/
         ani[nbani] = a;
         nbani++;
 
     }
 
     private void creation_aff() {
+        /**
+        *creation_aff permet de récupérer les images correspondantes au animaux dans le fichier source et de les mettres dans un tableau
+        *
+        *Cette fonction ne nécessite pas de variable en entrée
+        **/
         for (int i = 0; i < ani.length; i++) {
             tab_fich[i] = new File("src/images/" + ani[i].getNom() + "_" + ani[i].getCouleur() + ".jpg");
         }
     }
 
     private void afficherAnimaux(Animal[] ani) {
-        //initComponents(); <-- pourquoi est-ce qu'il y a un initcomponents ici? il sort d'où? ça fait combien de temps qu'il est là?
+       /**
+        * permet de lire les images du tableau ani et de les placer pour leur affichage initial
+        *Avec ani un tableau composé de Animal
+        **/ 
         System.err.println("option=" + option);
-        //setVariable();
         if (option == true) {// on reprend lez coordonnées enregistrées
             lecture();//on récupère les valeurs dans le fichier 'fichier_sauvegarde.txt'
             try {
@@ -587,8 +568,6 @@ public class IHM_plateau extends javax.swing.JFrame {
                     ani[i].setY(y_sauv[i]);
                     x_aff[i] = ani[i].getX();
                     y_aff[i] = ani[i].getY();
-                    //System.out.println("x_aff"+i+"="+x_aff[i]);
-                    //System.out.println("y_aff"+i+"="+y_aff[i]);
                     image[i] = ImageIO.read(tab_fich[i]);//dessiner les animaux
                 }
             } catch (IOException ex) {
@@ -614,6 +593,9 @@ public class IHM_plateau extends javax.swing.JFrame {
     }
 
     private void tour_du_joueur() {
+        /**
+        *En fonction de la variable compteur_tour, une partie des pions se manipulable et l'autre pas
+         **/
         if (compteur_tour % 2 == 0) {
             tour = false;//tour des rouges
             System.out.println("Tour des rouges");
@@ -634,14 +616,12 @@ public class IHM_plateau extends javax.swing.JFrame {
 
     private void selecAnimaux() {
         /**
-         * fonction en plusieurs étapes: 1)chercher la ligne supérieure la pus
-         * proche de xtemp séléectionné 2)chercher les points d'origines
-         * d'éventuelles images dans une bande partant de cette origine 3)
-         * afficher des carrés autour des images correspondantes sur la ligne on
-         * verra pour le découpage par carré plus tard, pour l'instant on
-         * cherche juste la ligne
-         *
-         *
+         * fonction en plusieurs étapes:
+         *1)chercher la ligne immédiatement inférieure à ytemp sélectionné
+         *2)chercher la colonne immédiatement inférieure à xtemp selectionné
+         *3) trouver l'animal correspondant à ces coordonnées si il existe 
+         *4)Récupérer l'indice associé
+         *5)Entourer l'animal pour plus de visibilité
          */
         for (int i = 0; i < ligne.length; i++) {
 
@@ -654,7 +634,7 @@ public class IHM_plateau extends javax.swing.JFrame {
 
                 }
             }
-        }//on a récup la ligne et la colonne la plus proche
+        }//on a récupère la ligne et la colonne la plus proche
         for (int i = 0; i < ani.length; i++) {
 
             if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && ani[i].isBleu() && tour) {
@@ -668,16 +648,18 @@ public class IHM_plateau extends javax.swing.JFrame {
             }//on a deux conditions, une pour cahque couleur
         }
         System.out.println("animal selectionné :" + ani[indice].getNom() + ani[indice].getCouleur());
-        //le setFocusable ici ne sert à rien malheureusement
         jPanel1.repaint();//on repaint à la fin de selecanimaux pour afficher le cercle
     }
 
     private void traitementBornes() {
-        //taille du panel:1800x1038
-        //taille de link:90x90
+        /**
+         *Traitement bornes gère les sorties de plateau avant l'affichage des animaux
+         * Si le déplacement est impossible, on laisser la pièce à la même place et on redonne un coup au joueur qui vient de faire un mouvement interdit
+         * 
+         **/
         // Gauche
         if (x_aff[indice] < 195) {
-            x_aff[indice] = 195;
+            x_aff[indice] = 195;//correspond à la colonne
             ani[indice].setX(x_aff[indice]);
         }
         //Droite
@@ -699,44 +681,61 @@ public class IHM_plateau extends javax.swing.JFrame {
         if (xtemp == x_aff[indice] && ytemp == y_aff[indice]) {
             coup++;//on lui redonne un coup parce qu'il a fait un mouvement impossible
             compteur_tour--;//à nouveau au tour du joueur de la même couleur
-            //ani[indice].setIsSelected(false);
-            System.out.println("Encore joueur bleu=" + tour + " de jouer");//la pièce est séléectionnée mais le rond est effacé c'est un peu dommage
+            System.out.println("Encore joueur bleu=" + tour + " de jouer");//la pièce est déjà selectionnée
         }
     }
-    String gagnant;
-
+    private String gagnant;
+private int m_bleu=8;
+        private int m_rouge=8;
     private void traitementTaniere() {
-        //this.IHM_acceuil=IHM_acceuil;
-        //potion900| 500 + 38x60
-        //personnagexLink|yLink + 9x90
-        if ((col[8]) < x_aff[indice] && x_aff[indice] < (col[8] + 20)
-                && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && !ani[indice].isBleu() && !tour) {
+        /**
+         * On cherche à savoir si l'animal a réussi à se placer sur la case tanière
+         *On utilise la classe Zone pour encadrer le point d'origine de la pièce, si celle si est bien dans la zone, et qu'elle est de la bonne couleur, la phase victoire est enclenchée
+         **/
+        
+        if((new Zone(col[8],col[8]+20,ligne[3],ligne[3]+20)).Inside(x_aff[indice], y_aff[indice]) && !ani[indice].isBleu() && !tour){   
             gagnant = jLabelJoueurR.getText();
-            IHM_victoire ihm1 = new IHM_victoire(gagnant);
+            IHM_victoire ihm1 = new IHM_victoire(gagnant);//on affiche l'IHM_victoire avec le paramètre gagnant
             ihm1.setVisible(true);
         }
-        if ((col[0]) < x_aff[indice] && x_aff[indice] < (col[0] + 20)
-                && (ligne[3]) < y_aff[indice] && y_aff[indice] < (ligne[3] + 20) && ani[indice].isBleu() && tour) {
+        if((new Zone(col[0],col[0]+20,ligne[3],ligne[3]+20)).Inside(x_aff[indice], y_aff[indice]) && ani[indice].isBleu() && tour){
             gagnant = jLabelJoueurB.getText();
             IHM_victoire ihm1 = new IHM_victoire(gagnant);
             setVisible(false);
             ihm1.setVisible(true);
         }
+        //Dans le cas où il ne reste plus qu'une couleur sur le plateau, la couleur restante gagne
+            if (m_bleu==0){//s'il n'y a plus de bleu, alors rouge gagne
+               gagnant = jLabelJoueurR.getText();
+            IHM_victoire ihm1 = new IHM_victoire(gagnant);
+            ihm1.setVisible(true); 
+            }
+            if(m_rouge==0){ //s'il n'y a plus de rouge, alors bleu gagne
+              gagnant = jLabelJoueurB.getText();
+            IHM_victoire ihm1 = new IHM_victoire(gagnant);
+            setVisible(false);
+            ihm1.setVisible(true);  
+            }
+        
 
     }
 
     private void traitementRivière() {
-
+/**
+ *Dans cette méthode, nous allons vérifier si l'animal va se déplacer dans une des zones rivière
+ * et si elle en est capable
+ * 
+ **/
         if (ani[indice].getNom() != "rat") {//dixit pour tous les autres animaux
             if (RH.Inside(ani[indice].getX(), ani[indice].getY()) || RB.Inside(ani[indice].getX(), ani[indice].getY())) {//si leurs coordonnées atterissent dans la rivière
                 if (ani[indice].getNom() != "tigre" && ani[indice].getNom() != "lion") {
                     JOptionPane.showMessageDialog(this, "Vous ne pouvez pas traverser la rivière, vous allez vous noyer, faites le tour", "Attention",
                             JOptionPane.INFORMATION_MESSAGE);
                     x_aff[indice] = xtemp;
-                    y_aff[indice] = ytemp;
+                    y_aff[indice] = ytemp;//on laisse la pièce à la même place
                     ani[indice].setX(xtemp);
                     ani[indice].setY(ytemp);
-                    //rajouter le rejouer
+                    //On fait rejouer le joueur
                     coup++;
                     compteur_tour--;
                 }
@@ -745,7 +744,7 @@ public class IHM_plateau extends javax.swing.JFrame {
                     switch (pressed) {
                         case "z":
                             System.out.println("remontée");
-                            y_aff[indice] -= (2 * 95);//le z ne fonctionne pas
+                            y_aff[indice] -= (2 * 95);
                             ani[indice].setY(y_aff[indice]);
                             break;
                         case "s":
@@ -754,7 +753,7 @@ public class IHM_plateau extends javax.swing.JFrame {
                             break;
                         case "q":
                             x_aff[indice] -= (3 * 95);
-                            ani[indice].setX(x_aff[indice]);//le q non plus, c'est assez frustrant
+                            ani[indice].setX(x_aff[indice]);
                             break;
                         case "d":
                             x_aff[indice] += 285;
@@ -772,19 +771,21 @@ public class IHM_plateau extends javax.swing.JFrame {
     }
 
     private void duel() {
-
+        /**
+         *Lorsque deux animaux se retrouvent sur la même, nous utilisons duel(), il y a alors deux cas :
+         * La couleur des pièces en conflit est la même, on replace la dernière pièce à son emplacement antérieur
+         * La couleur des pièces en conflit est différente, on compare leur rang pour savoir qui mange qui
+         **/
         //ani[indice]->animal selectionné
         //ani[i]->animal dasn le perimetrede duel de ani[indice]
         x_zonepd = ani[indice].getX() - 55;
         x_zonepf = ani[indice].getX() + 55;
         y_zonepd = ani[indice].getY() - 55;
-        y_zonepf = ani[indice].getY() + 55;
+        y_zonepf = ani[indice].getY() + 55;//zone délimitant les alentours de la pièce ani[indice]
 
         for (int i = 0; i < ani.length; i++) {
-            if (ani[i].getX() >= x_zonepd && ani[i].getX() <= x_zonepf && ani[i].getY() >= y_zonepd && ani[i].getY() <= y_zonepf && i != indice) {
+            if (new Zone(x_zonepd, x_zonepf, y_zonepd, y_zonepf).Inside(ani[i].getX(), ani[i].getY()) && i != indice) {
                 if (ani[i].isBleu() != ani[indice].isBleu()) {
-                    System.out.println("oui!");
-
                     switch (ani[indice].getRang_partie()) {
                         case 1:
                             if (RH.Inside(xtemp, ytemp) || RB.Inside(xtemp, ytemp)) {
@@ -840,19 +841,50 @@ public class IHM_plateau extends javax.swing.JFrame {
                                     morts.add(ani[indice].getNom() + ani[indice].getCouleur());
                                     ani[indice].setX(xm);
                                     ani[indice].setY(ym);
+                                    if (ani[indice].isBleu()){
+                                        m_bleu--;
+                                    }else{
+                                        m_rouge--;
+                                    }
                                 } else {
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
-
                                     coup++;
                                     compteur_tour--;
                                 }
-                            } else {
+                                break;
+                            }
+                            if (ani[i].getRang_partie() == 8) {
                                 //ani[i]disparait
-                                morts.add(ani[i].getNom() + ani[i].getCouleur());
+                                morts.add(ani[i].getNom() + ani[i].getCouleur());//on ajoute l'animal à la liste des morts
                                 ani[i].setX(xm);
-                                ani[i].setY(ym);
+                                ani[i].setY(ym);//on lui donne les coordonnées des morts
+                                if (ani[indice].isBleu()){
+                                        m_bleu--;
+                                    }else{
+                                        m_rouge--;
+                                    }
                                 System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
+                            } else {
+                                int result = JOptionPane.showConfirmDialog(this, "Etes vous vaiment sur de vouloir sacrifier cette pièce?");
+                                if (result == 0) {
+                                    System.out.println("suicide de la piece " + ani[indice].getNom() + " " + ani[indice].getCouleur());
+                                    //ani[indice](disparait)
+                                    morts.add(ani[indice].getNom() + ani[indice].getCouleur());
+                                    ani[indice].setX(xm);
+                                    ani[indice].setY(ym);
+                                    if (ani[indice].isBleu()){
+                                        m_bleu--;
+                                    }else{
+                                        m_rouge--;
+                                    }
+                                } else {
+                                    x_aff[indice] = xtemp;
+                                    y_aff[indice] = ytemp;
+                                    coup++;
+                                    compteur_tour--;
+
+                                }
                             }
                             break;
                         default:
@@ -864,10 +896,14 @@ public class IHM_plateau extends javax.swing.JFrame {
                                     morts.add(ani[indice].getNom() + ani[indice].getCouleur());
                                     ani[indice].setX(xm);
                                     ani[indice].setY(ym);
+                                    if (ani[indice].isBleu()){
+                                        m_bleu--;
+                                    }else{
+                                        m_rouge--;
+                                    }
                                 } else {
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
-
                                     coup++;
                                     compteur_tour--;
 
@@ -877,18 +913,31 @@ public class IHM_plateau extends javax.swing.JFrame {
                                 morts.add(ani[i].getNom() + ani[i].getCouleur());
                                 ani[i].setX(xm);
                                 ani[i].setY(ym);
+                                if (ani[i].isBleu()){
+                                        m_bleu--;
+                                    }else{
+                                        m_rouge--;
+                                    }
                                 System.out.println("la piece " + ani[i].getNom() + " " + ani[i].getCouleur() + " est mangée");
                             }
                             break;
                     }
 
+                } else {
+                    JOptionPane.showMessageDialog(this, "Vos animaux ne se mangent pas entre eux!");
+                    x_aff[indice] = xtemp;
+                    y_aff[indice] = ytemp;
+                    coup++;
+                    compteur_tour--;
                 }
             }
         }
     }
 
     private void piege() {
-
+/**
+ * Cette méthode concerne les cases marrons du plateau, un animal placé sur une de ces cases, vois son rang abaissé à 0 temporairement
+ **/
         if (cases_piege.InsideP(ani[indice].getX(), ani[indice].getY())) {
             ani[indice].setRang_partie(0);
             System.out.println("le rang de " + ani[indice].getNom() + ani[indice].getCouleur() + " est " + ani[indice].getRang_partie());
@@ -897,67 +946,66 @@ public class IHM_plateau extends javax.swing.JFrame {
             System.out.println("le rang de " + ani[indice].getNom() + ani[indice].getCouleur() + " est " + ani[indice].getRang_partie());
         }
     }
-//private int entree_morts=0;
 
     private void afficherMorts() {
         /**
-         * L'image morte est dans un tableau, morts on associe un label, on met
-         * l'image dans le label on met le label dans le panel on affiche le
-         * panel pour ne pas répéter l'affichage d'animaux déjà présents dans la
-         * fenêtre, comment faire?
+         * L'image morte est dans un tableau morts
+         * on associe un label,
+         * on met l'image dans le label 
+         * on met le label dans le panel 
+         * on affiche le panel
          *
          */
         System.out.println("vous entrez dans le cimetière");
-        //int deja_affiche=panel_mort.getComponentCount();
-        //Component []truc=panel_mort.getComponents();
-        //System.out.println("deja affiché : "+truc.toString());//aficher le nombre de truc dans le panel mort
         for (int i = 0; i < ani.length; i++) {
             if (morts.contains(ani[i].getNom() + ani[i].getCouleur())) {
                 jmort = new JLabel();
-                jmort.setIcon(new ImageIcon(image[i]));//éviter les répétitions
+                jmort.setIcon(new ImageIcon(image[i]));
                 panel_mort.add(jmort, -1);
             }
         }
         nb_mort = morts.size();
-        revalidate();
+        revalidate();//permet de redessiner tour après tour
         frame_mort.setSize(110, nb_mort * 120);
         repaint();
 
         frame_mort.setContentPane(panel_mort);//...on insert le panel dans le frame...
         frame_mort.setVisible(true);//...on affiche le frame
-        frame_mort.setDefaultCloseOperation(HIDE_ON_CLOSE);//ici on ferme le frame
+        frame_mort.setDefaultCloseOperation(HIDE_ON_CLOSE);// on ferme le frame
         System.out.println("Repaint cimetière");
-        //JOptionPane.showMessageDialog(this,new JLabel("",new ImageIcon("src/images/paw-png.png"),jmort.CENTER));
-    }
+        }
 
-    /*public void setVariable(boolean option_de_jeu) {
-        this.option = option_de_jeu;
-    }*/
     public void sauvegarde() {
-
-        PrintWriter fichier_sauvegarde;
-        //int n = 5;
+/**
+ *
+ * Cette méthode permet d'écrire les coordonées de chaque Animal de ani et les noms des joueurs dans un fichier externe
+ **/
+        PrintWriter fichier_sauvegarde;//création d'un fichier
         try {
-            fichier_sauvegarde = new PrintWriter(new BufferedWriter(new FileWriter("src/sauvegarde/fichier_sauvegarde.txt")));
+            fichier_sauvegarde = new PrintWriter(new BufferedWriter(new FileWriter("src/sauvegarde/fichier_sauvegarde.txt")));//crétation du fichier dans les dossiers de l'ordinateur comme un fichier sur lequel on peut écrire
             for (int i = 0; i < 16; i++) {
-                fichier_sauvegarde.println(x_sauv[i]);
+                fichier_sauvegarde.println(x_sauv[i]);//On écrit les valeurs des x
 
             }
             for (int i = 0; i < 16; i++) {
-                fichier_sauvegarde.println(y_sauv[i]);
+                fichier_sauvegarde.println(y_sauv[i]);//on écrit les valeurs des y
 
             }
             fichier_sauvegarde.println(jLabelJoueurR.getText());//on commence par rouge
             fichier_sauvegarde.println(jLabelJoueurB.getText());//puis bleu
-            fichier_sauvegarde.close();
+            fichier_sauvegarde.close();//on ferme le fichier
 
         } catch (IOException ex) {
             System.out.println("Problème dans la sauvegarde");
         }
-        // JOptionPane.showMessageDialog(this, "La partie a bien été enregistrée", "Vous pouvez quitter la partie",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "La partie a bien été enregistrée", "Vous pouvez quitter la partie", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void lecture() {
+        /**
+         *Cette méthode permet de récupérer les données écrite graâce à la méthode sauvegarde, dans un fichier externe
+         * Ce fichier contenant les coordonnées des animaux et le nom des joueurs
+         **/
         System.out.println("debut  de lecture");
         BufferedReader lecteur = null;
 
@@ -965,17 +1013,13 @@ public class IHM_plateau extends javax.swing.JFrame {
             lecteur = new BufferedReader(new FileReader("src/sauvegarde/fichier_sauvegarde.txt"));
         } catch (FileNotFoundException exc) {
             System.out.println("Erreur d'ouverture");
+            JOptionPane.showMessageDialog(this, "ERREUR\nLa partie sauvegardée est introuvable,\n La partie va être réinitialisée","sauvegarde introuvable",JOptionPane.INFORMATION_MESSAGE);
+            option = false;
+            afficherAnimaux(ani);
         }
         try {
-            //while (lecteurAvecBuffer.readLine()!=null)
             for (int i = 0; i < ligne_sauv.length; i++) {
                 ligne_sauv[i] = Integer.parseInt(lecteur.readLine());
-                /*if (i==(ligne_sauv.length-1)){//pour lire les nom s des joueurs, il faut qu'on tranforme les 'int' en 'String'
-                    jLabelJoueurR.setText(ligne_sauv[i]);
-                }
-                if (i==(ligne_sauv.length)){
-                    jLabelJoueurR.setText(ligne_sauv[i]);
-                }*/
             }
 
             for (int i = 0; i < ligne_sauv.length / 2; i++) {
@@ -987,43 +1031,28 @@ public class IHM_plateau extends javax.swing.JFrame {
                 System.out.println("y_sauv" + i + "=" + y_sauv[i - 16]);
             }
 
-            jLabelJoueurB.setText(lecteur.readLine()); //reprendre les noms enregistrés
-            jLabelJoueurR.setText(lecteur.readLine());
+            for (int i = 16; i < ligne_sauv.length; i++) {
+                y_sauv[i - 16] = ligne_sauv[i];
+                System.out.println("y_sauv" + i + "=" + y_sauv[i - 16]);
+            }
 
+            jLabelJoueurR.setText(lecteur.readLine()); //reprendre les noms enregistrés
+            jLabelJoueurB.setText(lecteur.readLine());
+
+        } catch (NumberFormatException ex) {
+            System.out.println("Erreur de lecture du fichier_sauvegarde");
+            JOptionPane.showMessageDialog(this, "ERREUR\nLa partie sauvegardée n'a pu être téléchargée correctement,\n La partie va être réinitialisée");
+            option = false;
+            afficherAnimaux(ani);
         } catch (IOException ex) {
             System.out.println("Erreur de lecture du fichier_sauvegarde");
         }
         try {
             lecteur.close();
-            //System.out.println("fermeture, fin de lecture");
         } catch (IOException ex) {
             System.out.println("Erreur de fermeture du fichier_sauvegarde");
         }
         System.out.println("fin de de lecture");
     }
-    /*
-    private void traitementChevauchement() {
-         switch (pressed) {
-                        case "z":
-                            
-                            break;
-                        case "s":
-                            
-                            break;
-                        case "q":
-                            for (int i = 0; i < ani.length; i++) {
-                            if((new Zone(xtemp-101,xtemp-97,ytemp-5,ytemp+5)).Inside(ani[i].getX(),ani[i].getY()) && i!=indice && tour==ani[indice].isBleu()){
-                                System.out.println("case prise");
-                                x_aff[indice]=xtemp;
-                                ani[indice].setX(x_aff[indice]);
-                                coup++;
-                                compteur_tour--;
-                            }}
-                            break;
-                        case "d":
-                            break;
-                        default:
-                            System.out.println("piece probablement chevauchante");
-                    }
-    }*/
+
 }

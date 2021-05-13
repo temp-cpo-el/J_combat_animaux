@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  *
@@ -22,7 +21,6 @@ public class IHM_acceuil extends javax.swing.JFrame {
 
     private File fichierAcceuil = new File("src/images/acceuil0.jpg");
     private BufferedImage imageAcceuil;
-    //public boolean option_de_jeu;
     private String JoueurB,JoueurR;
 
     
@@ -32,19 +30,13 @@ public class IHM_acceuil extends javax.swing.JFrame {
     public IHM_acceuil() {
         initComponents();
         setBounds(0, 0, 977,708);
-         jPanelacceuil.setFocusable(true);//on peut appliquer des actions sur le JPanel lui-même (cliquer, récup des coordonnées par rapport au Jpanel,ect..)
+         jPanelacceuil.setFocusable(true);//clavier utilisable
         try {
             imageAcceuil = ImageIO.read(fichierAcceuil);//utilisation de plateau_de_jeu
         } catch (IOException ex) {
             System.out.println("fichierAcceuil inutilisable");
         }
-       /*
-      if (jRadioButtonnouvellepartie.isSelected()){
-            option_de_jeu=false;           
-        }
-        if (jRadioButtonreprendrepartie.isSelected()){
-            option_de_jeu=true;
-        }*/  
+       
     }
 
     /**
@@ -122,12 +114,6 @@ public class IHM_acceuil extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(7, 0, 0));
         jLabel3.setText("Joueur Bleu");
-
-        jTextJoueurR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextJoueurRActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("pseudo:");
@@ -230,41 +216,20 @@ public class IHM_acceuil extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextJoueurRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextJoueurRActionPerformed
-        
-    }//GEN-LAST:event_jTextJoueurRActionPerformed
-
     private void jButtonjouerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonjouerActionPerformed
         JoueurR=jTextJoueurR.getText();
         JoueurB=jTextJoueurB.getText();
-        if (JoueurR==""){
+        if (jTextJoueurR.getText().isEmpty()){
             JoueurR= "Joueur Rouge";
         }
-         if (JoueurB==""){
+         if (jTextJoueurB.getText().isEmpty()){
             JoueurB= "Joueur Bleu";
         }
-
         System.out.println("Joueur Rouge: "+JoueurR+"\nJoueur Bleu: "+JoueurB);
-        
-        
-       
-        /*if (jRadioButtonnouvellepartie.isSelected()){
-            option_de_jeu=false;           
-        }
-        if (jRadioButtonreprendrepartie.isSelected()){
-            option_de_jeu=true;
-        }*/
-        //System.out.println( "option de jeu="+option_de_jeu);
-       
-      
-        //ihm1.setVariable(option_de_jeu);
-       /* IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB,option_de_jeu);
-        ihm1.setVariable(option_de_jeu);*/
         IHM_plateau ihm1= new IHM_plateau(JoueurR,JoueurB);
         ihm1.setVisible(true);
         setVisible(false);//ferme l'ihm d'acceuil {                                                           
-        //int np=1;
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(ihm1, "Les rouges commencent\nSélectionner un animal avec la souris puis,\nZ : monter\nS : descendre\nQ : Gauche\nD : droite\nBonne partie!");
     }//GEN-LAST:event_jButtonjouerActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
