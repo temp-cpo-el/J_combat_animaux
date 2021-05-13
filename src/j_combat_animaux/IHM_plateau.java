@@ -920,6 +920,7 @@ private int m_rouge=8;
     private void piege() {
 /**
  * Cette méthode concerne les cases marrons du plateau, un animal placé sur une de ces cases, vois son rang abaissé à 0 temporairement
+ * il peut etre alors manager par n'importe quel autre animal
  **/
         if (cases_piege.InsideP(ani[indice].getX(), ani[indice].getY())) {
             ani[indice].setRang_partie(0);
@@ -961,7 +962,7 @@ private int m_rouge=8;
     public void sauvegarde() {
 /**
  *
- * Cette méthode permet d'écrire les coordonées de chaque Animal de ani et les noms des joueurs dans un fichier externe
+ * Cette méthode permet d'écrire les coordonées de chaque Animal de ani et les noms des joueurs dans un fichier txt externe
  **/
         PrintWriter fichier_sauvegarde;//création d'un fichier
         try {
@@ -986,7 +987,7 @@ private int m_rouge=8;
 
     public void lecture() {
         /**
-         *Cette méthode permet de récupérer les données écrite graâce à la méthode sauvegarde, dans un fichier externe
+         *Cette méthode permet de récupérer les données écrite grâce à la méthode sauvegarde, dans un fichier externe
          * Ce fichier contenant les coordonnées des animaux et le nom des joueurs
          **/
         System.out.println("debut  de lecture");
