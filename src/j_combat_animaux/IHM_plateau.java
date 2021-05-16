@@ -637,12 +637,12 @@ public class IHM_plateau extends javax.swing.JFrame {
         }//on a récupère la ligne et la colonne la plus proche
         for (int i = 0; i < ani.length; i++) {
 
-            if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && ani[i].isBleu() && tour) {
+            if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 30 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 30 && ani[i].isBleu() && tour) {
                 ani[i].setIsSelected(true);//si notre clic correspond aux conditions, le booléen isSelected devient true
                 indice = i;//on récupère l'indice correspondant à l'image dans le tableau d'animaux
 
             }
-            if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 20 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 20 && !ani[i].isBleu() && !tour) {
+            if (ligne_proche < ani[i].getY() && ani[i].getY() < ligne_proche + 30 && col_proche < ani[i].getX() && ani[i].getX() < col_proche + 30 && !ani[i].isBleu() && !tour) {
                 ani[i].setIsSelected(true);
                 indice = i;
             }//on a deux conditions, une pour cahque couleur
@@ -802,6 +802,8 @@ private int m_rouge=8;
                                     ani[indice].setX(xm);
                                     ani[indice].setY(ym);
                                 } else {
+                                    ani[indice].setX(xtemp);
+                                    ani[indice].setY(ytemp);
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
 
@@ -827,6 +829,8 @@ private int m_rouge=8;
                                     ani[indice].setX(xm);
                                     ani[indice].setY(ym);
                                 } else {
+                                    ani[indice].setX(xtemp);
+                                    ani[indice].setY(ytemp);
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
 
@@ -851,6 +855,8 @@ private int m_rouge=8;
                                         m_rouge--;
                                     }//comtage des pieces mangées
                                 } else {//reponse NON
+                                    ani[indice].setX(xtemp);
+                                    ani[indice].setY(ytemp);
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
                                     coup++;
@@ -884,6 +890,8 @@ private int m_rouge=8;
                                         m_rouge--;
                                     }
                                 } else {
+                                    ani[indice].setX(xtemp);
+                                    ani[indice].setY(ytemp);
                                     x_aff[indice] = xtemp;
                                     y_aff[indice] = ytemp;
                                     coup++;
@@ -908,6 +916,8 @@ private int m_rouge=8;
 
                 } else {
                     JOptionPane.showMessageDialog(this, "Vos animaux ne se mangent pas entre eux!");
+                    ani[indice].setX(xtemp);
+                    ani[indice].setY(ytemp);
                     x_aff[indice] = xtemp;
                     y_aff[indice] = ytemp;
                     coup++;
