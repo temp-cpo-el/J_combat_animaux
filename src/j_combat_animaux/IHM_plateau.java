@@ -392,24 +392,24 @@ public class IHM_plateau extends javax.swing.JFrame {
 
             xtemp = ani[indice].getX();//pour pouvoir les comparer après
             ytemp = ani[indice].getY();//pour pouvoir les comparer après
-            if (evt.getKeyChar() == 'z' && coup > 0) {//Z
+            if (evt.getKeyChar() == 'z' && coup > 0|| evt.getKeyChar() == 'Z' && coup > 0) {//Z
                 y_aff[indice] -= 95;//change les paramètres d'affichage
                 pressed = "z";
                 ani[indice].setY(y_aff[indice]);//on les remplace les anciennes coordonnées avec les nouvelles
             }
-            if (evt.getKeyChar() == 's' && coup > 0) {//S
+            if (evt.getKeyChar() == 's' && coup > 0||evt.getKeyChar() == 'S' && coup > 0) {//S
 
                 y_aff[indice] += 95;
                 pressed = "s";
                 ani[indice].setY(y_aff[indice]);
             }
-            if (evt.getKeyChar() == 'q' && coup > 0) {//Q
+            if (evt.getKeyChar() == 'q' && coup > 0||evt.getKeyChar() == 'Q' && coup > 0) {//Q
 
                 x_aff[indice] -= 95;
                 pressed = "q";
                 ani[indice].setX(x_aff[indice]);
             }
-            if (evt.getKeyChar() == 'd' && coup > 0) {//D
+            if (evt.getKeyChar() == 'd' && coup > 0||evt.getKeyChar() == 'D' && coup > 0) {//D
 
                 x_aff[indice] += 95;
                 pressed = "d";
